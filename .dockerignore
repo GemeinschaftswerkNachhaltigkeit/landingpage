@@ -1,0 +1,7 @@
+node_modules
+npm-debug*
+.nuxt
+.idea
+.directus
+.git
+NUXT3_VERSION

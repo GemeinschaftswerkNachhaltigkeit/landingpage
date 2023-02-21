@@ -1,0 +1,62 @@
+variables:
+  SONARQUBE_SOURCES_DIR: "."
+  SONARQUBE_TESTS_DIR: "tests"
+  SONARQUBE_SOURCES_EXCLUSIONS: "static/**,.nuxt/**,dist/**,tests/**/*.spec.js,tests/**/*.mock.js,tests/**/*.test.js,report/**"
+  SONARQUBE_TESTS_INCLUSIONS: "tests/**/*.spec.js,tests/**/*.mock.js,tests/**/*.test.js"
+  PACKAGE_LOCK_JSON_DIR: "." # If a package-lock.json exists in this directory `npm ci` will be called there
+  DEPENDENCY_CHECK_SCAN_TARGET: "."
+
+include:
+  - project: "exxeta.platform.suite/cicd-services/gitlabci-templates/docker"
+    ref: v1
+    file: "lint.yml"
+  - project: "exxeta.platform.suite/cicd-services/gitlabci-templates/docker"
+    ref: v1
+    file: "kaniko.yml"
+  - project: "exxeta.platform.suite/cicd-services/gitlabci-templates/npm"
+    ref: v1
+    file: "node-16-lts.yml"
+  - project: "exxeta.platform.suite/cicd-services/gitlabci-templates/owasp"
+    ref: v1
+    file: "dependencyCheck.yml"
+  - project: "exxeta.platform.suite/cicd-services/gitlabci-templates/sonarqube"
+    ref: v1
+    file: "sonarqube.yml"
+
+stages:
+  #  - owasp
+  #  - sonarqube
+  - lint
+  - docker
+  - release
+
+#owasp:dependencyCheck:
+#  extends: .owasp:dependencyCheck
+
+#sonarqube:
+#  extends: .sonarqube
+
+docker:hadolint:
+  extends: .docker:hadolint
+
+docker:kaniko:
+  extends: .docker:kaniko
+  variables:
+    DOCKER_PUSH_URI: "${DOCKER_PUSH_URI_INTERN_TEST}/wpgwn/landing-page"
+    AWS_ACCESS_KEY_ID: ${REGISTRY_USER_INTERN_TEST}
+    AWS_SECRET_ACCESS_KEY: ${REGISTRY_PASSWORD_INTERN_TEST}
+  only:
+    refs:
+      - develop
+      - tags
+
+# We release when the code is merged into the main branch
+release:
+  extends: .npm:build
+  image: ${DOCKER_PULL_URI}/library/node:16
+  stage: release
+  script:
+    - npx semantic-release
+  only:
+    refs:
+      - main

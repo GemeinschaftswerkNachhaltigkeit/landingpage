@@ -1,0 +1,151 @@
+<template>
+  <div class="lang-switch" >
+    <div @click="langChanged()">
+      <nuxt-link
+      v-for="locale in availableLocales"
+      :key="locale.code"
+      :to="switchLocalePath(locale.code)"
+      :title="locale.name"
+      
+    >
+      <div class="flag" :class="locale.code"></div
+    ></nuxt-link>
+    </div>
+  </div>
+</template>
+
+<style>
+.lang-switch a {
+  display: flex;
+  text-decoration: none;
+  color: var(--gw-blue-dark);
+}
+
+.name {
+  display: none;
+}
+
+.flag {
+  width: 22px;
+  height: 15px;
+  overflow: hidden;
+  margin-right: 0.5em;
+  /*  transform: scale(1.2);
+    border: 1px solid #efefef;*/
+}
+
+.germany,
+.flag.de {
+  background: linear-gradient(
+    to bottom,
+    black calc(100% / 3),
+    #dd0000 calc(100% / 3),
+    #dd0000 calc(100% / 3 * 2),
+    #ffce00 calc(100% / 3 * 2)
+  );
+}
+
+.the-united-kingdom,
+.flag.en {
+  background: #00247d;
+  background-size: 100px 100px;
+  position: relative;
+}
+.the-united-kingdom:before,
+.flag.en:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      #cc142b 40%,
+      #cc142b 60%,
+      transparent 60%
+    ),
+    linear-gradient(
+      to right,
+      transparent 45%,
+      #cc142b 45%,
+      #cc142b 55%,
+      transparent 55%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 35%,
+      white 35%,
+      white 65%,
+      transparent 65%
+    ),
+    linear-gradient(
+      to right,
+      transparent 40%,
+      white 40%,
+      white 60%,
+      transparent 60%
+    ),
+    linear-gradient(
+        146deg,
+        transparent 50%,
+        #cc142b 50%,
+        #cc142b 53%,
+        transparent 53%
+      ) -65px 45px,
+    linear-gradient(
+        146deg,
+        transparent 50%,
+        #cc142b 50%,
+        #cc142b 53%,
+        transparent 53%
+      )
+      55px -45px,
+    linear-gradient(
+        34deg,
+        transparent 50%,
+        #cc142b 50%,
+        #cc142b 53%,
+        transparent 53%
+      ) -75px -43px,
+    linear-gradient(
+        34deg,
+        transparent 50%,
+        #cc142b 50%,
+        #cc142b 53%,
+        transparent 53%
+      )
+      70px 46px,
+    linear-gradient(
+      146deg,
+      transparent 45%,
+      white 45%,
+      white 55%,
+      transparent 55%
+    ),
+    linear-gradient(
+      34deg,
+      transparent 45%,
+      white 45%,
+      white 55%,
+      transparent 55%
+    );
+  width: 22px;
+  height: 15px;
+  background-repeat: no-repeat;
+}
+</style>
+
+<script>
+export default {
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+    },
+  },
+  methods: {
+    langChanged(lang) {
+      this.$emit("langChanged", lang);
+    },
+  },
+};
+</script>
