@@ -1,21 +1,5 @@
 # Wpgwn-landingpage
 
-## Sonarcube Status (develop Branch)
-
-[![Quality Gate Status](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=alert_status)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-[![Lines of Code](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=ncloc)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-[![Duplicated Lines (%)](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=duplicated_lines_density)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-[![Coverage](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=coverage)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-
-[![Security Rating](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=security_rating)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-[![Vulnerabilities](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=vulnerabilities)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-
-[![Reliability Rating](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=reliability_rating)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-[![Bugs](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=bugs)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-
-[![Maintainability Rating](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=sqale_rating)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-[![Code Smells](https://sonarqube.lej.eis.network/api/project_badges/measure?branch=develop&project=com.exxeta%3Awpgwn-landingpage&metric=code_smells)](https://sonarqube.lej.eis.network/dashboard?id=com.exxeta%3Awpgwn-landingpage&branch=develop)
-
 ## Getting started / Installation
 
 ### Nuxt app
