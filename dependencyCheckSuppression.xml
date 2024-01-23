@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+   <suppress>
+      <notes><![CDATA[
+      file name: file:0.2.2
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/file@.*$</packageUrl>
+      <cve>CVE-2019-18218</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: file:0.2.2
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/file@.*$</packageUrl>
+      <cve>CVE-2014-9653</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: file:0.2.2
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/file@.*$</packageUrl>
+      <cve>CVE-2014-8117</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: file:0.2.2
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/file@.*$</packageUrl>
+      <cve>CVE-2014-9652</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: glob-parent:3.1.0
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/glob\-parent@.*$</packageUrl>
+      <vulnerabilityName>1067329</vulnerabilityName>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: lodash.template:4.5.0
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/lodash\.template@.*$</packageUrl>
+      <vulnerabilityName>CVE-2021-23337</vulnerabilityName>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: nth-check:1.0.2
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/nth\-check@.*$</packageUrl>
+      <cve>CVE-2021-3803</cve>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: nth-check:1.0.2
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/nth\-check@.*$</packageUrl>
+      <vulnerabilityName>1070415</vulnerabilityName>
+   </suppress>
+   <suppress>
+      <notes><![CDATA[
+      file name: opener:1.5.2
+      ]]></notes>
+      <packageUrl regex="true">^pkg:npm/opener@.*$</packageUrl>
+      <cve>CVE-2021-27478</cve>
+   </suppress>
+   <suppress>
+   <notes><![CDATA[
+   file name: opener:1.5.2
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/opener@.*$</packageUrl>
+   <cve>CVE-2021-27482</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: opener:1.5.2
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/opener@.*$</packageUrl>
+   <cve>CVE-2021-27498</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: opener:1.5.2
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/opener@.*$</packageUrl>
+   <cve>CVE-2021-27500</cve>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: set-value:2.0.1
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/set\-value@.*$</packageUrl>
+   <vulnerabilityName>CVE-2021-23440</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: glob-parent:3.1.0
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/glob\-parent@.*$</packageUrl>
+   <vulnerabilityName>CVE-2020-28469</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: parse-url:6.0.0
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/parse\-url@.*$</packageUrl>
+   <vulnerabilityName>CVE-2022-2216</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: parse-url:6.0.0
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/parse\-url@.*$</packageUrl>
+   <vulnerabilityName>CVE-2022-2217</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: parse-url:6.0.0
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/parse\-url@.*$</packageUrl>
+   <vulnerabilityName>CVE-2022-2218</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: parse-url:6.0.0
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/parse\-url@.*$</packageUrl>
+   <vulnerabilityName>CVE-2022-0722</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: parse-path:4.0.3
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/parse\-path@.*$</packageUrl>
+   <vulnerabilityName>CVE-2022-0624</vulnerabilityName>
+</suppress>
+<suppress>
+   <notes><![CDATA[
+   file name: parse-path:4.0.3
+   ]]></notes>
+   <packageUrl regex="true">^pkg:npm/parse\-path@.*$</packageUrl>
+   <vulnerabilityName>CVE-2022-2218</vulnerabilityName>
+</suppress>
+</suppressions>

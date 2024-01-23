@@ -1,0 +1,79 @@
+version: '3'
+services:
+  database:
+    container_name: database
+    image: postgres:13.4-buster
+    volumes:
+      #- ./data/database:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - directus
+    environment:
+      POSTGRES_USER: 'directus'
+      POSTGRES_PASSWORD: 'directus'
+      POSTGRES_DB: 'directus'
+    ports:
+      - '5433:5432'
+  cache:
+    container_name: cache
+    image: redis:6
+    networks:
+      - directus
+
+  directus:
+    container_name: directus
+    image: directus/directus:10.8.0
+    ports:
+      - 8055:8055
+    volumes:
+      # By default, uploads are stored in /directus/uploads
+      # Always make sure your volumes matches the storage root when using
+      # local driver
+      - .directus/uploads:/directus/uploads
+      # Make sure to also mount the volume when using SQLite
+      # - ./database:/directus/database
+      # If you want to load extensions from the host
+      # - ./extensions:/directus/extensions
+    networks:
+      - directus
+    depends_on:
+      - cache
+      - database
+    environment:
+      DB_CLIENT: 'pg'
+      DB_HOST: 'database'
+      DB_PORT: '5432'
+      DB_DATABASE: 'directus'
+      DB_USER: 'directus'
+      DB_PASSWORD: 'directus'
+
+      CACHE_ENABLED: 'false'
+      CACHE_STORE: 'redis'
+      REDIS: 'redis://cache:6379'
+
+      ADMIN_EMAIL: '***REMOVED***'
+      ADMIN_PASSWORD: 'welcome'
+
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'true'
+      KEY: '${DIRECTUS_KEY}'
+      SECRET: '${DIRECTUS_SECRET}'
+
+      # Make sure to set this in production
+      # (see https://docs.directus.io/configuration/config-options/#general)
+      # PUBLIC_URL: 'https://directus.example.com'
+#  nuxt-lp:
+#   image: nuxt-lp:latest
+#   environment:
+#     DIRECTUS_URL: 'http://directus:8055'
+#     DIRECTUS_TOKEN: '112345'
+#   networks:
+#     - directus
+#   ports:
+#     - 8000:8000
+
+networks:
+  directus:
+
+volumes:
+  postgres-data:

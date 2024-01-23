@@ -1,0 +1,249 @@
+{
+  "page": {
+    "title": "Gemeinschaftswerk Nachhaltigkeit",
+    "privacy": "Datenschutzerklärung",
+    "imprint": "Impressum"
+  },
+  "btn": {
+    "submit": "Senden",
+    "search": "Suchen",
+    "signUp": "Jetzt anmelden",
+    "goToFaq": "Zu den FAQ",
+    "goToRoadmap": "Zum Fahrplan",
+    "goToPartner": "Zu den Partner:innen",
+    "login": "Login",
+    "logout": "Logout",
+    "registration": "Jetzt registrieren",
+    "showMore": "mehr anzeigen",
+    "showLess": "weniger anzeigen",
+    "more": "Mehr dazu"
+  },
+  "labels": {
+    "de": "Deutsch",
+    "en": "Englisch",
+    "sdgsSearchForm": "Nachhaltigkeitsziele",
+    "thematicFocus": "Themenfelder",
+    "query": "Was",
+    "location": "Wo",
+    "new": "Neu",
+    "LOCAL": "lokal",
+    "REGIONAL": "regional",
+    "STATE": "landesweit",
+    "COUNTRY": "bundesweit",
+    "CONTINENT": "europaweit",
+    "WORLD": "global",
+    "info": "Info",
+    "projectN": "Projekt Nachhaltigkeit",
+    "winner": "Preisträger:in",
+    "online": "Online",
+    "private": "Privat",
+    "permanent": "Permanent",
+    "expiredEvent": "Vergangene Veranstaltung",
+    "PROJECT_SUSTAINABILITY": "Projekt Nachhaltigkeit",
+    "JOBS": "Jobs",
+    "EDUCATIONAL_OFFERS": "Bildungsangebote",
+    "REPORTING_STANDARDS": "Berichtstandards",
+    "FACILITIES": "Räumlichkeiten",
+    "CONSULTING": "Beratung",
+    "FUNDING_PROGRAMMES_AND_GRANTS": "Förderprogramme und Finanzhilfen",
+    "MATERIALS": "Materialien",
+    "CONTESTS": "Wettbewerbe",
+    "VOLUNTEERING": "Freiwilliges Engagement",
+    "OTHER": "Sonstiges",
+    "SUSTAINABILITY_REPORTING": "Nachhaltigkeitsberichterstattung",
+    "PROJECT_REPORT": "Projekte",
+    "orga": "Organisationen",
+    "event": "Veranstaltungen",
+    "marketplace": "Marktplatz",
+    "tabHeading": "Finde Inspiration im Bereich",
+    "orgaLink": "Alle Ergebnisse auf der Karte ansehen",
+    "eventsLink": "Alle Ergebnisse im Veranstaltungskalender ansehen",
+    "marketplaceLink": "Alle Ergebnisse auf dem Marktplatz ansehen",
+    "searchPlaceholder": "Themen, Orte, Aktivitäten ...",
+    "sdgs": "Nachhaltigkeitsziele"
+  },
+  "footerMenuLabels": {
+    "main": "Menü",
+    "social": "Social Media",
+    "account": "Account",
+    "copyright": "Gemeinschaftswerk Nachhaltigkeit © {year} | All rights reserved."
+  },
+  "agreePrivacy": "Ich stimme der {privacyLink} zu.",
+  "agreePrivacySignUp": "Ich stimme der {participationDeclaration} und der {privacyLink} zu.",
+  "hints": {
+    "query": "Organisationen oder Veranstaltungen",
+    "location": "z.B. Städte, PLZs oder Bundesländer"
+  },
+  "placeholder": {
+    "email": "Deine E-Mail Adresse",
+    "name": "Dein Name",
+    "organisation": "Organisation",
+    "message": "Deine Nachricht",
+    "initiative": "Name der Organisation",
+    "goals": "Verfolgte Nachhaltigkeitsziele",
+    "contribution": "Der Nachhaltigkeitsbeitrag deiner Organisation",
+    "salutation": "Anrede",
+    "sdgsSearchForm": "Nachhaltigkeitsziele",
+    "thematicFocus": "Themenfelder",
+    "query": "Suche",
+    "location": "Ort",
+    "station": "Station",
+    "position": "Position"
+  },
+  "form": {
+    "required": "Pflichtfeld",
+    "submit": {
+      "success": "Erfolgreich gesendet",
+      "error": "Senden fehlgeschlagen"
+    },
+    "signUp": {
+      "success": "Anmeldung erfolgreich",
+      "error": "Anmeldung fehlgeschlagen"
+    },
+    "signUpInitiative": {
+      "success": "Danke für deine Anmeldung! Sobald du die Informationen deiner Organisation vervollständigen kannst, geben wir dir Bescheid!"
+    },
+    "salutationValues": {
+      "mr": "Herr",
+      "mrs": "Frau",
+      "Divers": "Divers"
+    },
+    "contactOptions": {
+      "tech": "Technisches Feedback (Fehlermeldungen, Bugs, etc.)",
+      "content": "Inhaltliches Feedback zum Gemeinschaftswerk und Aktionen",
+      "idea": "Ideen zur Weiterentwicklung der Plattform",
+      "short": {
+        "tech": "Technisches Feedback",
+        "content": "Inhaltliches Feedback",
+        "idea": "Idee"
+      }
+    },
+    "contactAnnonymus": "Anonyme Nachricht"
+  },
+  "cookieBanner": {
+    "btn": {
+      "acceptAll": "Cookies akzeptieren",
+      "acceptNecessary": "Nur technisch notwendige Cookies akzeptieren"
+    },
+    "title": "Wir respektieren deine Privatsphäre",
+    "text": "Diese Website benutzt Cookies. Einige sind für den Betrieb unseres Redaktionssystems technisch notwendig. Darüber hinaus setzen wir das Tracking-Programm 'Matomo' zur statistischen Analyse der Website-Nutzung und zur Optimierung unseres Internet-Angebotes ein. Matomo speichert die Informationen anonymisiert, datenschutzkonform und nur vorübergehend ausschließlich auf unserem Server. Weitere Informationen findest du in der {privacyLink}."
+  },
+  "participationDeclaration": "Mitmach-Erklärung",
+  "SDGS": {
+    "goal_1": "Keine Armut",
+    "goal_2": "Kein Hunger",
+    "goal_3": "Gesundheit und Wohlergehen",
+    "goal_4": "Hochwertige Bildung",
+    "goal_5": "Geschlechtergleichheit",
+    "goal_6": "Sauberes Wasser und Sanitäreinrichtungen",
+    "goal_7": "Bezahlbare und saubere Energie",
+    "goal_8": "Menschenwürdige Arbeit und Wirtschaftswachstum",
+    "goal_9": "Industrie, Innovation und Infrastruktur",
+    "goal_10": "Weniger Ungleichheiten",
+    "goal_11": "Nachhaltige Städte und Gemeinden",
+    "goal_12": "Nachhaltige/r Konsum und Produktion",
+    "goal_13": "Maßnahmen zum Klimaschutz",
+    "goal_14": "Leben unter Wasser",
+    "goal_15": "Leben an Land",
+    "goal_16": "Frieden, Gerechtigkeit und starke Institutionen",
+    "goal_17": "Partnerschaften zur Erreichung der Ziele"
+  },
+  "thematicFocus": {
+    "PARTICIPATION": "Beteiligung, Engagement und Partizipation",
+    "EDUCATION": "Bildung, Forschung und Wissenschaft",
+    "BIODIVERSITY": "Biodiversität, Artenschutz und Schutz natürlicher Ressourcen",
+    "HUMAN_RIGHTS": "Demokratie und Menschenrechte",
+    "GENDER_EQUITY": "Diversität, Geschlechtergerechtigkeit, Inklusion und Anti-Diskriminierung",
+    "PEACE": "Frieden und Sicherheit",
+    "INTERNATIONAL_RESPONSIBILITY": "Internationale Verantwortung",
+    "CLIMATE_PROTECTION": "Klimaschutz und Energiewende",
+    "CIRCULAR_ECONOMY": "Kreislaufwirtschaft",
+    "CULTURAL_SOCIAL_CHANGE": "Kultur, gesellschaftlicher Wandel und soziale Innovation",
+    "AGRICULTURE": "Landwirtschaft und Ernährung",
+    "MOBILITY": "Mobilität und Verkehrswende",
+    "SUSTAINABLE_PROCUREMENT": "Nachhaltige Beschaffung",
+    "SUSTAINABLE_LIFESTYLE": "Nachhaltiger Konsum und Lebensstile",
+    "SUSTAINABLE_BUILDING": "Nachhaltiges Bauen und Wohnen",
+    "SUSTAINABLE_BUSINESS": "Nachhaltiges Wirtschaften",
+    "SUSTAINABLE_GOVERNANCE": "Nachhaltigkeitsgovernance",
+    "SOCIAL_JUSTICE": "Soziale Gerechtigkeit, gute Arbeit und Chancengleichheit",
+    "URBAN_DEVELOPMENT": "Stadtentwicklung, Entwicklung ländlicher Räume und Quartiersentwicklung",
+    "SUSTAINABLE_FINANCE": "Sustainable Finance",
+    "SPORT": "Sport",
+    "TOURISM": "Tourismus",
+    "OTHER": "Sonstiges"
+  },
+  "marketplaceType": {
+    "PROJECT_SUSTAINABILITY": "Projekt Nachhaltigkeit",
+    "JOBS": "Jobs",
+    "EDUCATIONAL_OFFERS": "Bildungsangebote",
+    "REPORTING_STANDARDS": "Berichtstandards",
+    "FACILITIES": "Räumlichkeiten",
+    "CONSULTING": "Beratung",
+    "FUNDING_PROGRAMMES_AND_GRANTS": "Förderprogramme und Finanzhilfen",
+    "MATERIALS": "Materialien",
+    "CONTESTS": "Wettbewerbe",
+    "VOLUNTEERING": "Freiwilliges Engagement",
+    "NETWORK": "Netzwerk",
+    "OTHER": "Sonstiges",
+    "SUSTAINABILITY_REPORTING": "Nachhaltigkeitsberichterstattung",
+    "PROJECT_REPORT": "Projekte"
+  },
+  "activityType": {
+    "PARTICIPATION_PROCESS": "Beteiligungsprozess ",
+    "FUNDING_PROGRAM": "Förderprogramm ",
+    "NETWORK": "Netzwerk",
+    "PROJECT_PROGRESS": "Projektentwicklung",
+    "EVENT": "Veranstaltung",
+    "OTHER": "Sonstiges",
+    "DAN": "Aktionstage"
+  },
+  "organisationType": {
+    "EDUCATION": "Bildungseinrichtung",
+    "FEDERAL": "Bund",
+    "STATE": "Bundesland",
+    "FINANCE": "Finanzsektor",
+    "UNION": "Gewerkschaft",
+    "RELIGION": "Religionsgemeinschaft",
+    "MUNICIPALITY": "Kommune",
+    "CULTURAL": "Kultureinrichtung",
+    "PARTY": "Partei",
+    "SPORTS_CLUB": "Sportverein",
+    "FOUNDATION": "Stiftung",
+    "NON_GOVERNMENT_ORGANISATION": "Verband/ Nichtregierungsorganisation",
+    "ASSOCIATION": "Verein/ Initiative",
+    "BUSINESS": "Wirtschaft",
+    "SCIENCE": "Wissenschaft",
+    "OTHER": "Sonstiges"
+  },
+  "newsletter": {
+    "error": {
+      "title": "Es ist ein Fehler aufgetreten!",
+      "tryAgain": "Um Ihre Formulareingaben zu bearbeiten, schließen Sie bitte einfach dieses Browser-Fenster. Das Formular ist noch im Hintergrund geöffnet.",
+      "emailFormat": "Leider konnten wir Ihre E-Mail-Adresse nicht in unsere Abonnentenliste aufnehmen, da das Format der Adresse nicht korrekt ist - evtl. fehlt das {'@'}-Zeichen. Bitte geben Sie Ihre E-Mail-Adresse erneut ein.",
+      "emailExists": "Ihre E-Mail-Adresse ist bereits in der Empfängergruppe.",
+      "emailBlocked": "Ihre E-Mail ist blockiert.\\n Dies kommt z.B. dann vor, wenn Ihre E-Mail-Adresse auf einer Blacklist steht. Bitte verwenden Sie eine andere E-Mail-Adresse.",
+      "requiredFields": "Ein oder mehrere Pflichtfelder wurden nicht ausgefüllt."
+    },
+    "subscribe": {
+      "confirm": {
+        "title": "Ihre Anmeldung zum Newsletter: Fast geschafft...",
+        "msg": "Um Ihre Anmeldung abzuschließen, klicken Sie bitte auf den Bestätigungslink in der E-Mail, die wir Ihnen soeben gesendet haben."
+      },
+      "complete": {
+        "title": "Vielen Dank für Ihre Anmeldung!",
+        "msg": "Ihre Anmeldung zum Newsletter des RNE war erfolgreich."
+      }
+    },
+    "unsubscribe": {
+      "confirm": {
+        "title": "Ihre Abmeldung vom Newsletter: Fast geschafft...",
+        "msg": "Um Ihre Abmeldung abzuschließen, klicken Sie bitte auf den Bestätigungslink in der E-Mail, die wir Ihnen soeben gesendet haben."
+      },
+      "complete": {
+        "title": "Auf Wiedersehen!",
+        "msg": "Ihre Abmeldung vom Newsletter war erfolgreich."
+      }
+    }
+  }
+}
