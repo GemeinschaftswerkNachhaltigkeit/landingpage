@@ -24,9 +24,8 @@ jobs:
           node-version: 18
           
       - name: npm install, build
-        run: |
-          npm install
-          npm run build
+      - run: npm install
+      - run: npm run build
           
       - name: build the Docker image
         run: docker build . --file Dockerfile --tag ${{env.REGISTRY}}/${{ env.GITHUB_NAME }}/${{env.IMAGE_NAME}}
