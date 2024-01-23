@@ -16,6 +16,9 @@ jobs:
   build:
     name: maven package, docker build and push
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: find latest tag
         uses: oprypin/find-latest-tag@v1
@@ -28,15 +31,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       
-      - name: set up node js 18
+      - name: set up node js 18, install and build
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          
-      - name: npm install, build
-        run: |
-          npm install
-          npm run build
+      - run: npm install
+      - run: npm build
     
       - name: build the docker image
         run: docker build . --file Dockerfile --tag ${{env.REGISTRY}}/${{ env.GITHUB_NAME }}/${{env.IMAGE_NAME}}:${{ steps.latestVersion.outputs.tag }}
