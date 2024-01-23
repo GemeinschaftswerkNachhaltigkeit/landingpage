@@ -1,4 +1,4 @@
-FROM docker.lej.eis.network/library/node:lts-alpine as builder
+FROM node:lts-alpine as builder
 
 # create destination directory
 RUN mkdir -p /usr/src/nuxt-app
@@ -10,7 +10,7 @@ COPY . .
 # RUN npm ci --ignore-scripts && npm install --save-dev esbuild@0.13.4
 RUN npm ci --ignore-scripts
 
-FROM docker.lej.eis.network/library/node:lts-alpine
+FROM node:lts-alpine
 
 WORKDIR /usr/src/nuxt-app
 
