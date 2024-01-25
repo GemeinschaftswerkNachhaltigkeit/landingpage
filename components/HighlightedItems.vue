@@ -10,10 +10,16 @@
       </section>
       <section class="content-section">
         <div>
-          <div class="content-section-wrapper cards" v-if="type">
-            <component v-if="!loading" v-for="result in   results  " :is="comp" v-bind="{ item: result }">
-            </component>
-            <Spinner v-else></Spinner>
+          <div v-if="!loading">
+            <div class="content-section-wrapper cards" v-if="type">
+              <component v-for="result in   results  " :is="comp" v-bind="{ item: result }">
+              </component>
+            </div>
+          </div>
+          <div class="content-section-wrapper spinner-wrapper" v-if="loading">
+            <div class="spinner">
+              <Spinner></Spinner>
+            </div>
           </div>
           <HighlightedItemsAllResultLinks :result-type="type"></HighlightedItemsAllResultLinks>
         </div>
@@ -119,6 +125,18 @@ section.wrapper {
     .content-section {
       padding-block: 0;
 
+      .spinner-wrapper {
+        padding-block-start: 32px;
+        padding-block-end: 64px;
+
+        .spinner {
+          margin-inline: auto;
+          height: 460px;
+
+        }
+      }
+
+
 
       &.filters {
         position: relative;
@@ -149,7 +167,11 @@ section.wrapper {
     gap: 24px;
     padding-block-start: 32px;
     padding-block-end: 64px;
+
+
   }
+
+
 
   @media screen and (min-width: 500px) {
     .cards {
