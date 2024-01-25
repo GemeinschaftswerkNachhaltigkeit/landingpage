@@ -375,7 +375,7 @@ onMounted(async () => {
     if (ids && ids.length) {
       const promises = ids.map(async id => {
         try {
-          return await $fetch(config.privateApiUrl + '/activities/' + id)
+          return await $fetch(config.public.privateApiUrl + '/activities/' + id)
         } catch (error) {
           return null;
         }

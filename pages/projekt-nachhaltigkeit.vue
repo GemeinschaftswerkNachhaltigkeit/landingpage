@@ -172,7 +172,7 @@ const { data, pending, error, refresh } = await useAsyncData('projectN', async (
 
 onMounted(async () => {
   try {
-    const response = await $fetch(config.privateApiUrl + '/organisations?projectSustainabilityWinner=true&size=60')
+    const response = await $fetch(config.public.privateApiUrl + '/organisations?projectSustainabilityWinner=true&size=60')
     if (response) {
       orgas.value = response.content;
     }

@@ -1,5 +1,5 @@
 <template>
-  <a class="card" :style="{ height: height || null }" :href="$config.appUrl + '/organisations/' + item.id">
+  <a class="card" :style="{ height: height || null }" :href="$config.public.appUrl + '/organisations/' + item.id">
     <article>
       <div class=" logo" :class="{ hideLogo: noImagePlaceholder && !item.logo }">
         <img :src="logoUrl" alt="logo" v-if="item.logo" />
@@ -91,7 +91,7 @@ const props = defineProps({
   }
 })
 
-const logoUrl = computed(() => { return props.item.logo ? config.privateAssetsUrl + '/files/' + props.item.logo : null })
+const logoUrl = computed(() => { return props.item.logo ? config.public.privateAssetsUrl + '/files/' + props.item.logo : null })
 
 function getSdgUrl(sdg) {
   const lang = 'de'

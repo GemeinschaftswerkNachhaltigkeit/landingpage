@@ -7,7 +7,6 @@
             <h1 class="title">{{ title }}</h1>
             <h2 class="keywords">{{ keywords }}</h2>
           </div>
-
           <form class="search-bar" @submit.prevent="handleSubmit">
             <div class="search-input">
               <input type="text" :placeholder="$t('labels.searchPlaceholder')" v-model="searchTerm" />
@@ -31,6 +30,7 @@
     </section>
     <div class="image">
       <img :src="$imageURL(image, { format: 'png', quality: 80 })" />
+
       <svg class="desktop-mask" viewBox="0 0 116 274" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 274L-1.4606e-05 0L116 -4.15783e-06L20.0088 137.285L116 274L0 274Z" />
       </svg>
@@ -69,7 +69,7 @@ const props = defineProps({
 const searchTerm = ref('')
 
 function handleSubmit() {
-  window.location.href = $config.appUrl + '/search?query=' + searchTerm.value
+  window.location.href = $config.public.appUrl + '/search?query=' + searchTerm.value
 }
 </script>
 

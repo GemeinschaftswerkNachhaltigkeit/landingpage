@@ -1,10 +1,11 @@
 <template>
   <div :id="id" class="menu-account accent-font">
     <div class="logged-out" v-if="!loggedIn">
-      <a class="link" :href="$config.appUrl + '/account'">{{
+      <a class="link" :href="$config.public.appUrl + '/account'">{{
         $t("btn.login")
       }}</a>
-      <a class="button btn-accent" :href="$config.appUrl + '/account?forceRegistration'">{{ $t("btn.registration") }}</a>
+      <a class="button btn-accent" :href="$config.public.appUrl + '/account?forceRegistration'">{{ $t("btn.registration")
+      }}</a>
     </div>
     <button v-else class="link logout-link" @click="logout">{{
       $t("btn.logout")

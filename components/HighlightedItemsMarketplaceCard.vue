@@ -1,5 +1,5 @@
 <template>
-  <a class="card" :style="{ height: height || null }" :href="$config.appUrl + '/marketplace/search/' + item.id">
+  <a class="card" :style="{ height: height || null }" :href="$config.public.appUrl + '/marketplace/search/' + item.id">
     <div class="header">
       <div class="image" v-if="item.image">
         <img :src="imageUrl" alt="banner" />
@@ -9,7 +9,7 @@
           {{ t('marketplaceType.' + marketplaceType) }}
         </div>
         <a v-if="item.organisation?.id" class="orga-link"
-          :href="$config.appUrl + '/organisations/' + item.organisation?.id">{{
+          :href="$config.public.appUrl + '/organisations/' + item.organisation?.id">{{
             item.organisation?.name }}</a>
 
       </div>
@@ -41,7 +41,7 @@ const props = defineProps({
   },
 })
 
-const imageUrl = computed(() => { return props.item.image ? config.privateAssetsUrl + '/files/' + props.item.image : null })
+const imageUrl = computed(() => { return props.item.image ? config.public.privateAssetsUrl + '/files/' + props.item.image : null })
 const marketplaceType = computed(() => {
   const marketplaceType = props.item.marketplaceType === 'OFFER'
     ? props.item.offerCategory

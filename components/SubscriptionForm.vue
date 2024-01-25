@@ -108,7 +108,7 @@ async function handleSubmit() {
     }
   })
   try {
-    await $fetch(config.publicApiUrl + "/" + props.endpoint, {
+    await $fetch(config.public.publicApiUrl + "/" + props.endpoint, {
       method: 'POST',
       body: {
         formKey: props.formKey,

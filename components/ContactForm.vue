@@ -76,7 +76,7 @@ async function handleSubmit() {
   error.value = null;
   success.value = null;
   try {
-    await $fetch(config.publicApiUrl + "/contact-form", {
+    await $fetch(config.public.publicApiUrl + "/contact-form", {
       method: 'POST',
       body: {
         name: name.value,

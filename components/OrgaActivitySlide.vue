@@ -132,10 +132,10 @@ const props = defineProps({
 })
 
 
-const logoUrl = computed(() => { return props.item.logo ? config.privateAssetsUrl + '/files/' + props.item.logo : null })
+const logoUrl = computed(() => { return props.item.logo ? config.public.privateAssetsUrl + '/files/' + props.item.logo : null })
 const url = computed(() => {
   const path = props.item.activityType ? `/organisations/${props.item.organisation.id}/` : '/organisations/'
-  return config.appUrl + path + props.item.id
+  return config.public.appUrl + path + props.item.id
 })
 
 

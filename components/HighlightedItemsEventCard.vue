@@ -1,12 +1,12 @@
 <template>
   <a class="card" :style="{ height: height || null }"
-    :href="$config.appUrl + '/organisations/' + item.organisation?.id + '/' + item.id">
+    :href="$config.public.appUrl + '/organisations/' + item.organisation?.id + '/' + item.id">
     <article>
       <div class=" logo">
         <img :src="logoUrl" alt="logo" v-if="item.logo" />
       </div>
       <a v-if="item?.organisation?.id" class="orga-link"
-        :href="config.appUrl + '/organisations/' + item.organisation?.id">{{
+        :href="config.public.appUrl + '/organisations/' + item.organisation?.id">{{
           item.organisation?.name }}</a>
       <h3 class="title">{{ item.name }}</h3>
       <div class="description" v-if="fullText" v-html="item.description"></div>
@@ -68,7 +68,7 @@ const props = defineProps({
   },
 })
 
-const logoUrl = computed(() => { return props.item.logo ? config.privateAssetsUrl + '/files/' + props.item.logo : null })
+const logoUrl = computed(() => { return props.item.logo ? config.public.privateAssetsUrl + '/files/' + props.item.logo : null })
 
 
 </script>

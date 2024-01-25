@@ -47,7 +47,7 @@
       </div>
 
       <div class="register-btn-wrapper">
-        <a class="button btn-accent" :href="$config.appUrl + '/account?forceRegistration'">{{
+        <a class="button btn-accent" :href="$config.public.appUrl + '/account?forceRegistration'">{{
           $t("btn.registration")
         }}</a>
       </div>

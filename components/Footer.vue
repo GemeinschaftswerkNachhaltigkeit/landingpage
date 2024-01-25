@@ -18,12 +18,12 @@
               <h5 class="footer-title">{{ $t("footerMenuLabels.account") }}</h5>
               <div class="menu-account">
                 <div>
-                  <a class="button btn-accent reg-btn" :href="$config.appUrl + '/account?forceRegistration'">{{
+                  <a class="button btn-accent reg-btn" :href="$config.public.appUrl + '/account?forceRegistration'">{{
                     $t("btn.registration")
                   }}</a>
                 </div>
                 <div>
-                  <a class="button primary-btn login-btn" :href="$config.appUrl + '/account'">{{
+                  <a class="button primary-btn login-btn" :href="$config.public.appUrl + '/account'">{{
                     $t("btn.login")
                   }}</a>
                 </div>

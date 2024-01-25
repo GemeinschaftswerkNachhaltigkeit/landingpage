@@ -66,9 +66,9 @@ onMounted(async () => {
   if (props.item) {
     try {
       const urls = {
-        organisation: config.privateApiUrl + '/organisations/' + props.item,
-        event: config.privateApiUrl + '/activities/' + props.item,
-        marketplace: config.privateApiUrl + '/marketplace/' + props.item
+        organisation: config.public.privateApiUrl + '/organisations/' + props.item,
+        event: config.public.privateApiUrl + '/activities/' + props.item,
+        marketplace: config.public.privateApiUrl + '/marketplace/' + props.item
       }
       fetchedItem.value = await $fetch(urls[props.itemType])
       console.log(fetchedItem.value)

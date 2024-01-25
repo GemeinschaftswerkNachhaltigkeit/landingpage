@@ -247,7 +247,7 @@ function handlePopupClosed() {
 
 onMounted(async () => {
   try {
-    authConfig.value = await $fetch(config.authConfigUrl);
+    authConfig.value = await $fetch(config.public.authConfigUrl);
   } catch (error) {
     console.log('Cannot load config')
   }

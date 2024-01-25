@@ -1,12 +1,13 @@
 <template>
   <div>
-    <a v-if="resultType === 'orga'" :href="$config.appUrl + '/map'">{{
+    <a v-if="resultType === 'orga'" :href="$config.public.appUrl + '/map'">{{
       t('labels.orgaLink')
     }}</a>
-    <a v-if="resultType === 'event'" :href="$config.appUrl + '/events'">{{
+    <a v-if="resultType === 'event'" :href="$config.public.appUrl + '/events'">{{
       t('labels.eventsLink')
     }}</a>
-    <a v-if="resultType === 'marketplace'" :href="$config.appUrl + '/marketplace/search'">{{ t('labels.marketplaceLink')
+    <a v-if="resultType === 'marketplace'" :href="$config.public.appUrl + '/marketplace/search'">{{
+      t('labels.marketplaceLink')
     }}</a>
   </div>
 </template>

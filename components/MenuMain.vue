@@ -49,7 +49,7 @@
 
     </template>
     <div class="user accent-font">
-      <MenuEntry groupLine :url="$config.appUrl + '/search'" :external="true">
+      <MenuEntry groupLine :url="$config.public.appUrl + '/search'" :external="true">
         <div class="search">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
             <path
@@ -60,7 +60,7 @@
           <div class="text">{{ t("btn.search") }}</div>
         </div>
       </MenuEntry>
-      <a :href="$config.appUrl + '/account'" v-if="user" class="user accent-font">
+      <a :href="$config.public.appUrl + '/account'" v-if="user" class="user accent-font">
         <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
             <path
@@ -102,7 +102,7 @@ function getItemUrl(item, localePath) {
     return localePath(item.target || { name: 'slug', params: { slug: item.slug } })
 
   } else {
-    return $config.appUrl + '/' + item.target
+    return $config.public.appUrl + '/' + item.target
   }
 }
 

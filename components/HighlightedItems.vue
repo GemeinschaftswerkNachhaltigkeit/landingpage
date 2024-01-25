@@ -85,9 +85,9 @@ function isValidType(type) {
 async function loadSlides() {
   loading.value = true;
   const urls = {
-    orga: config.privateApiUrl + '/organisations?size=3&sort=createdAt,desc',
-    event: config.privateApiUrl + '/activities?size=3&sort=createdAt,desc',
-    marketplace: config.privateApiUrl + '/marketplace?size=3'
+    orga: config.public.privateApiUrl + '/organisations?size=3&sort=createdAt,desc',
+    event: config.public.privateApiUrl + '/activities?size=3&sort=createdAt,desc',
+    marketplace: config.public.privateApiUrl + '/marketplace?size=3'
   }
   try {
     const response = await $fetch(urls[type.value])

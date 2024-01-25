@@ -226,7 +226,7 @@ export default {
       }
     },
     getMatomoSiteId() {
-      return this.$config.matomoSiteId;
+      return this.$config.public.matomoSiteId;
     },
   },
   mounted: function () {
