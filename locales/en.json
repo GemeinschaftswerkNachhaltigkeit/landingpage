@@ -56,9 +56,9 @@
     "event": "Events",
     "marketplace": "Marketplace",
     "tabHeading": "Find inspiration in the section",
-    "orgaLink": "Alle Ergebnisse auf der Karte ansehen",
-    "eventsLink": "Alle Ergebnisse im Veranstultungskalender ansehen",
-    "marketplaceLink": "Alle Ergebnisse auf dem Marktplatz ansehen",
+    "orgaLink": "View all results on the map",
+    "eventsLink": "View all results in the event calendar",
+    "marketplaceLink": "View all resutls on the marketplace",
     "searchPlaceholder": "Topics, Places, Activities ...",
     "sdgs": "Sustainability goals"
   },
