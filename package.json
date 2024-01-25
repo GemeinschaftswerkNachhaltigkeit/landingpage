@@ -8,25 +8,24 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "create-snapshot": "npx directus schema snapshot ./snapshots/\"$(date \"+%F\")\"-snapshot-\"$(date \"+%s\")\".yaml",
-    "prepare": "husky install"
+    "create-snapshot": "npx directus schema snapshot ./snapshots/\"$(date \"+%F\")\"-snapshot-\"$(date \"+%s\")\".yaml"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.4",
-    "@commitlint/config-conventional": "17.4.4",
+    "@commitlint/cli": "18.5.0",
+    "@commitlint/config-conventional": "18.5.0",
     "@nuxtjs/i18n": "^8.0.0",
     "@semantic-release/git": "10.0.1",
-    "husky": "^8.0.3",
+    "husky": "^9.0.1",
     "nuxt": "3.9.3",
-    "sass": "^1.58.3",
-    "sass-loader": "^13.2.0",
-    "semantic-release": "20.1.1",
-    "vite-svg-loader": "^4.0.0"
+    "sass": "^1.70.0",
+    "sass-loader": "^14.0.0",
+    "semantic-release": "23.0.0",
+    "vite-svg-loader": "^5.1.0"
   },
   "dependencies": {
-    "@egjs/vue3-flicking": "^4.10.6",
-    "jwt-decode": "^3.1.2",
-    "modern-normalize": "^1.1.0",
+    "@egjs/vue3-flicking": "^4.11.2",
+    "jwt-decode": "^4.0.0",
+    "modern-normalize": "^2.0.0",
     "nuxt-directus": "^5.6.0",
     "query-string": "^8.1.0",
     "vite-plugin-require": "^1.1.14"
