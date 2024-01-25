@@ -168,6 +168,11 @@ function getSdgUrl(sdg) {
       background: none;
       font-size: 18px;
       line-height: 22px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 40px;
     }
   }
 
@@ -199,7 +204,7 @@ function getSdgUrl(sdg) {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      flex: 0 0 50%;
+      flex: 0 0 calc(50% - 16px);
 
       p {
         margin: 0;

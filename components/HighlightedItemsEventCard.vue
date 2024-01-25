@@ -106,8 +106,11 @@ const logoUrl = computed(() => { return props.item.logo ? config.public.privateA
     }
 
     .orga-link {
-      display: inline-block;
+      display: block;
       margin-bottom: 32px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     .title {
@@ -117,6 +120,11 @@ const logoUrl = computed(() => { return props.item.logo ? config.public.privateA
       background: none;
       font-size: 18px;
       line-height: 22px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 40px;
     }
   }
 
@@ -148,7 +156,7 @@ const logoUrl = computed(() => { return props.item.logo ? config.public.privateA
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      flex: 0 0 50%;
+      flex: 0 0 calc(50% - 16px);
 
       p {
         margin: 0;

@@ -96,6 +96,9 @@ const marketplaceType = computed(() => {
       .orga-link {
         display: block;
         margin-bottom: 32px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
 
@@ -129,6 +132,11 @@ const marketplaceType = computed(() => {
       background: none;
       font-size: 18px;
       line-height: 22px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 40px;
     }
   }
 }
