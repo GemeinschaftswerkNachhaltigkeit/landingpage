@@ -58,11 +58,43 @@ defineProps({
 
   .video-icon {
     position: absolute;
-    right: 4px;
-    bottom: 4px;
-    color: white;
-    display: flex;
-    align-items: center;
+    inset: 0;
+    transition: all 200ms;
+
+    svg {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      transform: translate(50%, 50%);
+
+      color: white;
+      display: flex;
+      align-items: center;
+      transition: all 200ms;
+    }
+
+  }
+
+
+
+  .video-icon {
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, .5);
+
+      svg {
+        right: 50%;
+        bottom: 50%;
+        transform: translate(50%, 50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+      }
+    }
   }
 }
 </style>
