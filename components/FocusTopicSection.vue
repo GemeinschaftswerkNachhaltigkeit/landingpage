@@ -92,7 +92,7 @@ section {
   &.foucs-topic-section {
     padding-bottom: 0;
     padding-top: 0;
-    margin-bottom: -200px;
+    margin-bottom: 0px;
 
     @media screen and (min-width: 1000px) {
       margin-bottom: -10vw;
