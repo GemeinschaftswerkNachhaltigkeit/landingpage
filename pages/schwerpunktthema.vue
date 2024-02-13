@@ -327,7 +327,6 @@ const { data, pending, error, refresh } = await useAsyncData('dan', async () => 
     console.log('DIRECTUS Fetch Error', error)
   }
 
-  console.log(">>>> STATIONs", allActionTranslations)
   return {
     ...focusTopic,
     ...focusTopicTranslations,
