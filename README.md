@@ -1,4 +1,4 @@
-# Wpgwn-landingpage
+# gw-landingpage
 
 ## Getting started / Installation
 
