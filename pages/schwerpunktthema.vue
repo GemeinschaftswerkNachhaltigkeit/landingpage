@@ -95,7 +95,7 @@
               <ParticipateActivity :title="action.title" :content="action.content" :image="action.image"
                 :logos="action.cooperations" :logoLabel="action.cooperations_title"
                 :sliderTitle="action.image_slider_title" :slider="!!action.slides?.length"
-                :button="action.series_popup_active && action.series_popup_button" :show-logos="action.slider_active"
+                :button="action.series_popup_active ? action.series_popup_button : null" :show-logos="action.slider_active"
                 :show-cooperations="action.cooperations_active" @action-clicked="setPopupOpen(action.menu_slug)">
                 <Carousel :items="action.slides" :component="ImageSlide" framedCards>
                 </Carousel>
@@ -163,15 +163,17 @@
 
     </section>
     <template>
-      <PopUp v-for="action in  data.actions " :open="openPopup === action.menu_slug" @popupClosed="handleClosePopup">
-        <PopUpContent :title="action.series_popup_title"
-          :content="wasSubscriptionSuccess ? '' : action.series_popup_content">
-          <SubscriptionForm :endpoint="'action-page/form'" :options="action.series_popup_stations"
-            :lang="$i18n.locale.value" :stations="data.stations && data.stations[action.series_popup_key]"
-            :form-key="action.series_popup_key" @success="handleSuccess">
-          </SubscriptionForm>
-        </PopUpContent>
-      </PopUp>
+      <div>
+        <PopUp v-for="action in  data?.actions " :open="openPopup === action.menu_slug" @popupClosed="handleClosePopup">
+          <PopUpContent :title="action.series_popup_title"
+                        :content="wasSubscriptionSuccess ? '' : action.series_popup_content">
+            <SubscriptionForm :endpoint="'action-page/form'" :options="action.series_popup_stations"
+                              :lang="$i18n.locale.value" :stations="data.stations && data.stations[action.series_popup_key]"
+                              :form-key="action.series_popup_key" @success="handleSuccess">
+            </SubscriptionForm>
+          </PopUpContent>
+        </PopUp>
+      </div>
 
     </template>
   </div>
@@ -271,7 +273,6 @@ const { data, pending, error, refresh } = await useAsyncData('dan', async () => 
         acc[entry.series_popup_key][entry.languages_code] = entry.series_popup_stations
         return acc;
       }, {})
-      console.log(JSON.stringify(allActionTranslations, null, 2))
     }
 
 
@@ -342,6 +343,7 @@ const { data, pending, error, refresh } = await useAsyncData('dan', async () => 
 onMounted(async () => {
   try {
     const ids = data.value.highlights_ids.map(i => i.id);
+
     if (ids && ids.length) {
       const promises = ids.map(async id => {
         try {
