@@ -243,16 +243,17 @@ $text-color: var(--gw-blue-dark);
 
     .title {
       color: $text-color;
-      margin: 0;
+      display: block;
+      margin-bottom: 16px;
       font-weight: 700;
-      font-size: 14px;
-      line-height: 21px;
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      word-break: break-word;
-      hyphens: auto;
       background: none;
-      height: fit-content;
+      font-size: 18px;
+      line-height: 22px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 40px;
     }
 
 
