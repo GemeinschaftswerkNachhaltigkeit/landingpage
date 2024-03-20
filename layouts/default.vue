@@ -111,6 +111,24 @@ const { data, pending, error, refresh } = await useAsyncData('default', async ()
     })
     menuItems = nav[0] && nav[0].nav_item || [];
 
+    menuItems = menuItems.map((item) => {
+      
+      if (item.submenu) {
+        return {
+        ...item,
+        submenu: item.submenu.map(submenu => {
+            if(submenu.target === 'fokus') {
+              submenu.target = `/${submenu.target}/${submenu.slug}`;
+              submenu.slug = null
+            }
+            return submenu
+          })
+        };
+      }
+      return item;
+    });
+
+
     lp = await getSingletonItem({
       collection: 'landingpage',
     })

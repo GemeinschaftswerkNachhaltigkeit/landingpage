@@ -44,7 +44,7 @@ import GenericSlide from '../../components/GenericSlide.vue'
 const { t } = useI18n()
 const route = useRoute()
 const { $i18n } = useNuxtApp();
-const { getItems, getSingletonItem } = useDirectusItems();
+const { getItems } = useDirectusItems();
 
 const { data, pending, error, refresh } = await useAsyncData('dan', async () => {
   const currentLocale = $i18n.locales.value.find(
