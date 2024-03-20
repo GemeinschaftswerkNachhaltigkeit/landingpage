@@ -109,6 +109,13 @@ docker cp snapshot.yml directus:/tmp/snapshot.yml
 
 # Apply schema
 docker exec -t directus npx directus schema apply --yes /tmp/snapshot.yml
+
+```
+
+### Downgrade directus
+
+```bash
+docker exec -t directus npx directus database migrate:latest
 ```
 
 ## Special Directories

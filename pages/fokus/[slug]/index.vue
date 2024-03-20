@@ -223,7 +223,7 @@
       })
       const navItems = nav[0] && nav[0].nav_item || [];
       parentNav = navItems.find(i => i.key === 'activities');
-      currentNav = parentNav?.submenu.find(s => s.target === 'schwerpunktthema');
+      currentNav = parentNav?.submenu.find(s => s.target === 'fokus');
       const focusTopicPromise = getSingletonItem({ collection: 'focus_topic_page' })
   
       const focusTopicTranslationsPromise = getItems({
