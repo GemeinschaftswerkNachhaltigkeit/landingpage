@@ -14,7 +14,7 @@
   <div class="body">
     <div class="image-wrapper"><img :src="$imageURL(imgId, { width: 600 })" :alt="alt" /></div>
     <div class="actions">
-      <LinkButton :url="moreBtnUrl" color="yellow" @clicked="handleAddClicked">{{ moreBtn }}</LinkButton>
+      <LinkButton v-if="moreBtn" :url="moreBtnUrl" color="yellow" @clicked="handleAddClicked">{{ moreBtn }}</LinkButton>
       <LinkButton v-if="linkBtn && linkBtnUrl" variant="outline" :url="linkBtnUrl" external>{{ linkBtn }}
       </LinkButton>
 
