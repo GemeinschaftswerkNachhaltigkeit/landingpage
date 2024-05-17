@@ -543,9 +543,14 @@ useHead({
 
           gap: 24px;
 
-          /* .image-wrapper {
-            max-width: 300px;
-          } */
+          .image-wrapper {
+            margin: auto;
+            width: fit-content;
+          }
+
+          // .image-wrapper {
+          //   max-width: 300px;
+          // }
 
           .content-col {
             display: grid;
