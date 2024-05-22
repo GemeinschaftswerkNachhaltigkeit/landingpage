@@ -40,7 +40,7 @@
                 >{{ data.button_text }}</LinkButton
               >
             </div>
-            <Feature feature="dan-range">
+            <Feature feature="dan-account">
               <div class="external-link">
                 <LinkButton
                   size="lg"
