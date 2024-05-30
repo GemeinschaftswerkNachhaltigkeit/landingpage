@@ -2,17 +2,24 @@
   <section class="wrapper">
     <div class="slider-wrapper">
       <section class="content-section filters">
-
-        <div class="overlay"></div>
+        <!-- <div class="overlay"></div> -->
         <div class="content-section-wrapper">
-          <HighlightedItemsCardTypeFilter :activeType="type" @change="setType"></HighlightedItemsCardTypeFilter>
+          <HighlightedItemsCardTypeFilter
+            :activeType="type"
+            :content="infoContent"
+            @change="setType"
+          ></HighlightedItemsCardTypeFilter>
         </div>
       </section>
       <section class="content-section">
         <div>
           <div v-if="!loading">
             <div class="content-section-wrapper cards" v-if="type">
-              <component v-for="result in   results  " :is="comp" v-bind="{ item: result }">
+              <component
+                v-for="result in results"
+                :is="comp"
+                v-bind="{ item: result }"
+              >
               </component>
             </div>
           </div>
@@ -21,26 +28,23 @@
               <Spinner></Spinner>
             </div>
           </div>
-          <HighlightedItemsAllResultLinks :result-type="type"></HighlightedItemsAllResultLinks>
+          <HighlightedItemsAllResultLinks
+            :result-type="type"
+          ></HighlightedItemsAllResultLinks>
         </div>
       </section>
     </div>
-
   </section>
 </template>
 
-
-
-
-
 <script setup>
-import HighlightedOrgaCard from '../components/HighlightedItemsOrgaCard.vue'
-import HighlightedEventCard from '../components/HighlightedItemsEventCard.vue'
-import HighlightedMarketplaceCard from '../components/HighlightedItemsMarketplaceCard.vue'
+import HighlightedOrgaCard from '../components/HighlightedItemsOrgaCard.vue';
+import HighlightedEventCard from '../components/HighlightedItemsEventCard.vue';
+import HighlightedMarketplaceCard from '../components/HighlightedItemsMarketplaceCard.vue';
 
 const config = useRuntimeConfig();
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
 const props = defineProps({
   image: {
@@ -55,48 +59,53 @@ const props = defineProps({
   content: {
     type: String,
   },
-})
+  infoContent: {
+    type: Object,
+  },
+});
 
-const queryParams = route.query
+const queryParams = route.query;
 const typeParam = queryParams['type'];
-const type = ref(isValidType(typeParam) ? typeParam : 'orga')
+const type = ref(isValidType(typeParam) ? typeParam : 'orga');
 const loading = ref(false);
-const results = ref([])
+const results = ref([]);
 const comp = computed(() => {
   if (type.value === 'orga') {
-    return HighlightedOrgaCard
+    return HighlightedOrgaCard;
   }
   if (type.value === 'event') {
-    return HighlightedEventCard
+    return HighlightedEventCard;
   }
   if (type.value === 'marketplace') {
-    return HighlightedMarketplaceCard
+    return HighlightedMarketplaceCard;
   }
-  return HighlightedOrgaCard
-})
+  return HighlightedOrgaCard;
+});
 
 function setType(newType) {
   router.push({
     path: route.path,
     query: { type: newType },
-  })
-  type.value = newType
-  loadSlides()
+  });
+  type.value = newType;
+  loadSlides();
 }
 
 function isValidType(type) {
-  return type === 'orga' || type === 'event' || type === 'marketplace'
+  return type === 'orga' || type === 'event' || type === 'marketplace';
 }
 
 async function loadSlides() {
   loading.value = true;
   const urls = {
-    orga: config.public.privateApiUrl + '/organisations?size=3&sort=createdAt,desc',
-    event: config.public.privateApiUrl + '/activities?size=3&sort=createdAt,desc',
-    marketplace: config.public.privateApiUrl + '/marketplace?size=3'
-  }
+    orga:
+      config.public.privateApiUrl + '/organisations?size=3&sort=createdAt,desc',
+    event:
+      config.public.privateApiUrl + '/activities?size=3&sort=createdAt,desc',
+    marketplace: config.public.privateApiUrl + '/marketplace?size=3',
+  };
   try {
-    const response = await $fetch(urls[type.value])
+    const response = await $fetch(urls[type.value]);
     if (response) {
       results.value = response.content;
     }
@@ -105,12 +114,11 @@ async function loadSlides() {
     results.value = [];
     loading.value = false;
   }
-
 }
 
 onMounted(async () => {
-  loadSlides()
-})
+  loadSlides();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -132,11 +140,8 @@ section.wrapper {
         .spinner {
           margin-inline: auto;
           height: 460px;
-
         }
       }
-
-
 
       &.filters {
         position: relative;
@@ -148,7 +153,8 @@ section.wrapper {
           bottom: 0;
           height: 60px;
           z-index: 10;
-          box-shadow: -40px 0 30px 0 var(--light-gray) inset, 40px 0 30px 0 var(--light-gray) inset;
+          box-shadow: -40px 0 30px 0 var(--light-gray) inset,
+            40px 0 30px 0 var(--light-gray) inset;
           pointer-events: none;
         }
       }
@@ -167,11 +173,7 @@ section.wrapper {
     gap: 24px;
     padding-block-start: 32px;
     padding-block-end: 64px;
-
-
   }
-
-
 
   @media screen and (min-width: 500px) {
     .cards {
@@ -190,6 +192,5 @@ section.wrapper {
       grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     }
   }
-
 }
 </style>

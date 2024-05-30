@@ -1,10 +1,13 @@
 <template>
   <div id="index" class="index-page" v-if="data">
-
-    <SearchHero :image="data.search.image" :title="data.search.title_line_1" :keywords="data.search.title_line_2"
-      :content="data.search.content">
+    <SearchHero
+      :image="data.search.image"
+      :title="data.search.title_line_1"
+      :keywords="data.search.title_line_2"
+      :content="data.search.content"
+    >
     </SearchHero>
-    <HighlightedItems></HighlightedItems>
+    <HighlightedItems :infoContent="data.search"></HighlightedItems>
 
     <section class="add-section content-section">
       <AdSection v-if="data.addSection" :data="data.addSection"></AdSection>
@@ -12,44 +15,61 @@
 
     <section class="content-section" v-if="data.focus_topic_active">
       <div class="content-section-wrapper full">
-        <FocusTopicSection :title="data.focus_topic_title" :subtitle="data.focus_topic_subtitle"
-          :linkText="data.focus_topic_link_text" :linkUrl="data.focus_topic_link_url" :item="data.focus_topic_item"
-          :itemType="data.focus_topic_item_type">
+        <FocusTopicSection
+          :title="data.focus_topic_title"
+          :subtitle="data.focus_topic_subtitle"
+          :linkText="data.focus_topic_link_text"
+          :linkUrl="data.focus_topic_link_url"
+          :item="data.focus_topic_item"
+          :itemType="data.focus_topic_item_type"
+        >
         </FocusTopicSection>
       </div>
     </section>
 
-    <section class=" content-section height-full feature-section-wrapper" v-if="data.content_section_0?.length">
+    <section
+      class="content-section height-full feature-section-wrapper"
+      v-if="data.content_section_0?.length"
+    >
       <div class="yellow-circle"></div>
       <div class="content-section-wrapper feature-section">
         <div class="main-title-wrapper">
           <h2 class="title">{{ data.content_section_0_title }}</h2>
         </div>
         <div class="features" v-if="data.content_section_0?.length">
-          <div class="feature" v-for="  feature   in   data.content_section_0  " :key="feature.title">
+          <div
+            class="feature"
+            v-for="feature in data.content_section_0"
+            :key="feature.title"
+          >
             <div class="coming-soon-wrapper">
-              <h4 class="coming-soon" v-if="feature.coming_soon">{{ feature.coming_soon }}</h4>
+              <h4 class="coming-soon" v-if="feature.coming_soon">
+                {{ feature.coming_soon }}
+              </h4>
             </div>
             <div class="title-wrapper">
               <h3 class="title">{{ feature?.title }}</h3>
             </div>
             <div class="content" v-html="feature?.content"></div>
           </div>
-
-
         </div>
       </div>
     </section>
 
-    <section class="form-section bg-img-section bg-img-parallax" :style="$getBgImgSectionStyle(data.form_img_signup)">
+    <section
+      class="form-section bg-img-section bg-img-parallax"
+      :style="$getBgImgSectionStyle(data.form_img_signup)"
+    >
       <div class="content-wrapper">
         <div class="html box-content" v-html="data.form_content_signup"></div>
       </div>
 
       <div class="register-btn-wrapper">
-        <a class="button btn-accent" :href="$config.public.appUrl + '/account?forceRegistration'">{{
-          $t("btn.registration")
-        }}</a>
+        <a
+          class="button btn-accent"
+          :href="$config.public.appUrl + '/account?forceRegistration'"
+          >{{ $t('btn.registration') }}</a
+        >
       </div>
     </section>
 
@@ -61,7 +81,7 @@
               <div class="html" v-html="data.content_section_1"></div>
               <div>
                 <NuxtLink class="button accent-btn" :to="localePath('about')">{{
-                  $t("btn.more")
+                  $t('btn.more')
                 }}</NuxtLink>
               </div>
             </div>
@@ -73,17 +93,25 @@
       </div>
       <div class="circle">
         <div class="image-wrapper">
-          <content-section-image :id="data.content_section_img_1"
-            :alt="data.files.find((f) => f.id == data.content_section_img_1)?.title">
+          <content-section-image
+            :id="data.content_section_img_1"
+            :alt="
+              data.files.find((f) => f.id == data.content_section_img_1)?.title
+            "
+          >
           </content-section-image>
         </div>
       </div>
     </section>
 
     <section class="content-section bg-color-orange col-1">
-      <VideoContent :heroImageLandscape="data.heroImageLandscape || ''" :heroImagePortrait="data.heroImagePortrait || ''"
-        :heroVideoLandscape="data.heroVideoLandscape" :heroVideoPortrait="data.heroVideoPortrait"
-        :subtitlesFileId="data.video_subtitles" />
+      <VideoContent
+        :heroImageLandscape="data.heroImageLandscape || ''"
+        :heroImagePortrait="data.heroImagePortrait || ''"
+        :heroVideoLandscape="data.heroVideoLandscape"
+        :heroVideoPortrait="data.heroVideoPortrait"
+        :subtitlesFileId="data.video_subtitles"
+      />
     </section>
 
     <section class="content-section bg-blue-50 split-section height-full">
@@ -93,9 +121,11 @@
             <div class="left-column column">
               <div class="html" v-html="data.content_section_2"></div>
               <div>
-                <NuxtLink class="button accent-btn" :to="localePath('roadmap')">{{
-                  $t("btn.goToRoadmap")
-                }}</NuxtLink>
+                <NuxtLink
+                  class="button accent-btn"
+                  :to="localePath('roadmap')"
+                  >{{ $t('btn.goToRoadmap') }}</NuxtLink
+                >
               </div>
             </div>
           </template>
@@ -103,9 +133,11 @@
             <div class="right-column column">
               <div class="html" v-html="data.content_section_2_right"></div>
               <div>
-                <NuxtLink class="button accent-btn" :to="localePath('partner')">{{
-                  $t("btn.goToPartner")
-                }}</NuxtLink>
+                <NuxtLink
+                  class="button accent-btn"
+                  :to="localePath('partner')"
+                  >{{ $t('btn.goToPartner') }}</NuxtLink
+                >
               </div>
             </div>
           </template>
@@ -113,15 +145,24 @@
       </div>
     </section>
 
-    <section class="form-section bg-img-section bg-img-parallax" id="newsletter"
-      :style="$getBgImgSectionStyle(data.form_img_newsletter)">
+    <section
+      class="form-section bg-img-section bg-img-parallax"
+      id="newsletter"
+      :style="$getBgImgSectionStyle(data.form_img_newsletter)"
+    >
       <div class="content-wrapper">
-        <div class="html box-content" v-html="data.form_content_newsletter"></div>
+        <div
+          class="html box-content"
+          v-html="data.form_content_newsletter"
+        ></div>
       </div>
       <NewsletterForm></NewsletterForm>
     </section>
 
-    <section class="form-section bg-img-section" :style="$getBgImgSectionStyle(data.form_img_contact)">
+    <section
+      class="form-section bg-img-section"
+      :style="$getBgImgSectionStyle(data.form_img_contact)"
+    >
       <div class="content-wrapper">
         <div class="html box-content" v-html="data.form_content_contact"></div>
       </div>
@@ -130,9 +171,8 @@
   </div>
 </template>
 
-
 <script setup>
-const { t } = useI18n()
+const { t } = useI18n();
 const { $i18n } = useNuxtApp();
 const { getItems, getSingletonItem } = useDirectusItems();
 const { getFiles } = useDirectusFiles();
@@ -143,57 +183,65 @@ const { data } = await useAsyncData('index', async () => {
   );
   let indexTranslations = [];
   let index = {};
-  let search = {}
-  let searchTranslations = {}
+  let search = {};
+  let searchTranslations = {};
   let files = [];
   let addSection = null;
 
   try {
     const searchPromise = getSingletonItem({
       collection: 'search',
-    })
+    });
     const searchTranslationsPromise = getItems({
       collection: 'search_translations',
       params: {
         filter: {
           languages_code: currentLocale.iso, //'en-US'
-        }
-      }
-    })
+        },
+      },
+    });
     const indexPromise = getSingletonItem({
       collection: 'landingpage',
-    })
+    });
     const indexTranslationsPromise = getItems({
       collection: 'landingpage_translations',
       params: {
         filter: {
           languages_id: currentLocale.iso, //'en-US'
-        }
-      }
-    })
+        },
+      },
+    });
 
-    const [searchResult, searchTranslationsResult, indexResult, indexTranslationsResult] = await Promise.all([searchPromise, searchTranslationsPromise, indexPromise, indexTranslationsPromise])
+    const [
+      searchResult,
+      searchTranslationsResult,
+      indexResult,
+      indexTranslationsResult,
+    ] = await Promise.all([
+      searchPromise,
+      searchTranslationsPromise,
+      indexPromise,
+      indexTranslationsPromise,
+    ]);
     search = searchResult;
     searchTranslations = searchTranslationsResult;
     index = indexResult;
     indexTranslations = indexTranslationsResult;
 
     if (index.add_section) {
-
       const addSectionDataTranslationData = await getItems({
-        collection: "add_sections_translations",
+        collection: 'add_sections_translations',
         params: {
           filter: {
             add_sections_id: {
               id: index.add_section,
             },
             languages_code: currentLocale.iso, //'en-US'
-          }
-        }
-      })
+          },
+        },
+      });
 
-
-      addSection = { ...addSectionDataTranslationData[0] }
+      addSection = { ...addSectionDataTranslationData[0] };
     }
     files = await getFiles({
       params: {
@@ -205,37 +253,35 @@ const { data } = await useAsyncData('index', async () => {
               indexTranslations[0].content_section_img_1,
             ],
           },
-        }
-      }
+        },
+      },
     });
   } catch (error) {
-    console.log('DIRECTUS Fetch Error', error)
+    console.log('DIRECTUS Fetch Error', error);
   }
   return {
     ...index,
     ...indexTranslations[0],
     search: {
       ...search,
-      ...searchTranslations[0]
+      ...searchTranslations[0],
     },
     addSection: addSection,
-    files: files
-  }
+    files: files,
+  };
 });
-
 
 useHead({
   titleTemplate: null,
-  title: t("page.title"),
+  title: t('page.title'),
   meta: [
     {
-      hid: "og-title",
-      property: "og:title",
-      content: t("page.title"),
+      hid: 'og-title',
+      property: 'og:title',
+      content: t('page.title'),
     },
-  ]
-
-})
+  ],
+});
 </script>
 
 <style scoped lang="scss">
@@ -272,8 +318,6 @@ useHead({
     transform: translateX(-50%);
     z-index: -1;
   }
-
-
 }
 
 @media screen and (min-width: 1300px) {
@@ -423,8 +467,6 @@ useHead({
       flex-grow: 1;
     }
   }
-
-
 }
 
 .register-btn-wrapper {
