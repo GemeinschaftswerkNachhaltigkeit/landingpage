@@ -4,15 +4,21 @@
       <ContentSectionImage v-if="image" :alt="title + ' Bild'" :id="image" />
     </div>
     <div>
-      <h3 v-if="title">{{
-        title }}</h3>
+      <h3 v-if="title">{{ title }}</h3>
     </div>
-    <div class="html no-margin " v-if="content" v-html="content"></div>
-    <div class="action" v-if="button"><button @click="handleActionClicked">{{ button }}</button></div>
+    <div class="html no-margin" v-if="content" v-html="content"></div>
+    <div class="action" v-if="button">
+      <button @click="handleActionClicked">{{ button }}</button>
+    </div>
     <div class="labeled-logos" v-if="showCooperations">
       <div class="label" v-if="logoLabel">{{ logoLabel }}</div>
       <div class="logos">
-        <LinkedLogo width="auto" height="80px" v-for="logo in logos" :logo="logo">
+        <LinkedLogo
+          width="auto"
+          height="80px"
+          v-for="logo in logos"
+          :logo="logo"
+        >
         </LinkedLogo>
       </div>
     </div>
@@ -22,11 +28,42 @@
         <slot />
       </div>
     </div>
+
+    <div class="video-section" v-if="videoSectionActive">
+      <div class="image">
+        <ContentSectionImage
+          v-if="videoSectionImage"
+          :alt="videoSection.title + ' Bild'"
+          :id="videoSectionImage"
+        />
+      </div>
+      <div>
+        <h3 v-if="videoSectionTitle">{{ videoSectionTitle }}</h3>
+      </div>
+      <div
+        class="html no-margin"
+        v-if="videoSectionContent"
+        v-html="videoSectionContent"
+      ></div>
+      <div>
+        <div class="label" v-if="videoSectionVideosTitle">
+          {{ videoSectionVideosTitle }}
+        </div>
+        <div class="videos">
+          <FocusTopicVideo
+            v-for="video in videoSection"
+            :title="video.title"
+            :file="video.file"
+            :image="video.image"
+            :url="video.videoUrl"
+          ></FocusTopicVideo>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-
 defineProps({
   title: String,
   content: String,
@@ -35,30 +72,48 @@ defineProps({
   button: String,
   slider: {
     type: Boolean,
-    default: false
+    default: false,
   },
   sliderTitle: String,
   logoLabel: {
     type: String,
-    default: ''
+    default: '',
   },
   showLogos: {
     type: Boolean,
-    default: true
+    default: true,
   },
   showCooperations: {
     type: Boolean,
-    default: true
+    default: true,
   },
-})
+  videoSectionActive: {
+    type: Boolean,
+    default: false,
+  },
+  videoSectionVideosTitle: {
+    type: String,
+  },
+  videoSectionImage: {
+    type: String,
+  },
+  videoSectionTitle: {
+    type: String,
+  },
+  videoSectionContent: {
+    type: String,
+  },
+  videoSection: {
+    type: Array,
+    default: false,
+  },
+});
 
-const emit = defineEmits(['action-clicked'])
-
+const emit = defineEmits(['action-clicked']);
 
 function handleActionClicked() {
-  emit('action-clicked')
+  emit('action-clicked');
 }
-
 </script>
 
 <style scoped lang="scss">
@@ -74,6 +129,19 @@ function handleActionClicked() {
   background-color: var(--light-gray);
   padding: 24px;
 
+  .video-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      align-content: stretch;
+      gap: 16px;
+    }
+  }
+
   .image {
     height: 240px;
   }
@@ -83,13 +151,12 @@ function handleActionClicked() {
     margin-bottom: 40px;
   }
 
+  .label {
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
   .labeled-logos {
-
-    .label {
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
     .logos {
       display: flex;
       background-color: white;
