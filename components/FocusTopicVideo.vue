@@ -6,7 +6,7 @@
           :src="$imageURL(image, { width: 300, format: 'png', quality: 80 })"
           :alt="title || 'Thumbnail'"
         />
-        <a class="download" :href="$assetURL(file)" target="_blank">
+        <a class="download" :href="$assetURL(file)" target="_blank" v-if="file">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
