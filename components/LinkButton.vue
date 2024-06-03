@@ -109,32 +109,58 @@ a.button {
   align-items: center;
   gap: 8px;
   margin: 0;
-  padding: 0 32px;
+  padding: 4px 8px;
 
   &.lg {
-    padding: 2px 32px;
-    font-size: 1rem;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    line-height: 1rem;
 
     svg {
-      transform: scale(1.3);
+      transform: scale(1);
       margin-right: 0.6rem;
     }
   }
 
   &.xl {
-    padding: 6px 32px;
-    font-size: 1.3rem;
+    padding: 8px 20px;
+    font-size: 1rem;
+    line-height: 1.2rem;
 
     svg {
-      transform: scale(1.2);
+      transform: scale(1);
       margin-right: 0.6rem;
     }
   }
 
   @media screen and (min-width: 600px) {
     &.lg {
-      padding: 8px 32px;
+      padding: 8px 24px;
+      font-size: 1rem;
+      line-height: 1.2rem;
+
+      svg {
+        transform: scale(1.15);
+        margin-right: 0.6rem;
+      }
+    }
+
+    &.xl {
+      padding: 10px 32px;
+      font-size: 1.3rem;
+
+      svg {
+        transform: scale(1.15);
+        margin-right: 0.6rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    &.lg {
+      padding: 12px 28px;
       font-size: 1.2rem;
+      line-height: 1.5rem;
 
       svg {
         transform: scale(1.3);
@@ -143,8 +169,9 @@ a.button {
     }
 
     &.xl {
-      padding: 16px 32px;
+      padding: 16px 28px;
       font-size: 2rem;
+      line-height: 2.3rem;
 
       svg {
         transform: scale(1.8);

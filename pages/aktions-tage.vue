@@ -30,8 +30,11 @@
           :video="data.video"
           :image="data.video_placeholder || ''"
         >
-          <div class="actions" v-if="data.button_url && data.button_text">
-            <div class="external-link">
+          <div class="actions">
+            <div
+              class="external-link"
+              v-if="data.button_url && data.button_text"
+            >
               <LinkButton
                 size="lg"
                 external
@@ -53,6 +56,18 @@
               </div>
             </Feature>
           </div>
+          <img
+            class="dan-logo"
+            v-if="data.dan_logo"
+            :src="
+              $imageURL(data.dan_logo, {
+                width: 500,
+                format: 'png',
+                quality: 80,
+              })
+            "
+            alt="Dan Logo"
+          />
         </content-with-video>
       </section>
     </section>
@@ -450,6 +465,11 @@ useHead({
       .external-link {
         width: fit-content;
       }
+    }
+
+    .dan-logo {
+      margin-top: 2rem;
+      max-width: 300px;
     }
   }
 }

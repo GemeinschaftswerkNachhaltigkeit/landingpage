@@ -53,7 +53,7 @@ defineProps({
 <style scoped lang="scss">
 article {
   display: flex;
-  width: fit-content;
+  width: 100%;
   background-color: white;
   flex-direction: column;
 
@@ -64,7 +64,6 @@ article {
       width: 100%;
       aspect-ratio: 16/9;
       object-fit: cover;
-
       display: block;
     }
     .download {
@@ -88,6 +87,11 @@ article {
       position: absolute;
       inset: 0;
       transition: all 200ms;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      );
 
       svg {
         position: absolute;
