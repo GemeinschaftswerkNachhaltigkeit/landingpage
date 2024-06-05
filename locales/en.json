@@ -61,7 +61,9 @@
     "eventsLink": "View all results in the event calendar",
     "marketplaceLink": "View all resutls on the marketplace",
     "searchPlaceholder": "Topics, Places, Activities ...",
-    "sdgs": "Sustainability goals"
+    "sdgs": "Sustainability goals",
+    "biodiversity": "Biodiverstiy",
+    "initiator": "Initiator"
   },
   "footerMenuLabels": {
     "main": "Menu",

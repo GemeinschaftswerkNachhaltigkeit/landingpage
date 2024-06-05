@@ -187,7 +187,17 @@
                       :title="entry.title"
                       :subtitle="entry.subtitle"
                       :content="entry.content"
-                    />
+                    >
+                      <a
+                        class="button"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        :href="entry.action_url"
+                        v-if="entry.action_label && entry.action_url"
+                      >
+                        {{ entry.action_label }}
+                      </a>
+                    </accordion-entry>
                   </accordion>
                 </div>
               </div>
