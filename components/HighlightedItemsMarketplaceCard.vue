@@ -1,5 +1,9 @@
 <template>
-  <a class="card" :style="{ height: height || null }" :href="$config.public.appUrl + '/marketplace/search/' + item.id">
+  <a
+    class="card"
+    :style="{ height: height || null }"
+    :href="$config.public.appUrl + '/marketplace/search/' + item.id"
+  >
     <div class="header">
       <div class="image" v-if="item.image">
         <img :src="imageUrl" alt="banner" />
@@ -8,48 +12,57 @@
         <div v-if="marketplaceType" class="badge" :class="item.marketplaceType">
           {{ t('marketplaceType.' + marketplaceType) }}
         </div>
-        <a v-if="item.organisation?.id" class="orga-link"
-          :href="$config.public.appUrl + '/organisations/' + item.organisation?.id">{{
-            item.organisation?.name }}</a>
-
+        <a
+          v-if="item.organisation?.id"
+          class="orga-link"
+          :href="
+            $config.public.appUrl + '/organisations/' + item.organisation?.id
+          "
+          >{{ item.organisation?.name }}</a
+        >
       </div>
     </div>
     <article>
+      <div class="badge">
+        <EventBadges :item="item"></EventBadges>
+      </div>
       <h3 class="title">{{ item.name }}</h3>
       <div class="description" v-if="fullText" v-html="item.description"></div>
       <div class="description" v-else>{{ excerpt(item.description) }}</div>
     </article>
-
   </a>
 </template>
 
 <script setup>
-import { excerpt, locationString, dateRangeString } from '../utils/card'
+import { excerpt, locationString, dateRangeString } from '../utils/card';
 const config = useRuntimeConfig();
 const { t } = useI18n();
 
 const props = defineProps({
   item: {
-    type: Object
+    type: Object,
   },
   height: {
-    type: String
+    type: String,
   },
   fullText: {
     type: Boolean,
-    default: false
+    default: false,
   },
-})
+});
 
-const imageUrl = computed(() => { return props.item.image ? config.public.privateAssetsUrl + '/files/' + props.item.image : null })
+const imageUrl = computed(() => {
+  return props.item.image
+    ? config.public.privateAssetsUrl + '/files/' + props.item.image
+    : null;
+});
 const marketplaceType = computed(() => {
-  const marketplaceType = props.item.marketplaceType === 'OFFER'
-    ? props.item.offerCategory
-    : props.item.bestPractiseCategory
-  return marketplaceType
-})
-
-
+  const marketplaceType =
+    props.item.marketplaceType === 'OFFER'
+      ? props.item.offerCategory
+      : props.item.bestPractiseCategory;
+  return marketplaceType;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -58,7 +71,7 @@ const marketplaceType = computed(() => {
   flex-direction: column;
   text-decoration: none;
   background: white;
-  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, .2);
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.2);
 
   .header {
     padding-inline: 32px;
@@ -118,6 +131,13 @@ const marketplaceType = computed(() => {
 
   article {
     padding: 48px 24px 40px 24px;
+
+    .badge {
+      height: 32px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
 
     .description {
       overflow-wrap: break-word;

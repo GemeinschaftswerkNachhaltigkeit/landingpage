@@ -1,7 +1,9 @@
 <template>
   <div
     class="biodiversity-badge accent-font"
-    v-if="item.activityType && isBiodiversityTopic(item)"
+    v-if="
+      (item.activityType || item.marketplaceType) && isBiodiversityTopic(item)
+    "
   >
     <div class="icon">
       <svg
