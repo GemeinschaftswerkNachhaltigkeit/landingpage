@@ -156,7 +156,11 @@
               </div>
             </div>
           </section>
-          <section id="mitmachen" class="nav-section" data-track-menu>
+          <section
+            id="mitmachen"
+            class="nav-section participate"
+            data-track-menu
+          >
             <div class="inner-section">
               <div class="inner-layout-vertical">
                 <div class="header-image">
@@ -171,6 +175,11 @@
                   <h2 class="blue" v-if="data.participate_title">
                     {{ data.participate_title }}
                   </h2>
+                  <div
+                    class="content"
+                    v-if="data.participate_content"
+                    v-html="data.participate_content"
+                  ></div>
                 </div>
                 <div
                   class="faq"
@@ -618,6 +627,12 @@ useHead({
 
 .accordion-title {
   margin-bottom: 40px;
+}
+
+.participate {
+  .content {
+    margin-top: 2rem;
+  }
 }
 
 .lighthouse {
