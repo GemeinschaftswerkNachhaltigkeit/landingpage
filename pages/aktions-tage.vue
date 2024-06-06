@@ -89,12 +89,6 @@
             >
               {{ data.participate_menu }}</a
             >
-            <a
-              class="menu-item"
-              href="#zusammenfuermorgen"
-              :class="{ active: isActive('zusammenfuermorgen') }"
-              >{{ data.together_menu }}</a
-            >
             <Feature feature="lighthouse_projects">
               <a
                 class="menu-item"
@@ -103,6 +97,12 @@
                 >{{ data.lighthouse_projects_menu }}</a
               >
             </Feature>
+            <a
+              class="menu-item"
+              href="#zusammenfuermorgen"
+              :class="{ active: isActive('zusammenfuermorgen') }"
+              >{{ data.together_menu }}</a
+            >
           </nav>
         </div>
         <div class="content">
@@ -203,6 +203,45 @@
               </div>
             </div>
           </section>
+          <Feature feature="lighthouse_projects">
+            <section id="leuchturmprojekte" class="nav-section" data-track-menu>
+              <div class="inner-section">
+                <div class="inner-layout-vertical">
+                  <div>
+                    <h2 class="blue" v-if="data.lighthouse_projects_title">
+                      {{ data.lighthouse_projects_title }}
+                    </h2>
+                  </div>
+                  <div
+                    class="html"
+                    v-if="data.lighthouse_projects_content"
+                    v-html="data.lighthouse_projects_content"
+                  ></div>
+                </div>
+              </div>
+              <div class="inner-section">
+                <div class="inner-layout-vertical">
+                  <div>
+                    <h2 class="blue" v-if="data.lighthouse_projects_year_title">
+                      {{ data.lighthouse_projects_year_title }}
+                    </h2>
+                  </div>
+                </div>
+                <div
+                  class="carousel-wrapper"
+                  v-if="data.projects && data.projects.length"
+                >
+                  <Carousel
+                    :items="data.projects"
+                    :component="DanLighthouseProject"
+                    :intervalTime="4000"
+                  >
+                  </Carousel>
+                </div>
+              </div>
+            </section>
+          </Feature>
+
           <section id="zusammenfuermorgen" class="nav-section" data-track-menu>
             <div class="inner-section">
               <div class="inner-layout-vertical">
@@ -256,42 +295,9 @@
               </div>
             </div>
           </section>
-          <section id="leuchturmprojekte" class="nav-section" data-track-menu>
-            <div class="inner-section">
-              <div class="inner-layout-vertical">
-                <div>
-                  <h2 class="blue" v-if="data.lighthouse_projects_title">
-                    {{ data.lighthouse_projects_title }}
-                  </h2>
-                </div>
-                <div
-                  class="html"
-                  v-if="data.lighthouse_projects_content"
-                  v-html="data.lighthouse_projects_content"
-                ></div>
-              </div>
-            </div>
-            <div class="inner-section">
-              <div class="inner-layout-vertical">
-                <div>
-                  <h2 class="blue" v-if="data.lighthouse_projects_year_title">
-                    {{ data.lighthouse_projects_year_title }}
-                  </h2>
-                </div>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
     </section>
-    <div class="carousel-wrapper" v-if="data.projects && data.projects.length">
-      <Carousel
-        :items="data.projects"
-        :component="DanLighthouseProject"
-        :intervalTime="4000"
-      >
-      </Carousel>
-    </div>
   </div>
 </template>
 
@@ -552,7 +558,6 @@ useHead({
       margin-bottom: 120px;
 
       &#zusammenfuermorgen {
-        margin-bottom: 0;
       }
 
       .inner-section {
@@ -619,8 +624,6 @@ useHead({
   padding: 0;
 
   #leuchturmprojekte {
-    margin: 0;
-
     .inner-section {
       margin: 0;
     }
@@ -628,9 +631,6 @@ useHead({
 }
 
 .carousel-wrapper {
-  padding: 24px 0 100px;
-  width: 100%;
-
   .shadow {
     box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.12);
   }

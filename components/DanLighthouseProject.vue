@@ -1,14 +1,18 @@
 <template>
   <div class="project" :key="item.id">
-    <div class="project-image"><img :src="$imageURL(item.image, { width: 320, format: 'png', quality: 80 })"
-        :alt="item.alt || ''" />
+    <div class="project-image">
+      <img
+        :src="$imageURL(item.image, { width: 320, format: 'png', quality: 80 })"
+        :alt="item.alt || ''"
+      />
     </div>
 
     <div class="body accent-font">
       <div class="title">{{ item.title }}</div>
-      <span class="project-link"><span v-if="item.link_prefix">{{ item.link_prefix }}</span> <a :href="item.url">{{
-        item.link_title
-      }}</a></span>
+      <span class="project-link"
+        ><span v-if="item.link_prefix">{{ item.link_prefix }}</span>
+        <a :href="item.url">{{ item.link_title }}</a></span
+      >
     </div>
   </div>
 </template>
@@ -16,41 +20,36 @@
 <script setup>
 defineProps({
   item: {
-    type: Object
+    type: Object,
   },
   alt: {
     type: String,
-    default: ''
+    default: '',
   },
-
-})
+});
 </script>
 
 <style lang="scss" scoped>
 .project {
-  width: 100%;
-  max-width: 226px;
+  max-width: 230px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   height: 100%;
-  padding-bottom: 40px;
   font-weight: 600;
-  padding: 1rem;
-
+  // padding: 1rem;
 
   .body {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding: 10px;
 
     .title {
-      display: inline;
-
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: auto;
     }
-
-
-
 
     .project-link {
       color: var(--gw-magenta);
@@ -69,11 +68,10 @@ defineProps({
       height: 100%;
       object-fit: cover;
       object-position: center;
-
+      border: 10px solid white;
     }
   }
 }
-
 
 @media screen and (min-width: 800px) {
   .project {
