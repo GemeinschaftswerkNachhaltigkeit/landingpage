@@ -16,7 +16,9 @@
     "registration": "Jetzt registrieren",
     "showMore": "mehr anzeigen",
     "showLess": "weniger anzeigen",
-    "more": "Mehr dazu"
+    "more": "Mehr dazu",
+    "showOnMap": "Aktionen auf der Karte ansehen",
+    "profileDownload": "Steckbrief"
   },
   "labels": {
     "de": "Deutsch",
@@ -60,7 +62,9 @@
     "eventsLink": "Alle Ergebnisse im Veranstaltungskalender ansehen",
     "marketplaceLink": "Alle Ergebnisse auf dem Marktplatz ansehen",
     "searchPlaceholder": "Themen, Orte, Aktivitäten ...",
-    "sdgs": "Nachhaltigkeitsziele"
+    "sdgs": "Nachhaltigkeitsziele",
+    "biodiversity": "Biodiversität",
+    "initiator": "Initiator"
   },
   "footerMenuLabels": {
     "main": "Menü",

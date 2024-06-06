@@ -1,13 +1,22 @@
 <template>
   <div class="accordion-entry">
     <div class="header accent-font" :class="color" @click="toggle">
-      <div><span class="title">{{ title }}</span> <span v-if="subtitle"> - {{ subtitle }}</span></div>
+      <div>
+        <span class="title">{{ title }}</span>
+        <span v-if="subtitle"> - {{ subtitle }}</span>
+      </div>
       <div class="icon" :class="{ open: show }">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M22.3516 8.03516L12.3516 18.0352L2.35156 8.03516L4.12656 6.26016L12.3516 14.4852L20.5766 6.26016L22.3516 8.03516Z"
-            fill="currentColor" />
+            fill="currentColor"
+          />
         </svg>
       </div>
     </div>
@@ -15,13 +24,13 @@
     <expander :show="show">
       <div class="content" :class="color">
         <div class="html" v-html="content"></div>
+        <slot />
       </div>
     </expander>
   </div>
 </template>
 
 <script setup>
-
 const props = defineProps({
   open: {
     type: Boolean,
@@ -29,21 +38,21 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: "",
+    default: '',
   },
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   subtitle: {
     type: String,
-    default: "",
+    default: '',
   },
   content: {
     type: String,
-    default: "",
+    default: '',
   },
-})
+});
 
 const show = ref(props.open);
 
@@ -93,7 +102,8 @@ function toggle() {
   }
 
   .content {
-    padding: 0 34px;
+    padding: 0 34px 12px 34px;
+
     border: 2px solid var(--gw-blue-light);
     background: white;
 
