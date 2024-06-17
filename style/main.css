@@ -213,14 +213,13 @@ button,
 
   font-weight: 700;
   font-size: 14px;
-  line-height: 44px;
   letter-spacing: 1.25px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   align-self: center;
-  padding: 0 32px;
+  padding: 8px 32px;
 }
 button:disabled,
 button[disabled] {
@@ -256,7 +255,7 @@ button.link {
 a.button {
   font-weight: 700;
   text-decoration: none;
-  padding: 0 32px;
+  padding: 8px 32px;
 }
 
 a {
