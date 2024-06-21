@@ -109,7 +109,8 @@ a.button {
   align-items: center;
   gap: 8px;
   margin: 0;
-  padding: 4px 8px;
+  padding: 8px 32px;
+  line-height: 24px;
 
   &.lg {
     padding: 6px 16px;

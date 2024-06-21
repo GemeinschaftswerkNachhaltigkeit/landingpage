@@ -149,7 +149,19 @@ p {
   margin: 0;
 }
 
-.html p {
+.stack-sm > * + * {
+  margin-block-start: 1rem;
+}
+
+.stack > * + * {
+  margin-block-start: 1.5rem;
+}
+
+.stack-lg > * + * {
+  margin-block-start: 2rem;
+}
+
+/* .html p {
   margin: 0 0 24px 0;
 }
 
@@ -159,24 +171,80 @@ p {
 .html h4 + p,
 .html h5 + p {
   margin-top: 24px;
+} */
+
+.html > * + * {
+  margin-block-start: 1.5rem;
+}
+
+.html {
+  margin-bottom: 1.5rem;
+}
+
+.html .button {
+  margin-top: 2rem;
+}
+
+.html h1,
+.html h2,
+.html h3,
+.html h4,
+.html h5 {
+  display: inline-block;
+  margin-block-start: 2.5rem;
+}
+
+.html.no-underline h1,
+.html.no-underline h2,
+.html.no-underline h3,
+.html.no-underline h4,
+.html.no-underline h5 {
+  background-image: none;
 }
 
 .html.no-margin p {
   margin: 0;
 }
 
+.html h1 {
+  font-size: 24px;
+}
+.html h2 {
+  font-size: 18px;
+}
+.html h3,
+.html h4,
+.html h5 {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 769px) {
+  .html h1 {
+    font-size: 48px;
+  }
+  .html h2 {
+    font-size: 32px;
+  }
+  .html h3,
+  .html h4,
+  .html h5 {
+    font-size: 24px;
+  }
+}
+
 .html h1::after,
 .html h2::after,
 .html h3::after,
-.html h4::after {
+.html h4::after,
+.html h5::after {
   content: '';
   display: block;
 }
 
-.html h2,
-.html h4 {
-  display: inline;
-  margin: 0 0 24px 0;
+.html a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .info-popup-html {
@@ -210,6 +278,7 @@ button,
   border-radius: none;
   border: none;
   color: white;
+  line-height: 24px;
 
   font-weight: 700;
   font-size: 14px;
@@ -420,6 +489,9 @@ section.content-section {
   &.full {
     width: 100%;
   }
+}
+.content-section-wrapper.text-content {
+  max-width: 100ch;
 }
 @media screen and (min-width: 1800px) {
   .content-section-wrapper {

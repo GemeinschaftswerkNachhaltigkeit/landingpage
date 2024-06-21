@@ -8,34 +8,42 @@
         </div>
         <div class="main-menu">
           <template v-if="!hideMenu">
-            <h5 class="footer-title">{{ $t("footerMenuLabels.main") }}</h5>
+            <h5 class="footer-title">{{ $t('footerMenuLabels.main') }}</h5>
             <MenuMain inFooter :id="'footer-menu-main'" :items="menuItems" />
           </template>
         </div>
         <div class="secondary-menu">
           <template v-if="!hideMenu">
             <div>
-              <h5 class="footer-title">{{ $t("footerMenuLabels.account") }}</h5>
+              <h5 class="footer-title">{{ $t('footerMenuLabels.account') }}</h5>
               <div class="menu-account">
                 <div>
-                  <a class="button btn-accent reg-btn" :href="$config.public.appUrl + '/account?forceRegistration'">{{
-                    $t("btn.registration")
-                  }}</a>
+                  <a
+                    class="button btn-accent reg-btn"
+                    :href="$config.public.appUrl + '/account?forceRegistration'"
+                    >{{ $t('btn.registration') }}</a
+                  >
                 </div>
                 <div>
-                  <a class="button primary-btn login-btn" :href="$config.public.appUrl + '/account'">{{
-                    $t("btn.login")
-                  }}</a>
+                  <a
+                    class="button primary-btn login-btn"
+                    :href="$config.public.appUrl + '/account'"
+                    >{{ $t('btn.login') }}</a
+                  >
                 </div>
-
               </div>
             </div>
           </template>
           <div>
-            <h5 class="footer-title">{{ $t("footerMenuLabels.social") }}</h5>
+            <h5 class="footer-title">{{ $t('footerMenuLabels.social') }}</h5>
             <nav class="menu-social accent-font">
-              <div v-for="(item) in socialMediaLinks" :key="item.Text">
-                <a :href="item.Link" class="logo" target="_blank" rel="noreferrer noopener">
+              <div v-for="item in socialMediaLinks" :key="item.Text">
+                <a
+                  :href="item.Link"
+                  class="logo"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   {{ item.Text }}
                 </a>
               </div>
@@ -47,24 +55,25 @@
     <section class="content-section accent-font">
       <div class="content-section-wrapper">
         <div class="footer-bottom">
-          <div class="footer__copyright">{{ $t("footerMenuLabels.copyright", { year: year }) }}</div>
+          <div class="footer__copyright">
+            {{ $t('footerMenuLabels.copyright', { year: year }) }}
+          </div>
           <nav class="bottom-menu" id="footer-menu-legal">
-            <a :href="$assetURL(paticipactionDeclaration)">{{ $t("participationDeclaration") }}</a>
+            <a :href="$assetURL(paticipactionDeclaration)">{{
+              $t('participationDeclaration')
+            }}</a>
             <NuxtLink :to="localePath('imprint')">{{
-              $t("page.imprint")
+              $t('page.imprint')
             }}</NuxtLink>
             <NuxtLink :to="localePath('privacy')">{{
-              $t("page.privacy")
+              $t('page.privacy')
             }}</NuxtLink>
           </nav>
-
         </div>
       </div>
     </section>
   </footer>
 </template>
-
-
 
 <script setup>
 const props = defineProps({
@@ -78,19 +87,17 @@ const props = defineProps({
   },
   socialMediaLinks: {
     type: Array,
-    default: []
+    default: [],
   },
   footerContent: {
     type: String,
-    default: ""
+    default: '',
   },
   menuItems: {
     type: Array,
-    default: []
-  }
+    default: [],
+  },
 });
-
-
 
 const year = computed(() => {
   return new Date().getFullYear();
@@ -126,7 +133,6 @@ const year = computed(() => {
     display: grid;
     gap: 32px;
     grid-template-columns: 1fr;
-
 
     .footer-html {
       margin-top: 38px;

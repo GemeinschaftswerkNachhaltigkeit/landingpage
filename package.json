@@ -12,23 +12,23 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.2.1",
-    "@commitlint/config-conventional": "^19.1.0",
-    "@nuxtjs/i18n": "^8.3.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@nuxtjs/i18n": "^8.3.1",
     "@semantic-release/git": "10.0.1",
     "husky": "^9.0.11",
-    "nuxt": "3.11.2",
-    "sass": "^1.74.1",
-    "sass-loader": "^14.1.1",
-    "semantic-release": "23.0.8",
+    "nuxt": "3.12.2",
+    "sass": "^1.77.6",
+    "sass-loader": "^14.2.1",
+    "semantic-release": "24.0.0",
     "vite-svg-loader": "^5.1.0"
   },
   "dependencies": {
-    "@egjs/vue3-flicking": "^4.11.2",
+    "@egjs/vue3-flicking": "^4.11.3",
     "jwt-decode": "^4.0.0",
     "modern-normalize": "^2.0.0",
     "nuxt-directus": "^5.6.1",
     "query-string": "^9.0.0",
-    "vite-plugin-require": "^1.1.14"
+    "vite-plugin-require": "^1.2.14"
   }
 }
