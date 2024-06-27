@@ -557,6 +557,7 @@ useHead({
   }
 
   .content {
+    min-width: 0;
     section {
       padding: 0;
     }
