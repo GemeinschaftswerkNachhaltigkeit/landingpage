@@ -65,6 +65,12 @@ docker build . -t nuxt-lp
 
 ## Directus
 
+### Richt Text Editor Anpassungen
+
+Für den RTE gibt es custom Controls um die Bilder positionieren zu können und deren Größe zu beeinflussen: /directus/rte-config.json
+
+Das JSON muss für jeden RTE der dieses Feature unterstützen soll, im Directus für das Feld unter Benutzeroberfläche -> Benutzerdefinierte Formate hinzugefügt werden
+
 ### Data migration to different environment
 
 #### Backup: DB-Dump & Dateien/Assets-Dump erstellen
