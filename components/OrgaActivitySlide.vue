@@ -225,14 +225,13 @@ $text-color: var(--gw-blue-dark);
   gap: 12px;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.12);
   text-decoration: none;
+  overflow: hidden;
+  transition: transform 200ms;
 
   &:hover {
     cursor: pointer;
     background-color: var(--light-gray);
   }
-
-  overflow: hidden;
-  transition: transform 200ms;
 
   &.expired {
     opacity: 0.7;
