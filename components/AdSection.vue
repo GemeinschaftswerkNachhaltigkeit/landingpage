@@ -4,6 +4,7 @@
       <img
         :src="$imageURL(data.badge_image, { width: 64, height: 64 })"
         alt="badge"
+        loading="lazy"
       />
     </div>
 

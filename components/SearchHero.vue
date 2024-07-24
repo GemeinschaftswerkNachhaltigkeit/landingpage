@@ -41,7 +41,7 @@
       <img
         :src="$imageURL(image, { format: 'webp', quality: 80, width: 800 })"
         :alt="alt"
-        alt=""
+        fetchpriority="high"
       />
 
       <svg
