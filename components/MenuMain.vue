@@ -82,6 +82,7 @@
         groupLine
         :url="$config.public.appUrl + '/search'"
         :external="true"
+        ariaLabel="search"
       >
         <div class="search">
           <svg

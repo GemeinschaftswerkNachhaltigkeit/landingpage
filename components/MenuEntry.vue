@@ -20,10 +20,22 @@
       <slot />
     </div>
     <template v-else>
-      <a v-if="external" class="menu-entry" :class="{ blue: blue }" :href="url">
+      <a
+        v-if="external"
+        class="menu-entry"
+        :class="{ blue: blue }"
+        :href="url"
+        :aria-label="ariaLabel"
+      >
         <slot />
       </a>
-      <NuxtLink v-else class="menu-entry" :class="{ blue: blue }" :to="url">
+      <NuxtLink
+        v-else
+        class="menu-entry"
+        :class="{ blue: blue }"
+        :to="url"
+        :aria-label="ariaLabel"
+      >
         <slot />
       </NuxtLink>
     </template>
@@ -75,6 +87,10 @@ const props = defineProps({
   isNew: {
     type: Boolean,
     default: false,
+  },
+  ariaLabel: {
+    type: String,
+    default: '',
   },
 });
 const emit = defineEmits(['menuClicked']);
