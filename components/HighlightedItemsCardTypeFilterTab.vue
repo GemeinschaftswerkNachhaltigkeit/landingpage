@@ -1,7 +1,12 @@
 <template>
   <div class="tab" :class="{ active: active }">
     <slot />
-    <button v-if="info" class="icon-button" @click.stop="$emit('showInfo')">
+    <button
+      v-if="info"
+      class="icon-button"
+      @click.stop="$emit('showInfo')"
+      aria-label="info"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"

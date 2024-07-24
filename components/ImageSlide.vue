@@ -1,7 +1,10 @@
 <template>
   <div class="card">
     <div v-if="item?.copyright" class="copyright">{{ item?.copyright }}</div>
-    <img :src="$imageURL(item.image, { width: 300, format: 'png', quality: 80 })" :alt="item?.alt || 'Slider Image'" />
+    <img
+      :src="$imageURL(item.image, { width: 300, format: 'webp', quality: 80 })"
+      :alt="item?.alt || 'Slider Image'"
+    />
   </div>
 </template>
 
@@ -11,13 +14,11 @@ const { t } = useI18n();
 const { $i18n } = useNuxtApp();
 const { $imageURL } = useNuxtApp();
 
-
 const props = defineProps({
   item: {
-    type: Object
-  }
-})
-
+    type: Object,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -29,8 +30,7 @@ $text-color: var(--gw-blue-dark);
   position: relative;
   width: 300px;
   aspect-ratio: 3/2;
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, .12);
-
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.12);
 
   img {
     object-fit: cover;
@@ -45,10 +45,10 @@ $text-color: var(--gw-blue-dark);
     right: 0;
     bottom: 0;
     left: 0;
-    padding: .1rem .3rem;
+    padding: 0.1rem 0.3rem;
     text-align: right;
-    font-size: .8rem;
-    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, .4));
+    font-size: 0.8rem;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4));
     color: white;
   }
 }

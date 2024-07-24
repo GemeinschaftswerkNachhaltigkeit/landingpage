@@ -8,14 +8,14 @@
         </div>
         <div class="main-menu">
           <template v-if="!hideMenu">
-            <h5 class="footer-title">{{ $t('footerMenuLabels.main') }}</h5>
+            <h3 class="footer-title">{{ $t('footerMenuLabels.main') }}</h3>
             <MenuMain inFooter :id="'footer-menu-main'" :items="menuItems" />
           </template>
         </div>
         <div class="secondary-menu">
           <template v-if="!hideMenu">
             <div>
-              <h5 class="footer-title">{{ $t('footerMenuLabels.account') }}</h5>
+              <h3 class="footer-title">{{ $t('footerMenuLabels.account') }}</h3>
               <div class="menu-account">
                 <div>
                   <a
@@ -35,7 +35,7 @@
             </div>
           </template>
           <div>
-            <h5 class="footer-title">{{ $t('footerMenuLabels.social') }}</h5>
+            <h3 class="footer-title">{{ $t('footerMenuLabels.social') }}</h3>
             <nav class="menu-social accent-font">
               <div v-for="item in socialMediaLinks" :key="item.Text">
                 <a

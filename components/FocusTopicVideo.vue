@@ -3,7 +3,7 @@
     <div>
       <a :href="url" target="_blank" class="image">
         <img
-          :src="$imageURL(image, { width: 300, format: 'png', quality: 80 })"
+          :src="$imageURL(image, { width: 300, format: 'webp', quality: 80 })"
           :alt="title || 'Thumbnail'"
         />
         <a class="download" :href="$assetURL(file)" target="_blank" v-if="file">

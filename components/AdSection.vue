@@ -1,25 +1,41 @@
 <template>
   <article class="add" :style="{ '--brand-color': data.brand_color }">
     <div class="badge" v-if="data.badge_image">
-      <img :src="$imageURL(data.badge_image, { width: 64, height: 64 })" alt="badge" />
+      <img
+        :src="$imageURL(data.badge_image, { width: 64, height: 64 })"
+        alt="badge"
+      />
     </div>
 
     <div class="image">
-      <ContentSectionImage :id="data.image" :alt="data.alt || ''"></ContentSectionImage>
+      <ContentSectionImage
+        :id="data.image"
+        :alt="data.alt || ''"
+        :image-width="600"
+      ></ContentSectionImage>
     </div>
     <div class="content-wrapper" :class="data.color_scheme">
-
       <div class="content">
-        <p v-if="data.tagline" class="tagline accent-font">{{ data.tagline }}</p>
+        <p v-if="data.tagline" class="tagline accent-font">
+          {{ data.tagline }}
+        </p>
         <h2 class="title">{{ data.title }}</h2>
         <div v-html="data.summary" class="summary html"></div>
       </div>
       <div class="actions">
-        <LinkButton v-if="data.more_button_text && data.more_button_url" :color="buttonColor" :url="data.more_button_url">
-          {{ data.more_button_text }}</LinkButton>
-        <LinkButton external color="white" v-if="data.external_link_text && data.external_link_url"
-          :url="data.external_link_url">{{
-            data.external_link_text }}
+        <LinkButton
+          v-if="data.more_button_text && data.more_button_url"
+          :color="buttonColor"
+          :url="data.more_button_url"
+        >
+          {{ data.more_button_text }}</LinkButton
+        >
+        <LinkButton
+          external
+          color="white"
+          v-if="data.external_link_text && data.external_link_url"
+          :url="data.external_link_url"
+          >{{ data.external_link_text }}
         </LinkButton>
       </div>
     </div>
@@ -34,21 +50,20 @@ const { $imageURL } = useNuxtApp();
 const props = defineProps({
   data: {
     type: Object,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 const buttonColor = computed(() => {
   switch (props.data.color_scheme) {
-    case "default":
-      return "yellow"
-    case "dan":
-      return "orange"
+    case 'default':
+      return 'yellow';
+    case 'dan':
+      return 'orange';
     default:
-      return "blue"
+      return 'blue';
   }
-})
-
+});
 </script>
 
 <style lang="scss" scoped>
@@ -95,8 +110,6 @@ const buttonColor = computed(() => {
     .content {
       position: relative;
 
-
-
       .tagline {
         margin: 0 0 32px;
       }
@@ -106,9 +119,6 @@ const buttonColor = computed(() => {
         background: none;
         display: block;
       }
-
-
-
     }
 
     .actions {
@@ -118,7 +128,6 @@ const buttonColor = computed(() => {
       gap: 8px;
     }
   }
-
 }
 
 @media screen and (min-width: 700px) {
@@ -132,9 +141,6 @@ const buttonColor = computed(() => {
 }
 
 @media screen and (min-width: 1300px) {
-
-
-
   .add {
     --brand-color: #ddd;
     width: 1150px;

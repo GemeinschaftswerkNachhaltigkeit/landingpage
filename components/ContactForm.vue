@@ -8,15 +8,29 @@
     </div>
 
     <div class="contactAnnonymus">
-      <span>{{ $t('form.contactAnnonymus') }}</span>
+      <label for="anonymous-switch">{{ $t('form.contactAnnonymus') }}</label>
       <label class="switch">
-        <input type="checkbox" v-model="contactAnnonymus">
+        <input
+          id="anonymous-switch"
+          type="checkbox"
+          v-model="contactAnnonymus"
+        />
         <span class="slider round"></span>
       </label>
     </div>
     <div v-if="contactAnnonymus === false">
-      <input type="text" :placeholder="$t('placeholder.name') + '*'" required v-model="name" />
-      <input type="email" :placeholder="$t('placeholder.email') + '*'" required v-model="email" />
+      <input
+        type="text"
+        :placeholder="$t('placeholder.name') + '*'"
+        required
+        v-model="name"
+      />
+      <input
+        type="email"
+        :placeholder="$t('placeholder.email') + '*'"
+        required
+        v-model="email"
+      />
     </div>
     <div class="select-wrapper">
       <label class="hidden">
@@ -29,54 +43,71 @@
       </select>
       <select class="short" v-model="contactOption">
         <option value="tech">{{ $t('form.contactOptions.short.tech') }}</option>
-        <option value="content">{{ $t('form.contactOptions.short.content') }}</option>
+        <option value="content">
+          {{ $t('form.contactOptions.short.content') }}
+        </option>
         <option value="idea">{{ $t('form.contactOptions.short.idea') }}</option>
       </select>
     </div>
 
-    <textarea :placeholder="$t('placeholder.message') + '*'" rows="8" required v-model="message"></textarea>
+    <textarea
+      :placeholder="$t('placeholder.message') + '*'"
+      rows="8"
+      required
+      v-model="message"
+    ></textarea>
 
     <!-- <span class="formFieldRequired">*  {{$t('form.required')}}</span>-->
 
     <span class="formPrivacyAgreement">
-      <input v-model="privacyConsent" type="checkbox" id="agreePrivacyContact" name="privacy" value="true" required>
-      <i18n-t for="agreePrivacyContact" tag="label" keypath="agreePrivacy" class="title accent-font" scope="global">
+      <input
+        v-model="privacyConsent"
+        type="checkbox"
+        id="agreePrivacyContact"
+        name="privacy"
+        value="true"
+        required
+      />
+      <i18n-t
+        for="agreePrivacyContact"
+        tag="label"
+        keypath="agreePrivacy"
+        class="title accent-font"
+        scope="global"
+      >
         <template v-slot:privacyLink>
-          <NuxtLink :to="localePath('privacy')" target="_blank">{{ $t('page.privacy') }}</NuxtLink>
+          <NuxtLink :to="localePath('privacy')" target="_blank">{{
+            $t('page.privacy')
+          }}</NuxtLink>
         </template>
       </i18n-t>
-
     </span>
-    <button type="submit" :disabled="loading">{{ $t('btn.submit') }} {{
-      loading ? "..." : ""
-    }}</button>
-
+    <button type="submit" :disabled="loading">
+      {{ $t('btn.submit') }} {{ loading ? '...' : '' }}
+    </button>
   </form>
   <!--</div>-->
 </template>
 
-
 <script setup>
-
 const config = useRuntimeConfig();
 
-const name = ref("")
-const email = ref("")
-const message = ref("")
-const privacyConsent = ref("")
-const contactOption = ref("tech")
-const contactAnnonymus = ref(false)
-const loading = ref(false)
-const error = ref(null)
-const success = ref(false)
-
+const name = ref('');
+const email = ref('');
+const message = ref('');
+const privacyConsent = ref('');
+const contactOption = ref('tech');
+const contactAnnonymus = ref(false);
+const loading = ref(false);
+const error = ref(null);
+const success = ref(false);
 
 async function handleSubmit() {
-  loading.value = true
+  loading.value = true;
   error.value = null;
   success.value = null;
   try {
-    await $fetch(config.public.publicApiUrl + "/contact-form", {
+    await $fetch(config.public.publicApiUrl + '/contact-form', {
       method: 'POST',
       body: {
         name: name.value,
@@ -84,16 +115,14 @@ async function handleSubmit() {
         message: message.value,
         privacyConsent: privacyConsent.value,
         contactType: contactOption.value,
-      }
-    })
+      },
+    });
   } catch (error) {
-    error.value = error
+    error.value = error;
   }
   success.value = true;
-  loading.value = false
+  loading.value = false;
 }
-
-
 </script>
 
 <style scoped lang="scss">
@@ -125,7 +154,7 @@ async function handleSubmit() {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 14px;
   width: 14px;
   left: 1px;
@@ -135,20 +164,20 @@ async function handleSubmit() {
   transition: 0.4s;
 }
 
-input:checked+.slider {
+input:checked + .slider {
   /* background-color: green;*/
   border: 2px solid var(--gw-blue-dark);
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   background-color: var(--gw-blue-dark);
 }
 
-input:focus+.slider {
+input:focus + .slider {
   box-shadow: 0 0 1px var(--gw-blue-dark);
 }
 
-input:checked+.slider:before {
+input:checked + .slider:before {
   -webkit-transform: translateX(19px);
   -ms-transform: translateX(19px);
   transform: translateX(19px);
@@ -163,7 +192,7 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
-.contact-form>div {
+.contact-form > div {
   display: flex;
   gap: 1em;
   flex-wrap: wrap;
@@ -174,7 +203,7 @@ input:checked+.slider:before {
 }
 
 .contact-form .select-wrapper select,
-.contact-form>div>input {
+.contact-form > div > input {
   flex: 1 1 100%;
 }
 

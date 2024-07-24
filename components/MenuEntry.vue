@@ -1,15 +1,24 @@
 <template>
-  <div class="menu-entry-wrapper accent-font" :class="{
-    enforceUnderlineAlways: enforceUnderlineAlways,
-    groupLine: groupLine,
-    hideUnderlineAlways: hideUnderlineAlways,
-    last: last,
-    inFooter: inFooter
-  }" @click="menuClicked">
+  <div
+    class="menu-entry-wrapper accent-font"
+    :class="{
+      enforceUnderlineAlways: enforceUnderlineAlways,
+      groupLine: groupLine,
+      hideUnderlineAlways: hideUnderlineAlways,
+      last: last,
+      inFooter: inFooter,
+    }"
+    @click="menuClicked"
+  >
     <Badge v-if="isNew">{{ $t('labels.new') }}</Badge>
-    <a class="menu-entry" :class="{ isActive: isActive, blue: blue }" v-if="button">
+    <div
+      class="menu-entry"
+      :class="{ isActive: isActive, blue: blue }"
+      role="button"
+      v-if="button"
+    >
       <slot />
-    </a>
+    </div>
     <template v-else>
       <a v-if="external" class="menu-entry" :class="{ blue: blue }" :href="url">
         <slot />
@@ -25,7 +34,7 @@
 const props = defineProps({
   url: {
     type: String,
-    default: "",
+    default: '',
   },
   enforceUnderlineAlways: {
     type: Boolean,
@@ -65,8 +74,8 @@ const props = defineProps({
   },
   isNew: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 const emit = defineEmits(['menuClicked']);
 
@@ -83,7 +92,6 @@ function menuClicked() {
   padding: 16px 0;
   width: 100%;
 
-
   .menu-entry {
     text-decoration: none;
     text-transform: uppercase;
@@ -97,7 +105,7 @@ function menuClicked() {
     &.isActive:after,
     &.router-link-active:after,
     &:hover:after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: 0;
@@ -114,7 +122,6 @@ function menuClicked() {
       background-color: var(--gw-blue-light);
     }
   }
-
 
   &.enforceUnderlineAlways:not(.last) {
     box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.12) inset;
@@ -145,9 +152,6 @@ function menuClicked() {
         box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.5) inset;
       }
     }
-
   }
-
-
 }
 </style>

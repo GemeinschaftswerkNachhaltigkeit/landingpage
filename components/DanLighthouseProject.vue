@@ -2,7 +2,9 @@
   <div class="project" :key="item.id">
     <div class="project-image">
       <img
-        :src="$imageURL(item.image, { width: 320, format: 'png', quality: 80 })"
+        :src="
+          $imageURL(item.image, { width: 320, format: 'webp', quality: 80 })
+        "
         :alt="item.alt || ''"
       />
     </div>
