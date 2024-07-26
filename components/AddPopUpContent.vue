@@ -7,18 +7,27 @@
     <h2 class="title">
       {{ title }}
     </h2>
-    <div class="summary" v-html="summary">
-
-    </div>
+    <div class="summary" v-html="summary"></div>
   </header>
   <div class="body">
-    <div class="image-wrapper"><img :src="$imageURL(imgId, { width: 600 })" :alt="alt" /></div>
+    <div class="image-wrapper">
+      <img :src="$imageURL(imgId, { width: 600, format: 'webp' })" :alt="alt" />
+    </div>
     <div class="actions">
-      <LinkButton v-if="moreBtn" :url="moreBtnUrl" color="yellow" @clicked="handleAddClicked">{{ moreBtn }}</LinkButton>
-      <LinkButton v-if="linkBtn && linkBtnUrl" variant="outline" :url="linkBtnUrl" external>{{ linkBtn }}
+      <LinkButton
+        v-if="moreBtn"
+        :url="moreBtnUrl"
+        color="yellow"
+        @clicked="handleAddClicked"
+        >{{ moreBtn }}</LinkButton
+      >
+      <LinkButton
+        v-if="linkBtn && linkBtnUrl"
+        variant="outline"
+        :url="linkBtnUrl"
+        external
+        >{{ linkBtn }}
       </LinkButton>
-
-
     </div>
   </div>
 </template>
@@ -27,60 +36,58 @@
 const { $imageURL } = useNuxtApp();
 
 const props = defineProps({
-
   imgId: {
     type: String,
-    default: ''
+    default: '',
   },
   alt: {
     type: String,
-    default: ''
+    default: '',
   },
   badgeImgId: {
     type: String,
-    default: ''
+    default: '',
   },
   isNew: {
     type: Boolean,
-    default: true
+    default: true,
   },
   title: {
     type: String,
-    default: ''
+    default: '',
   },
   summary: {
     type: String,
-    default: ''
+    default: '',
   },
   moreBtn: {
     type: String,
-    default: ''
+    default: '',
   },
   moreBtnUrl: {
     type: String,
-    default: ''
+    default: '',
   },
   linkBtn: {
     type: String,
-    default: ''
+    default: '',
   },
   linkBtnUrl: {
     type: String,
-    default: ''
+    default: '',
   },
-})
-const emit = defineEmits(['add-clicked'])
+});
+const emit = defineEmits(['add-clicked']);
 
 function handleAddClicked() {
-  emit('add-clicked')
+  emit('add-clicked');
 }
-
 </script>
 
-<style  lang="scss">
+<style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .fade-leave-from,
@@ -109,7 +116,6 @@ function handleAddClicked() {
     pointer-events: all;
   }
 
-
   dialog {
     padding: 0;
     width: 100%;
@@ -128,8 +134,6 @@ function handleAddClicked() {
       padding: 1rem;
     }
 
-
-
     header {
       position: relative;
       display: flex;
@@ -142,8 +146,6 @@ function handleAddClicked() {
       height: auto;
       padding: 40px;
       gap: 4px;
-
-
 
       .title {
         margin: 0;
@@ -186,20 +188,15 @@ function handleAddClicked() {
       position: absolute;
       top: 0%;
       left: 50%;
-      font-size: .7rem;
+      font-size: 0.7rem;
       transform-origin: 0 40px;
-
     }
-
-
   }
 
   .actions {
     padding: 24px;
     display: grid;
     gap: 16px;
-
-
   }
 
   .image-wrapper {
@@ -218,7 +215,7 @@ function handleAddClicked() {
     position: fixed;
     inset: 0;
     background: var(--gw-blue-dark);
-    opacity: .64;
+    opacity: 0.64;
   }
 }
 </style>

@@ -38,12 +38,6 @@ export default defineNuxtPlugin(() => {
           "'); " +
           "--bg-portrait: url('" +
           imgUrlFn(imgId, { ...portraitOptions, format: 'webp' }) +
-          "'); " +
-          "--bg-landscape-png: url('" +
-          imgUrlFn(imgId, { format: 'png' }) +
-          "'); " +
-          "--bg-portrait-png: url('" +
-          imgUrlFn(imgId, { ...portraitOptions, format: 'png' }) +
           "'); "
         );
       },

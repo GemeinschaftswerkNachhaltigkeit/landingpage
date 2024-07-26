@@ -9,12 +9,22 @@
           </div>
           <form class="search-bar" @submit.prevent="handleSubmit">
             <div class="search-input">
-              <input type="text" :placeholder="$t('labels.searchPlaceholder')" v-model="searchTerm" />
+              <input
+                type="text"
+                :placeholder="$t('labels.searchPlaceholder')"
+                v-model="searchTerm"
+              />
               <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24"
+                  viewBox="0 -960 960 960"
+                  width="24"
+                >
                   <path
                     d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
-                    fill="currentColor" />
+                    fill="currentColor"
+                  />
                 </svg>
               </div>
             </div>
@@ -26,34 +36,50 @@
           <div v-if="true" class="text dark-bg" v-html="content"></div>
         </div>
       </div>
-
     </section>
     <div class="image">
-      <img :src="$imageURL(image, { format: 'png', quality: 80 })" />
+      <img
+        :src="$imageURL(image, { format: 'webp', quality: 80, width: 800 })"
+        :alt="alt"
+        fetchpriority="high"
+      />
 
-      <svg class="desktop-mask" viewBox="0 0 116 274" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 274L-1.4606e-05 0L116 -4.15783e-06L20.0088 137.285L116 274L0 274Z" />
+      <svg
+        class="desktop-mask"
+        viewBox="0 0 116 274"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 274L-1.4606e-05 0L116 -4.15783e-06L20.0088 137.285L116 274L0 274Z"
+        />
       </svg>
 
-      <svg class="mobile-mask" viewBox="0 0 375 91" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M189.5 51.4999L7.80438e-06 1.72827L0 91L375 91L375 0.884766L189.5 51.4999Z" />
+      <svg
+        class="mobile-mask"
+        viewBox="0 0 375 91"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M189.5 51.4999L7.80438e-06 1.72827L0 91L375 91L375 0.884766L189.5 51.4999Z"
+        />
       </svg>
     </div>
   </div>
 </template>
 
-
-
-
-
 <script setup>
 const { $imageURL } = useNuxtApp();
 const { $config } = useNuxtApp();
 
-
 const props = defineProps({
   image: {
     type: String,
+  },
+  alt: {
+    type: String,
+    default: '',
   },
   title: {
     type: String,
@@ -64,12 +90,13 @@ const props = defineProps({
   content: {
     type: String,
   },
-})
+});
 
-const searchTerm = ref('')
+const searchTerm = ref('');
 
 function handleSubmit() {
-  window.location.href = $config.public.appUrl + '/search?query=' + searchTerm.value
+  window.location.href =
+    $config.public.appUrl + '/search?query=' + searchTerm.value;
 }
 </script>
 
@@ -86,9 +113,6 @@ function handleSubmit() {
     background: none;
   }
 
-
-
-
   .content-section {
     padding-block: 0;
   }
@@ -100,8 +124,8 @@ function handleSubmit() {
 
   .image {
     width: 100%;
-    height: 210px;
-    min-height: 210px;
+    height: 320px;
+    min-height: 320px;
     position: relative;
 
     img {
@@ -182,8 +206,8 @@ function handleSubmit() {
 
         input::placeholder {
           color: #737373;
-          font-size: .8rem;
-          line-height: .8rem;
+          font-size: 0.8rem;
+          line-height: 0.8rem;
           letter-spacing: 0px;
         }
 
@@ -215,6 +239,7 @@ function handleSubmit() {
     .image {
       width: 20%;
       height: auto;
+      min-height: 0;
       position: absolute;
       right: 0;
       bottom: 0;
@@ -223,6 +248,7 @@ function handleSubmit() {
       img {
         width: 100%;
         height: 100%;
+
         object-fit: cover;
         object-position: left;
         display: block;

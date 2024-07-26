@@ -1,23 +1,46 @@
 <template>
   <picture :class="{ contain: contain }">
-    <source media="(orientation: landscape)" :srcset="getSrcSet(id, 'webp')" sizes="(min-width: 769px) 50vw,    
-                                                              100vw" type="image/webp">
-    <source media="(orientation: landscape)" :srcset="getSrcSet(id, 'jpg')" sizes="(min-width: 769px) 50vw,    
-                                                              100vw" type="image/jpg">
-    <source v-if="portraitId" media="(orientation: portrait)" :srcset="getSrcSet(portraitId, 'webp')" sizes="(min-width: 769px) 50vw,    
-                                                              100vw" type="image/webp">
-    <source v-if="portraitId" media="(orientation: portrait)" :srcset="getSrcSet(portraitId, 'jpg')" sizes="(min-width: 769px) 50vw,    
-                                                              100vw" type="image/jpg">
+    <source
+      media="(orientation: landscape)"
+      :srcset="getSrcSet(id, 'webp')"
+      sizes="(min-width: 769px) 50vw,    
+                                                              100vw"
+      type="image/webp"
+    />
+    <source
+      media="(orientation: landscape)"
+      :srcset="getSrcSet(id, 'jpg')"
+      sizes="(min-width: 769px) 50vw,    
+                                                              100vw"
+      type="image/jpg"
+    />
+    <source
+      v-if="portraitId"
+      media="(orientation: portrait)"
+      :srcset="getSrcSet(portraitId, 'webp')"
+      sizes="(min-width: 769px) 50vw,    
+                                                              100vw"
+      type="image/webp"
+    />
+    <source
+      v-if="portraitId"
+      media="(orientation: portrait)"
+      :srcset="getSrcSet(portraitId, 'jpg')"
+      sizes="(min-width: 769px) 50vw,    
+                                                              100vw"
+      type="image/jpg"
+    />
 
-    <img :src="$imageURL(id, { width: 1440, format: 'jpg', quality: 80 })" :alt="alt" loading="lazy" />
+    <img
+      :src="$imageURL(id, { width: imageWidth, format: 'webp', quality: 80 })"
+      :alt="alt"
+      loading="lazy"
+    />
     <!-- src = fallback for browsers that don't support srcset and size attribute and webp format -->
-
   </picture>
 </template>
 
-
 <script setup>
-
 const { $imageURL } = useNuxtApp();
 
 const props = defineProps({
@@ -28,32 +51,35 @@ const props = defineProps({
   alt: {
     type: String,
   },
+  imageWidth: {
+    type: Number,
+    default: 1440,
+  },
   portraitId: {
     type: String,
-    default: ''
+    default: '',
   },
   contain: {
     type: Boolean,
     default: false,
   },
-})
+});
 
 function getSrcSet(id, type) {
   return (
     $imageURL(id, { width: 400, format: type }) +
-    " 400w," +
+    ' 400w,' +
     $imageURL(id, { width: 800, format: type }) +
-    " 780w," +
+    ' 780w,' +
     $imageURL(id, { width: 1024, format: type }) +
-    " 1024w," +
+    ' 1024w,' +
     $imageURL(id, { width: 1440, format: type }) +
-    " 1440w," +
+    ' 1440w,' +
     $imageURL(id, { width: 2400, format: type }) +
-    " 2400w"
+    ' 2400w'
   );
 }
 </script>
-
 
 <style scoped lang="scss">
 img {

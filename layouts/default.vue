@@ -1,84 +1,124 @@
 <template>
   <Html :lang="head.htmlAttrs.lang" :dir="head.htmlAttrs.dir">
-  <div :class="{ safari: isSafari, 'sidenav-open': sidebarOpen }">
-    <header class="header">
-      <div class="content-left">
-        <Logo :id="'header-logo'" />
-        <MenuMain :id="'header-menu-main'" :user="user" :items="data.menuItems" />
-      </div>
+    <div :class="{ safari: isSafari, 'sidenav-open': sidebarOpen }">
+      <header class="header">
+        <div class="content-left">
+          <Logo :id="'header-logo'" />
+          <MenuMain
+            :id="'header-menu-main'"
+            :user="user"
+            :items="data.menuItems"
+          />
+        </div>
 
-      <div class="header-actions">
-
-        <MenuAccount :id="'header-menu-account'" :loggedIn="!!user" @logout="logout" items="menuItems" />
-        <LangSwitch @langChanged="handleLangChanged" />
-      </div>
-      <div class="hamburger-wrapper sidenav-toggle">
-        <button type="button" class="hamburger hamburger--collapse" @click="toogleSidebar"
-          :class="sidebarOpen ? 'is-active' : ''">
-          <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-        </button>
-      </div>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <Footer :footer-content="data?.footerContent" :menuItems="data.menuItems" :social-media-links="data?.socialMediaLinks"
-      :paticipactionDeclaration="data?.paticipactionDeclaration" />
-
-    <div class="sidenav">
-      <div class="logo-wrapper" @click="closeSidebar">
-        <Logo :id="'sidenav-logo'" />
-      </div>
-      <MenuMain :id="'sidenav-menu-main'" :user="user" :items="data.menuItems" @closeSidebar="closeSidebar" />
-      <div class="separator"></div>
-      <div class="sidenav-actions">
-        <div @click="closeSidebar">
+        <div class="header-actions">
+          <MenuAccount
+            :id="'header-menu-account'"
+            :loggedIn="!!user"
+            @logout="logout"
+            items="menuItems"
+          />
           <LangSwitch @langChanged="handleLangChanged" />
         </div>
-        <MenuAccount :id="'sidenav-menu-account'" :loggedIn="!!user" @logout="logout" />
+        <div class="hamburger-wrapper sidenav-toggle">
+          <button
+            type="button"
+            class="hamburger hamburger--collapse"
+            aria-label="menu"
+            @click="toogleSidebar"
+            :class="sidebarOpen ? 'is-active' : ''"
+          >
+            <span class="hamburger-box"
+              ><span class="hamburger-inner"></span
+            ></span>
+          </button>
+        </div>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <Footer
+        :footer-content="data?.footerContent"
+        :menuItems="data.menuItems"
+        :social-media-links="data?.socialMediaLinks"
+        :paticipactionDeclaration="data?.paticipactionDeclaration"
+      />
+
+      <div class="sidenav">
+        <div class="logo-wrapper" @click="closeSidebar">
+          <Logo :id="'sidenav-logo'" />
+        </div>
+        <MenuMain
+          :id="'sidenav-menu-main'"
+          :user="user"
+          :items="data.menuItems"
+          @closeSidebar="closeSidebar"
+        />
+        <div class="separator"></div>
+        <div class="sidenav-actions">
+          <div @click="closeSidebar">
+            <LangSwitch @langChanged="handleLangChanged" />
+          </div>
+          <MenuAccount
+            :id="'sidenav-menu-account'"
+            :loggedIn="!!user"
+            @logout="logout"
+          />
+        </div>
       </div>
+      <div class="backdrop"></div>
+      <div class="hamburger-wrapper sidenav-toggle">
+        <button
+          type="button"
+          class="hamburger hamburger--collapse"
+          aria-label="menu"
+          @click="toogleSidebar"
+          :class="sidebarOpen ? 'is-active' : ''"
+        >
+          <span class="hamburger-box"
+            ><span class="hamburger-inner"></span
+          ></span>
+        </button>
+      </div>
+      <CookieBanner></CookieBanner>
+      <template v-if="data?.popup">
+        <PopUp
+          :open="popupOpen"
+          close-button-light
+          @popup-closed="handlePopupClosed"
+        >
+          <AddPopUpContent
+            :imgId="data.popup.image?.id"
+            :badgeImgId="data.popup.circle_image?.id"
+            :summary="data.popup.description"
+            :title="data.popup.title"
+            :moreBtn="data.popup.more_button_text"
+            :moreBtnUrl="data.popup.more_button_url"
+            :linkBtn="data.popup.link_button_text"
+            :linkBtnUrl="data.popup.link_button_url"
+            @add-clicked="handlePopupClosed"
+          ></AddPopUpContent>
+        </PopUp>
+      </template>
     </div>
-    <div class="backdrop"></div>
-    <div class="hamburger-wrapper sidenav-toggle">
-      <button type="button" class="hamburger hamburger--collapse" @click="toogleSidebar"
-        :class="sidebarOpen ? 'is-active' : ''">
-        <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-      </button>
-    </div>
-    <CookieBanner></CookieBanner>
-    <template v-if="data?.popup">
-      <PopUp :open="popupOpen" close-button-light @popup-closed="handlePopupClosed">
-        <AddPopUpContent :imgId="data.popup.image?.id" :badgeImgId="data.popup.circle_image?.id"
-          :summary="data.popup.description" :title="data.popup.title" :moreBtn="data.popup.more_button_text"
-          :moreBtnUrl="data.popup.more_button_url" :linkBtn="data.popup.link_button_text"
-          :linkBtnUrl="data.popup.link_button_url" @add-clicked="handlePopupClosed"></AddPopUpContent>
-      </PopUp>
-    </template>
-
-  </div>
-
   </Html>
 </template>
 
-
-
-
 <script setup>
-
-import { disabelOnClose, isDisabled, openAfter } from '../utils/popup'
+import { disabelOnClose, isDisabled, openAfter } from '../utils/popup';
 
 const head = useLocaleHead({
   addDirAttribute: true,
   identifierAttribute: 'id',
-  addSeoAttributes: true
-})
+  addSeoAttributes: true,
+});
 
 const { getItems, getSingletonItem } = useDirectusItems();
 const { getFiles } = useDirectusFiles();
 const { $i18n, $stringify } = useNuxtApp();
-const { t } = useI18n()
-const { $decodeJwt, $assetURL } = useNuxtApp()
-const config = useRuntimeConfig()
+const { t } = useI18n();
+const { $decodeJwt, $assetURL } = useNuxtApp();
+const config = useRuntimeConfig();
 
 const user = ref(null);
 const interval = ref(null);
@@ -87,117 +127,117 @@ const isSafari = ref(false);
 const authConfig = ref(null);
 const popupOpen = ref(false);
 
+const { data, pending, error, refresh } = await useAsyncData(
+  'default',
+  async () => {
+    const currentLocale = $i18n.locales.value.find(
+      (i) => i.code === $i18n.locale.value
+    );
+    let lpTranslations = [];
+    let lp = {};
+    let files = null;
+    let popup = null;
+    let menuItems = [];
 
-const { data, pending, error, refresh } = await useAsyncData('default', async () => {
-  const currentLocale = $i18n.locales.value.find(
-    (i) => i.code === $i18n.locale.value
-  );
-  let lpTranslations = [];
-  let lp = {};
-  let files = null;
-  let popup = null;
-  let menuItems = [];
-
-  try {
-
-    const nav = await getItems({
-      collection: 'navigation_translations',
-      params: {
-        filter: {
-          languages_code: currentLocale.iso
-        },
-        fields: ['*', '**']
-      }
-    })
-    menuItems = nav[0] && nav[0].nav_item || [];
-
-    menuItems = menuItems.map((item) => {
-      
-      if (item.submenu) {
-        return {
-        ...item,
-        submenu: item.submenu.map(submenu => {
-            if(submenu.target === 'fokus') {
-              submenu.target = `/${submenu.target}/${submenu.slug}`;
-              submenu.slug = null
-            }
-            return submenu
-          })
-        };
-      }
-      return item;
-    });
-
-
-    lp = await getSingletonItem({
-      collection: 'landingpage',
-    })
-
-    if (lp.popup) {
-      const popupTranslationData = await getItems({
-        collection: 'pop_ups_translations',
+    try {
+      const nav = await getItems({
+        collection: 'navigation_translations',
         params: {
           filter: {
-            pop_ups_id: {
-              id: lp.popup,
-            },
-            languages_code: currentLocale.iso, //'en-US'
+            languages_code: currentLocale.iso,
           },
+          fields: ['*', '**'],
+        },
+      });
+      menuItems = (nav[0] && nav[0].nav_item) || [];
 
-          fields: ["*", "*.*"]
+      menuItems = menuItems.map((item) => {
+        if (item.submenu) {
+          return {
+            ...item,
+            submenu: item.submenu.map((submenu) => {
+              if (submenu.target === 'fokus') {
+                submenu.target = `/${submenu.target}/${submenu.slug}`;
+                submenu.slug = null;
+              }
+              return submenu;
+            }),
+          };
         }
-      })
+        return item;
+      });
 
-      popup = { ...popupTranslationData[0], ...popupTranslationData[0].pop_ups_id }
-    }
+      lp = await getSingletonItem({
+        collection: 'landingpage',
+      });
 
+      if (lp.popup) {
+        const popupTranslationData = await getItems({
+          collection: 'pop_ups_translations',
+          params: {
+            filter: {
+              pop_ups_id: {
+                id: lp.popup,
+              },
+              languages_code: currentLocale.iso, //'en-US'
+            },
 
-    const filter = {
-      languages_id: currentLocale.iso, //'en-US'
-    };
-    lpTranslations = await getItems({
-      collection: 'landingpage_translations',
-      params: {
-        filter: filter
+            fields: ['*', '*.*'],
+          },
+        });
+
+        popup = {
+          ...popupTranslationData[0],
+          ...popupTranslationData[0].pop_ups_id,
+        };
       }
-    })
-    files = await getFiles({
-      params: {
-        filter: {
-          id: {
-            _in: [
-              lpTranslations.find((d) => d.languages_id == "en-US")
-                ?.heroImageLandscape,
-              lpTranslations.find((d) => d.languages_id == "de-DE")
-                ?.heroImageLandscape,
-            ],
+
+      const filter = {
+        languages_id: currentLocale.iso, //'en-US'
+      };
+      lpTranslations = await getItems({
+        collection: 'landingpage_translations',
+        params: {
+          filter: filter,
+        },
+      });
+      files = await getFiles({
+        params: {
+          filter: {
+            id: {
+              _in: [
+                lpTranslations.find((d) => d.languages_id == 'en-US')
+                  ?.heroImageLandscape,
+                lpTranslations.find((d) => d.languages_id == 'de-DE')
+                  ?.heroImageLandscape,
+              ],
+            },
           },
         },
-      }
-    })
-  } catch (error) {
-    console.log('DIRECTUS Fetch Error', error)
+      });
+    } catch (error) {
+      console.log('DIRECTUS Fetch Error', error);
+    }
+    const lpTrans = lpTranslations[0];
+    return {
+      paticipactionDeclaration: lpTrans?.participation_declaration,
+      seoDescription: lpTrans?.metaDescription,
+      seoImage: lpTrans?.og_image,
+      seoImageAlt: files[0]?.description || files[0]?.title,
+      socialMediaLinks: lp.social_media_links,
+      footerContent: lpTrans?.footerContent,
+      popup: popup,
+      menuItems: menuItems,
+    };
   }
-  const lpTrans = lpTranslations[0];
-  return {
-    paticipactionDeclaration: lpTrans?.participation_declaration,
-    seoDescription: lpTrans?.metaDescription,
-    seoImage: lpTrans?.og_image,
-    seoImageAlt: files[0]?.description || files[0]?.title,
-    socialMediaLinks: lp.social_media_links,
-    footerContent: lpTrans?.footerContent,
-    popup: popup,
-    menuItems: menuItems
-  }
-});
-
+);
 
 function safari() {
   isSafari.value = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }
 
 async function handleLangChanged() {
-  refresh()
+  refresh();
 }
 function toogleSidebar() {
   sidebarOpen.value = !sidebarOpen.value;
@@ -207,8 +247,8 @@ function closeSidebar() {
 }
 
 async function logout() {
-  const accessToken = window.localStorage.getItem("access_token");
-  const refreshToken = window.localStorage.getItem("refresh_token");
+  const accessToken = window.localStorage.getItem('access_token');
+  const refreshToken = window.localStorage.getItem('refresh_token');
 
   if (authConfig.value && accessToken) {
     const { issuer, clientId } = authConfig.value.keycloak;
@@ -218,23 +258,23 @@ async function logout() {
       await $fetch(logoutEndpoint, {
         method: 'POST',
         query: {
-          "client_id": clientId,
-          "refresh_token": refreshToken
+          client_id: clientId,
+          refresh_token: refreshToken,
         },
         headers: {
           Authorization: `Bearer ${accessToken}`,
-        }
+        },
       });
       localStorage.clear();
       checkToken();
     } catch (error) {
-      console.log("Error during logout", error);
+      console.log('Error during logout', error);
     }
   }
 }
 
 function checkToken() {
-  const accessToken = window.localStorage.getItem("access_token");
+  const accessToken = window.localStorage.getItem('access_token');
   let decodedJwt = null;
   if (accessToken) {
     decodedJwt = $decodeJwt(accessToken);
@@ -260,22 +300,21 @@ function checkToken() {
 
 function handlePopupClosed() {
   popupOpen.value = false;
-  disabelOnClose()
+  disabelOnClose();
 }
 
 onMounted(async () => {
   try {
     authConfig.value = await $fetch(config.public.authConfigUrl);
   } catch (error) {
-    console.log('Cannot load config')
+    console.log('Cannot load config');
   }
   checkToken();
   safari();
   if (!isDisabled()) {
     openAfter(data.value.popup?.open_after_seconds, () => {
       popupOpen.value = true;
-    })
-
+    });
   }
   interval.value = setInterval(() => {
     checkToken();
@@ -288,44 +327,43 @@ onBeforeUnmount(() => {
   }
 });
 
-
 useHead({
-  title: t("page.title"), //'Gemeinschaftswerk Nachhaltigkeit',
-  titleTemplate: "%s - " + t("page.title"),
+  title: t('page.title'), //'Gemeinschaftswerk Nachhaltigkeit',
+  titleTemplate: '%s - ' + t('page.title'),
   meta: [
     // hid is used as unique identifier. Do not use `vmid` for it as it will not work
     {
-      hid: "description",
-      name: "description",
-      content: data.value?.seoDescription || "",
+      hid: 'description',
+      name: 'description',
+      content: data.value?.seoDescription || '',
     },
     {
-      hid: "og-description",
-      property: "og:description",
-      content: data.value?.seoDescription || "",
+      hid: 'og-description',
+      property: 'og:description',
+      content: data.value?.seoDescription || '',
     },
     {
-      hid: "og-image",
-      property: "og:image",
+      hid: 'og-image',
+      property: 'og:image',
       content: $assetURL(data.value?.seoImage),
     },
     {
-      hid: "og-image-alt",
-      property: "og:image:alt",
-      content: data.value?.seoImageAlt || "",
+      hid: 'og-image-alt',
+      property: 'og:image:alt',
+      content: data.value?.seoImageAlt || '',
     },
     {
-      hid: "twitter-card",
-      name: "twitter:card",
-      content: "summary_large_image",
+      hid: 'twitter-card',
+      name: 'twitter:card',
+      content: 'summary_large_image',
     },
     {
-      hid: "twitter-site",
-      name: "twitter:site",
-      content: "@gw_undjetztalle",
+      hid: 'twitter-site',
+      name: 'twitter:site',
+      content: '@gw_undjetztalle',
     },
   ],
-})
+});
 </script>
 
 <style lang="scss">
@@ -490,7 +528,6 @@ button.sidenav-toggle {
     0 6px 30px 5px #0000001f;
 }
 
-
 .backdrop {
   z-index: -1;
   position: fixed;
@@ -503,17 +540,12 @@ button.sidenav-toggle {
   transition: all 500ms;
 }
 
-
-
 @media screen and (max-width: 1599px) {
-
   #header-menu-main,
   .header-actions {
     display: none;
     visibility: hidden;
   }
-
-
 
   .sidenav {
     z-index: 9000;
@@ -522,7 +554,6 @@ button.sidenav-toggle {
   }
 
   .sidenav-open .sidenav {
-
     overflow-y: auto;
     transform: translateX(0%);
   }
@@ -579,7 +610,7 @@ header {
   height: 70px;
 }
 
-header>div {
+header > div {
   display: flex;
   align-items: center;
   gap: 16px;

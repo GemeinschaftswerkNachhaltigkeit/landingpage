@@ -109,6 +109,7 @@ function toggle() {
 
     .html {
       padding-top: 24px;
+      display: flow-root;
     }
 
     &.yellow {

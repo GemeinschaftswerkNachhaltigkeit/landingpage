@@ -2,11 +2,13 @@
   <div id="index" class="index-page" v-if="data">
     <SearchHero
       :image="data.search.image"
+      :alt="'Hero background'"
       :title="data.search.title_line_1"
       :keywords="data.search.title_line_2"
       :content="data.search.content"
     >
     </SearchHero>
+
     <HighlightedItems :infoContent="data.search"></HighlightedItems>
 
     <section class="add-section content-section">
@@ -486,14 +488,8 @@ useHead({
 }
 
 @media only screen and (min-width: 769px) {
-  html.webp .form-section.bg-img-section {
-    /* uses modernizr feature-detects*/
-    background-image: var(--bg-landscape);
-  }
-
   .form-section.bg-img-section {
-    background-image: var(--bg-landscape-png);
-    /* fallback for browsers that dont support webp*/
+    background-image: var(--bg-landscape);
   }
 
   .split-section {

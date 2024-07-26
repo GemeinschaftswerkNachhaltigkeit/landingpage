@@ -132,9 +132,11 @@
                   class="image-wrapper"
                   :style="{
                     height: data.dan_explained_sus_week_image_height + 'px',
+                    width: data.dan_explained_sus_week_image_width + 'px',
                   }"
                 >
                   <ContentSectionImage
+                    contain
                     v-if="data.dan_explained_sutainablility_week_image"
                     :id="data.dan_explained_sutainablility_week_image"
                     :alt="data.dan_explained_sutainablility_week_image_alt"
@@ -555,6 +557,7 @@ useHead({
   }
 
   .content {
+    min-width: 0;
     section {
       padding: 0;
     }

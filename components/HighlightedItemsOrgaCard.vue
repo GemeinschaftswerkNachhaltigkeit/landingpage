@@ -21,6 +21,9 @@
           <img
             v-for="sdg in item.sustainableDevelopmentGoals"
             :src="getSdgUrl(sdg)"
+            :alt="sdg + sdg"
+            width="64"
+            height="64"
           />
         </div>
       </div>
@@ -134,8 +137,7 @@ const logoUrl = computed(() => {
 
 function getSdgUrl(sdg) {
   const lang = 'de';
-  const langExt = lang === 'de' ? 'jpg' : 'png';
-  return `/sdg-icons/${lang}/${sdg}.${langExt}`;
+  return `/sdg-icons/${lang}/${sdg}.webp`;
 }
 </script>
 

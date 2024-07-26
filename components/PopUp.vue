@@ -22,7 +22,9 @@
                 />
               </svg>
             </button>
-            <slot />
+            <div class="content">
+              <slot />
+            </div>
           </dialog>
         </transition>
         <div class="backdrop" v-if="open"></div>
@@ -84,7 +86,6 @@ function handleClose() {
 
   dialog {
     max-height: 90vh;
-    overflow: auto;
     padding: 0;
     width: 100%;
     max-width: 600px;
@@ -93,6 +94,12 @@ function handleClose() {
     margin: 0 auto;
     position: relative;
     z-index: 30;
+
+    .content {
+      overflow: auto;
+      height: 100%;
+      max-height: 90vh;
+    }
 
     .close-button {
       position: absolute;
