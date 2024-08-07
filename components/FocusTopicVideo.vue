@@ -1,11 +1,14 @@
 <template>
   <article>
     <div>
-      <a :href="url" target="_blank" class="image">
-        <img
-          :src="$imageURL(image, { width: 300, format: 'webp', quality: 80 })"
-          :alt="title || 'Thumbnail'"
-        />
+      <div class="image">
+        <a :href="url" target="_blank">
+          <img
+            :src="$imageURL(image, { width: 300, format: 'webp', quality: 80 })"
+            :alt="title || 'Thumbnail'"
+          />
+        </a>
+
         <a class="download" :href="$assetURL(file)" target="_blank" v-if="file">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +36,7 @@
             />
           </svg>
         </div>
-      </a>
+      </div>
     </div>
     <div class="content">
       <h4 class="title no-decoration">{{ title }}</h4>
@@ -56,6 +59,7 @@ article {
   width: 100%;
   background-color: white;
   flex-direction: column;
+  position: relative;
 
   .image {
     position: relative;
@@ -92,6 +96,7 @@ article {
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 0.5) 100%
       );
+      pointer-events: none;
 
       svg {
         position: absolute;
