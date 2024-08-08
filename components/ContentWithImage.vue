@@ -97,7 +97,7 @@ function positionBadge() {
 
 onMounted(() => {
   if (hasBadge()) {
-    positionBadge();
+    setTimeout(positionBadge, 0);
     window.addEventListener('resize', positionBadge);
   }
 });
