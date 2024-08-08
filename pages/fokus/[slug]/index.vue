@@ -26,6 +26,7 @@
       <section class="content-section page-hero">
         <content-with-image
           :title="data.title"
+          :badge="data.badge"
           :content="data.content"
           :image="data.image"
         >
