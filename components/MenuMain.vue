@@ -77,7 +77,7 @@
         </template>
       </div>
     </template>
-    <div class="user accent-font">
+    <div class="right">
       <MenuEntry
         groupLine
         :url="$config.public.appUrl + '/search'"
@@ -112,7 +112,7 @@
             />
           </svg>
         </div>
-        {{ user?.firstName + ' ' + user?.lastName }}
+        {{ user?.name }}
       </a>
     </div>
   </div>
@@ -216,11 +216,17 @@ function closeSidebar() {
     }
   }
 
-  .user {
+  .right {
     display: flex;
     align-items: center;
     margin-left: auto;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
     white-space: nowrap;
+    margin-left: 1rem;
 
     .icon {
       display: flex;
@@ -234,9 +240,13 @@ function closeSidebar() {
   }
 }
 
+footer .menu-main .right {
+  margin-left: 0;
+}
+
 #sidenav-menu-main.menu-main {
   .user {
-    margin-left: 0;
+    margin-left: 0rem;
   }
 }
 

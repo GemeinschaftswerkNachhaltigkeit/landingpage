@@ -6,7 +6,7 @@
           <Logo :id="'header-logo'" />
           <MenuMain
             :id="'header-menu-main'"
-            :user="user"
+            :user="userInfo"
             :items="data.menuItems"
           />
         </div>
@@ -14,8 +14,8 @@
         <div class="header-actions">
           <MenuAccount
             :id="'header-menu-account'"
-            :loggedIn="!!user"
-            @logout="logout"
+            :loggedIn="loggedIn"
+            @logout="() => handleLogout(localePath('index'))"
             items="menuItems"
           />
           <LangSwitch @langChanged="handleLangChanged" />
@@ -62,7 +62,7 @@
           <MenuAccount
             :id="'sidenav-menu-account'"
             :loggedIn="!!user"
-            @logout="logout"
+            @logout="() => handleLogout(localePath('index'))"
           />
         </div>
       </div>
@@ -121,11 +121,13 @@ const { $decodeJwt, $assetURL } = useNuxtApp();
 const config = useRuntimeConfig();
 
 const user = ref(null);
+const auth = ref(null);
 const interval = ref(null);
 const sidebarOpen = ref(false);
 const isSafari = ref(false);
 const authConfig = ref(null);
 const popupOpen = ref(false);
+const { loggedIn, ready, userInfo, logout } = useAuth(config.public.keycloak);
 
 const { data, pending, error, refresh } = await useAsyncData(
   'default',
@@ -246,56 +248,22 @@ function closeSidebar() {
   sidebarOpen.value = false;
 }
 
-async function logout() {
-  const accessToken = window.localStorage.getItem('access_token');
-  const refreshToken = window.localStorage.getItem('refresh_token');
-
-  if (authConfig.value && accessToken) {
-    const { issuer, clientId } = authConfig.value.keycloak;
-    const logoutEndpoint = `${issuer}/protocol/openid-connect/logout`;
-
-    try {
-      await $fetch(logoutEndpoint, {
-        method: 'POST',
-        query: {
-          client_id: clientId,
-          refresh_token: refreshToken,
-        },
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      localStorage.clear();
-      checkToken();
-    } catch (error) {
-      console.log('Error during logout', error);
-    }
-  }
-}
-
-function checkToken() {
-  const accessToken = window.localStorage.getItem('access_token');
-  let decodedJwt = null;
-  if (accessToken) {
-    decodedJwt = $decodeJwt(accessToken);
-  }
-
-  if (decodedJwt) {
-    const exp = decodedJwt.exp * 1000;
-    const now = Date.now();
-    const isExpired = now > exp;
-
-    if (accessToken && decodedJwt && !isExpired) {
-      user.value = {
-        firstName: decodedJwt?.given_name,
-        lastName: decodedJwt?.family_name,
-      };
-    } else {
-      user.value = null;
-    }
-  } else {
-    user.value = null;
-  }
+async function handleLogout(redirect) {
+  const tokens = [
+    'access_token',
+    'access_token_stored_at',
+    'refresh_token',
+    'id_token',
+    'id_token_stored_at',
+    'id_token_expires_at',
+    'id_token_claims_obj',
+  ];
+  console.log('Logging out');
+  tokens.forEach((key) => {
+    console.log('Remove token', key);
+    localStorage.removeItem(key);
+  });
+  await logout(redirect);
 }
 
 function handlePopupClosed() {
@@ -309,16 +277,12 @@ onMounted(async () => {
   } catch (error) {
     console.log('Cannot load config');
   }
-  checkToken();
   safari();
   if (!isDisabled()) {
     openAfter(data.value.popup?.open_after_seconds, () => {
       popupOpen.value = true;
     });
   }
-  interval.value = setInterval(() => {
-    checkToken();
-  }, 5000);
 });
 
 onBeforeUnmount(() => {
