@@ -6,7 +6,7 @@
           <Logo :id="'header-logo'" />
           <MenuMain
             :id="'header-menu-main'"
-            :user="user"
+            :user="userInfo"
             :items="data.menuItems"
           />
         </div>
@@ -14,7 +14,7 @@
         <div class="header-actions">
           <MenuAccount
             :id="'header-menu-account'"
-            :loggedIn="!!user"
+            :loggedIn="loggedIn"
             @logout="logout"
             items="menuItems"
           />
@@ -62,7 +62,7 @@
           <MenuAccount
             :id="'sidenav-menu-account'"
             :loggedIn="!!user"
-            @logout="logout"
+            @logout="handleLogout"
           />
         </div>
       </div>
@@ -121,11 +121,13 @@ const { $decodeJwt, $assetURL } = useNuxtApp();
 const config = useRuntimeConfig();
 
 const user = ref(null);
+const auth = ref(null);
 const interval = ref(null);
 const sidebarOpen = ref(false);
 const isSafari = ref(false);
 const authConfig = ref(null);
 const popupOpen = ref(false);
+const { loggedIn, ready, userInfo, logout } = useAuth(config.public.keycloak);
 
 const { data, pending, error, refresh } = await useAsyncData(
   'default',
@@ -246,56 +248,8 @@ function closeSidebar() {
   sidebarOpen.value = false;
 }
 
-async function logout() {
-  const accessToken = window.localStorage.getItem('access_token');
-  const refreshToken = window.localStorage.getItem('refresh_token');
-
-  if (authConfig.value && accessToken) {
-    const { issuer, clientId } = authConfig.value.keycloak;
-    const logoutEndpoint = `${issuer}/protocol/openid-connect/logout`;
-
-    try {
-      await $fetch(logoutEndpoint, {
-        method: 'POST',
-        query: {
-          client_id: clientId,
-          refresh_token: refreshToken,
-        },
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      localStorage.clear();
-      checkToken();
-    } catch (error) {
-      console.log('Error during logout', error);
-    }
-  }
-}
-
-function checkToken() {
-  const accessToken = window.localStorage.getItem('access_token');
-  let decodedJwt = null;
-  if (accessToken) {
-    decodedJwt = $decodeJwt(accessToken);
-  }
-
-  if (decodedJwt) {
-    const exp = decodedJwt.exp * 1000;
-    const now = Date.now();
-    const isExpired = now > exp;
-
-    if (accessToken && decodedJwt && !isExpired) {
-      user.value = {
-        firstName: decodedJwt?.given_name,
-        lastName: decodedJwt?.family_name,
-      };
-    } else {
-      user.value = null;
-    }
-  } else {
-    user.value = null;
-  }
+async function handleLogout() {
+  await logout(localePath('index'));
 }
 
 function handlePopupClosed() {

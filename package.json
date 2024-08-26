@@ -26,6 +26,7 @@
   "dependencies": {
     "@egjs/vue3-flicking": "^4.11.3",
     "jwt-decode": "^4.0.0",
+    "keycloak-js": "^25.0.4",
     "modern-normalize": "^2.0.0",
     "nuxt-directus": "^5.6.1",
     "query-string": "^9.1.0",

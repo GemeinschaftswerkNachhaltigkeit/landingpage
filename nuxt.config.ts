@@ -77,6 +77,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      keycloak: {
+        url: process.env.KC_URL,
+        realm: process.env.KC_REALM,
+        clientId: process.env.KC_CLIENT_ID,
+      },
       assetUrl: process.env.DIRECTUS_PUBLIC_URL || process.env.DIRECTUS_URL,
       apiProxyPrefix: process.env.NODE_ENV === 'development' ? '/app-api' : '',
       apiProxyPrefixAlt:
