@@ -258,7 +258,7 @@ async function handleLogout(redirect) {
     'id_token_expires_at',
     'id_token_claims_obj',
   ];
-  console.log('Logging out');
+  console.log('Logging out', redirect);
   tokens.forEach((key) => {
     console.log('Remove token', key);
     localStorage.removeItem(key);
