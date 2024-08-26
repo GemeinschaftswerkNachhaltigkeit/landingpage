@@ -263,16 +263,12 @@ onMounted(async () => {
   } catch (error) {
     console.log('Cannot load config');
   }
-  checkToken();
   safari();
   if (!isDisabled()) {
     openAfter(data.value.popup?.open_after_seconds, () => {
       popupOpen.value = true;
     });
   }
-  interval.value = setInterval(() => {
-    checkToken();
-  }, 5000);
 });
 
 onBeforeUnmount(() => {
