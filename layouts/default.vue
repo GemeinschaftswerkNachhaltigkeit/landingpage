@@ -250,6 +250,18 @@ function closeSidebar() {
 
 async function handleLogout() {
   await logout(localePath('index'));
+  const tokens = [
+    'access_token',
+    'access_token_stored_at',
+    'refresh_token',
+    'id_token',
+    'id_token_stored_at',
+    'id_token_expires_at',
+    'id_token_claims_obj',
+  ];
+  tokens.forEach((key) => {
+    localStorage.removeItem(key);
+  });
 }
 
 function handlePopupClosed() {
