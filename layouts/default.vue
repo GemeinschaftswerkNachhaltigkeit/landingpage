@@ -249,7 +249,6 @@ function closeSidebar() {
 }
 
 async function handleLogout() {
-  await logout(localePath('index'));
   const tokens = [
     'access_token',
     'access_token_stored_at',
@@ -260,8 +259,10 @@ async function handleLogout() {
     'id_token_claims_obj',
   ];
   tokens.forEach((key) => {
+    console.log('>>>>>>> remove', key);
     localStorage.removeItem(key);
   });
+  await logout(localePath('index'));
 }
 
 function handlePopupClosed() {
