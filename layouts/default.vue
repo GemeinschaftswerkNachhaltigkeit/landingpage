@@ -14,8 +14,8 @@
         <div class="header-actions">
           <MenuAccount
             :id="'header-menu-account'"
-            :loggedIn="loggedIn"
-            @logout="logout"
+            :loggedIn="true || loggedIn"
+            @logout="handleLogout"
             items="menuItems"
           />
           <LangSwitch @langChanged="handleLangChanged" />
@@ -62,7 +62,7 @@
           <MenuAccount
             :id="'sidenav-menu-account'"
             :loggedIn="!!user"
-            @logout="handleLogout"
+            @logout="() => handleLogout(localePath('index'))"
           />
         </div>
       </div>
@@ -248,8 +248,7 @@ function closeSidebar() {
   sidebarOpen.value = false;
 }
 
-async function handleLogout() {
-  console.log('>>>>>>>> LOGOUT');
+async function handleLogout(redirect) {
   const tokens = [
     'access_token',
     'access_token_stored_at',
@@ -260,10 +259,9 @@ async function handleLogout() {
     'id_token_claims_obj',
   ];
   tokens.forEach((key) => {
-    console.log('>>>>>>> remove', key);
     localStorage.removeItem(key);
   });
-  await logout(localePath('index'));
+  await logout(redirect);
 }
 
 function handlePopupClosed() {
