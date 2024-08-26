@@ -249,6 +249,7 @@ function closeSidebar() {
 }
 
 async function handleLogout() {
+  console.log('>>>>>>>> LOGOUT');
   const tokens = [
     'access_token',
     'access_token_stored_at',
