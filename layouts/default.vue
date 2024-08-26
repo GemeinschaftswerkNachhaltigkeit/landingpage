@@ -15,7 +15,7 @@
           <MenuAccount
             :id="'header-menu-account'"
             :loggedIn="loggedIn"
-            @logout="handleLogout"
+            @logout="() => handleLogout(localePath('index'))"
             items="menuItems"
           />
           <LangSwitch @langChanged="handleLangChanged" />
@@ -258,7 +258,9 @@ async function handleLogout(redirect) {
     'id_token_expires_at',
     'id_token_claims_obj',
   ];
+  console.log('Logging out');
   tokens.forEach((key) => {
+    console.log('Remove token', key);
     localStorage.removeItem(key);
   });
   await logout(redirect);
