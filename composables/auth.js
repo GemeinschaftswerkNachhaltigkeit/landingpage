@@ -17,15 +17,17 @@ export const useAuth = (config) => {
       });
       console.log('########### MOUNT: Initializing keycloak');
       keycloak.onAuthSuccess = async () => {
+        console.log('########### onAuthSuccess');
         await keycloak?.loadUserInfo();
         userInfo.value = keycloak?.userInfo;
         loggedIn.value = true;
       };
-      keycloak.onAuthError = () => {
+      keycloak.onAuthError = (e) => {
+        console.log('########### onAuthError', e);
         loggedIn.value = false;
       };
       keycloak.onReady = (authenticated) => {
-        console.log('########### onReady: authenticated');
+        console.log('########### onReady: authenticated', authenticated);
         loggedIn.value = !!authenticated;
         ready.value = true;
       };
@@ -33,13 +35,17 @@ export const useAuth = (config) => {
       keycloak.onTokenExpired = async () => {
         try {
           await keycloak?.updateToken(30);
-        } catch (error) {}
+        } catch (error) {
+          console.log(error);
+        }
       };
       try {
         await keycloak?.init({
           onLoad: 'check-sso',
         });
+        console.log('########### Init success');
       } catch (e) {
+        console.log('########### Init error', e);
         error.value = true;
         ready.value = true;
       }
