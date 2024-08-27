@@ -9,12 +9,9 @@ export const useAuth = (config) => {
 
   onMounted(async () => {
     window.onfocus = async function () {
-      console.log('focus authenticated', keycloak.authenticated);
       if (!keycloak.authenticated) {
-        console.log('focus login');
         keycloak.login({ prompt: 'none' });
       }
-      console.log('focus authenticated', keycloak.authenticated);
     };
 
     keycloak = new Keycloak({
@@ -22,23 +19,18 @@ export const useAuth = (config) => {
       realm: config.realm,
       clientId: config.clientId,
     });
-    console.log('########### MOUNT: Initializing keycloak');
     keycloak.onAuthSuccess = async () => {
-      console.log('########### onAuthSuccess');
       await keycloak?.loadUserInfo();
       userInfo.value = keycloak?.userInfo;
       loggedIn.value = true;
     };
     keycloak.onAuthError = (e) => {
-      console.log('########### onAuthError', e);
       loggedIn.value = false;
     };
     keycloak.onAuthLogout = () => {
-      console.log('########### onAuthLogout');
       loggedIn.value = false;
     };
     keycloak.onReady = (authenticated) => {
-      console.log('########### onReady: authenticated', authenticated);
       loggedIn.value = !!authenticated;
       ready.value = true;
     };
@@ -54,9 +46,7 @@ export const useAuth = (config) => {
       const result = await keycloak?.init({
         onLoad: 'check-sso',
       });
-      console.log('########### Init success', result);
     } catch (e) {
-      console.log('########### Init error', e);
       error.value = true;
       ready.value = true;
     }

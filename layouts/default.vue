@@ -125,7 +125,6 @@ const auth = ref(null);
 const interval = ref(null);
 const sidebarOpen = ref(false);
 const isSafari = ref(false);
-const authConfig = ref(null);
 const popupOpen = ref(false);
 const { loggedIn, ready, userInfo, logout } = useAuth(config.public.keycloak);
 
@@ -262,7 +261,6 @@ async function handleLogout() {
   const currentLocale = $i18n.locales.value.find(
     (i) => i.code === $i18n.locale.value
   );
-  console.log('Logging out', redirect, currentLocale.code);
   tokens.forEach((key) => {
     localStorage.removeItem(key);
   });
@@ -275,11 +273,6 @@ function handlePopupClosed() {
 }
 
 onMounted(async () => {
-  try {
-    authConfig.value = await $fetch(config.public.authConfigUrl);
-  } catch (error) {
-    console.log('Cannot load config');
-  }
   safari();
   if (!isDisabled()) {
     openAfter(data.value.popup?.open_after_seconds, () => {
