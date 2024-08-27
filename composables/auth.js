@@ -13,8 +13,7 @@ export const useAuth = (config) => {
       console.log('focus', keycloak);
       console.log('focus ready', ready.value);
       console.log('focus loggedIn', loggedIn.value);
-      console.log('focus loggedIn', keycloak.authenticated);
-      keycloak.loggedIn();
+      console.log('focus authenticated', keycloak.authenticated);
     };
 
     keycloak = new Keycloak({
