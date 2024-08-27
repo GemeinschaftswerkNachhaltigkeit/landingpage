@@ -28,6 +28,7 @@ export const useAuth = (config) => {
       loggedIn.value = false;
     };
     keycloak.onAuthLogout = () => {
+      userInfo.value = null;
       loggedIn.value = false;
     };
     keycloak.onReady = (authenticated) => {
