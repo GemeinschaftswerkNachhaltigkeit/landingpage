@@ -9,17 +9,12 @@ export const useAuth = (config) => {
 
   onMounted(async () => {
     window.onfocus = async function () {
+      keycloak.login({ prompt: 'none' });
       console.log('focus', keycloak);
       console.log('focus ready', ready.value);
       console.log('focus loggedIn', loggedIn.value);
-      try {
-        const result = await keycloak?.init();
-        console.log('########### focus: Init success', result);
-      } catch (e) {
-        console.log('########### focus: Init error', e);
-        error.value = true;
-        ready.value = true;
-      }
+      console.log('focus loggedIn', keycloak.authenticated);
+      keycloak.loggedIn();
     };
 
     keycloak = new Keycloak({
