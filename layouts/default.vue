@@ -14,7 +14,7 @@
         <div class="header-actions">
           <MenuAccount
             :id="'header-menu-account'"
-            :loggedIn="true || loggedIn"
+            :loggedIn="loggedIn"
             @logout="() => handleLogout()"
             items="menuItems"
           />
