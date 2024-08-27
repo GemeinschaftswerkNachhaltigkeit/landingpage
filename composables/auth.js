@@ -10,8 +10,16 @@ export const useAuth = (config) => {
   onMounted(async () => {
     window.onfocus = async function () {
       console.log('focus', keycloak);
-      console.log('focus ready', ready);
-      console.log('focus loggedIn', loggedIn);
+      console.log('focus ready', ready.value);
+      console.log('focus loggedIn', loggedIn.value);
+      try {
+        const result = await keycloak?.init();
+        console.log('########### focus: Init success', result);
+      } catch (e) {
+        console.log('########### focus: Init error', e);
+        error.value = true;
+        ready.value = true;
+      }
     };
 
     keycloak = new Keycloak({
@@ -30,6 +38,10 @@ export const useAuth = (config) => {
       console.log('########### onAuthError', e);
       loggedIn.value = false;
     };
+    keycloak.onAuthLogout = () => {
+      console.log('########### onAuthLogout');
+      loggedIn.value = false;
+    };
     keycloak.onReady = (authenticated) => {
       console.log('########### onReady: authenticated', authenticated);
       loggedIn.value = !!authenticated;
@@ -44,10 +56,10 @@ export const useAuth = (config) => {
       }
     };
     try {
-      await keycloak?.init({
+      const result = await keycloak?.init({
         onLoad: 'check-sso',
       });
-      console.log('########### Init success');
+      console.log('########### Init success', result);
     } catch (e) {
       console.log('########### Init error', e);
       error.value = true;
