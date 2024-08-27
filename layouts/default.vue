@@ -14,7 +14,7 @@
         <div class="header-actions">
           <MenuAccount
             :id="'header-menu-account'"
-            :loggedIn="loggedIn"
+            :loggedIn="true || loggedIn"
             @logout="() => handleLogout()"
             items="menuItems"
           />
@@ -62,7 +62,7 @@
           <MenuAccount
             :id="'sidenav-menu-account'"
             :loggedIn="!!user"
-            @logout="() => handleLogout(localePath('index'))"
+            @logout="() => handleLogout()"
           />
         </div>
       </div>
@@ -259,11 +259,14 @@ async function handleLogout() {
     'id_token_claims_obj',
   ];
   const redirect = window.location.origin;
-  console.log('Logging out', redirect);
+  const currentLocale = $i18n.locales.value.find(
+    (i) => i.code === $i18n.locale.value
+  );
+  console.log('Logging out', redirect, currentLocale.code);
   tokens.forEach((key) => {
     localStorage.removeItem(key);
   });
-  await logout(redirect);
+  await logout(redirect + '/' + currentLocale.code);
 }
 
 function handlePopupClosed() {
