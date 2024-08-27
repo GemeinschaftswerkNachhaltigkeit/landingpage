@@ -9,10 +9,11 @@ export const useAuth = (config) => {
 
   onMounted(async () => {
     window.onfocus = async function () {
-      keycloak.login({ prompt: 'none' });
-      console.log('focus', keycloak);
-      console.log('focus ready', ready.value);
-      console.log('focus loggedIn', loggedIn.value);
+      console.log('focus authenticated', keycloak.authenticated);
+      if (!keycloak.authenticated) {
+        console.log('focus login');
+        keycloak.login({ prompt: 'none' });
+      }
       console.log('focus authenticated', keycloak.authenticated);
     };
 
