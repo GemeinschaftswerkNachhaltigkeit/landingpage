@@ -10,46 +10,49 @@ export const useAuth = (config) => {
   onMounted(async () => {
     window.onfocus = async function () {
       console.log('focus', keycloak);
-      keycloak = new Keycloak({
-        url: config.url,
-        realm: config.realm,
-        clientId: config.clientId,
-      });
-      console.log('########### MOUNT: Initializing keycloak');
-      keycloak.onAuthSuccess = async () => {
-        console.log('########### onAuthSuccess');
-        await keycloak?.loadUserInfo();
-        userInfo.value = keycloak?.userInfo;
-        loggedIn.value = true;
-      };
-      keycloak.onAuthError = (e) => {
-        console.log('########### onAuthError', e);
-        loggedIn.value = false;
-      };
-      keycloak.onReady = (authenticated) => {
-        console.log('########### onReady: authenticated', authenticated);
-        loggedIn.value = !!authenticated;
-        ready.value = true;
-      };
+      console.log('focus ready', ready);
+      console.log('focus loggedIn', loggedIn);
+    };
 
-      keycloak.onTokenExpired = async () => {
-        try {
-          await keycloak?.updateToken(30);
-        } catch (error) {
-          console.log(error);
-        }
-      };
+    keycloak = new Keycloak({
+      url: config.url,
+      realm: config.realm,
+      clientId: config.clientId,
+    });
+    console.log('########### MOUNT: Initializing keycloak');
+    keycloak.onAuthSuccess = async () => {
+      console.log('########### onAuthSuccess');
+      await keycloak?.loadUserInfo();
+      userInfo.value = keycloak?.userInfo;
+      loggedIn.value = true;
+    };
+    keycloak.onAuthError = (e) => {
+      console.log('########### onAuthError', e);
+      loggedIn.value = false;
+    };
+    keycloak.onReady = (authenticated) => {
+      console.log('########### onReady: authenticated', authenticated);
+      loggedIn.value = !!authenticated;
+      ready.value = true;
+    };
+
+    keycloak.onTokenExpired = async () => {
       try {
-        await keycloak?.init({
-          onLoad: 'check-sso',
-        });
-        console.log('########### Init success');
-      } catch (e) {
-        console.log('########### Init error', e);
-        error.value = true;
-        ready.value = true;
+        await keycloak?.updateToken(30);
+      } catch (error) {
+        console.log(error);
       }
     };
+    try {
+      await keycloak?.init({
+        onLoad: 'check-sso',
+      });
+      console.log('########### Init success');
+    } catch (e) {
+      console.log('########### Init error', e);
+      error.value = true;
+      ready.value = true;
+    }
   });
 
   async function logout(redirect) {
