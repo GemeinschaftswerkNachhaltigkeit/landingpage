@@ -8,38 +8,43 @@ export const useAuth = (config) => {
   let keycloak = null;
 
   onMounted(async () => {
-    keycloak = new Keycloak({
-      url: config.url,
-      realm: config.realm,
-      clientId: config.clientId,
-    });
-    console.log('########### Initializing keycloak');
-    keycloak.onAuthSuccess = async () => {
-      await keycloak?.loadUserInfo();
-      userInfo.value = keycloak?.userInfo;
-      loggedIn.value = true;
-    };
-    keycloak.onAuthError = () => {
-      loggedIn.value = false;
-    };
-    keycloak.onReady = (authenticated) => {
-      loggedIn.value = !!authenticated;
-      ready.value = true;
-    };
+    window.onfocus = async function () {
+      console.log('focus');
+      if (!keycloak) {
+        keycloak = new Keycloak({
+          url: config.url,
+          realm: config.realm,
+          clientId: config.clientId,
+        });
+        console.log('########### MOUNT: Initializing keycloak');
+        keycloak.onAuthSuccess = async () => {
+          await keycloak?.loadUserInfo();
+          userInfo.value = keycloak?.userInfo;
+          loggedIn.value = true;
+        };
+        keycloak.onAuthError = () => {
+          loggedIn.value = false;
+        };
+        keycloak.onReady = (authenticated) => {
+          loggedIn.value = !!authenticated;
+          ready.value = true;
+        };
 
-    keycloak.onTokenExpired = async () => {
-      try {
-        await keycloak?.updateToken(30);
-      } catch (error) {}
+        keycloak.onTokenExpired = async () => {
+          try {
+            await keycloak?.updateToken(30);
+          } catch (error) {}
+        };
+        try {
+          await keycloak?.init({
+            onLoad: 'check-sso',
+          });
+        } catch (e) {
+          error.value = true;
+          ready.value = true;
+        }
+      }
     };
-    try {
-      await keycloak?.init({
-        onLoad: 'check-sso',
-      });
-    } catch (e) {
-      error.value = true;
-      ready.value = true;
-    }
   });
 
   async function logout(redirect) {
