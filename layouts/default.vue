@@ -14,8 +14,8 @@
         <div class="header-actions">
           <MenuAccount
             :id="'header-menu-account'"
-            :loggedIn="loggedIn"
-            @logout="() => handleLogout(localePath('index'))"
+            :loggedIn="true || loggedIn"
+            @logout="() => handleLogout()"
             items="menuItems"
           />
           <LangSwitch @langChanged="handleLangChanged" />
@@ -248,7 +248,7 @@ function closeSidebar() {
   sidebarOpen.value = false;
 }
 
-async function handleLogout(redirect) {
+async function handleLogout() {
   const tokens = [
     'access_token',
     'access_token_stored_at',
@@ -258,9 +258,9 @@ async function handleLogout(redirect) {
     'id_token_expires_at',
     'id_token_claims_obj',
   ];
+  const redirect = window.location.origin;
   console.log('Logging out', redirect);
   tokens.forEach((key) => {
-    console.log('Remove token', key);
     localStorage.removeItem(key);
   });
   await logout(redirect);
