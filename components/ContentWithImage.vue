@@ -90,7 +90,6 @@ function positionBadge() {
   const badge = document.querySelector('.title-badge');
   const dimensions = mainTitle.getBoundingClientRect();
   const badgeDimensions = badge.getBoundingClientRect();
-  console.log(dimensions, badgeDimensions);
   badge.style.left = `${dimensions.width - badgeDimensions.width / 4}px`;
   badge.style.top = `${-badgeDimensions.height / 2}px`;
   badge.style.opacity = 1;

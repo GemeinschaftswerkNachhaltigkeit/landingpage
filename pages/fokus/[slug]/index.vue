@@ -166,6 +166,7 @@
                 :videoSectionContent="action.video_series_content"
                 :videoSection="action.videos"
                 @action-clicked="setPopupOpen(action.menu_slug)"
+                @open-video-modal="(video) => setVideoPopupOpen(video)"
               >
                 <Carousel
                   :items="action.slides"
@@ -295,6 +296,21 @@
         </PopUp>
       </div>
     </template>
+
+    <template>
+      <div>
+        <PopUp
+          :open="!!videoPopup"
+          @popupClosed="handleCloseVideoPopup"
+          close-button-light="true"
+          full-screen
+        >
+          <video class="popup-video" controls autoplay>
+            <source :src="$assetURL(videoPopup.video)" />
+          </video>
+        </PopUp>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -311,6 +327,7 @@ const { isActive } = useTrackMenu();
 
 const highlights = ref([]);
 const openPopup = ref(undefined);
+const videoPopup = ref(undefined);
 const wasSubscriptionSuccess = ref(false);
 
 const { data, pending, error, refresh } = await useAsyncData(
@@ -530,10 +547,17 @@ function menuItemActive(fragments) {
   return fragments.includes(route.hash);
 }
 
-function setPopupOpen(key) {
-  openPopup.value = key;
+function setPopupOpen(video) {
+  openPopup.value = video;
 }
 
+function setVideoPopupOpen(key) {
+  console.log('setVideoPopupOpen', key);
+  videoPopup.value = key;
+}
+function handleCloseVideoPopup() {
+  videoPopup.value = undefined;
+}
 function handleClosePopup() {
   openPopup.value = undefined;
 }
@@ -812,6 +836,13 @@ useHead({
       margin-bottom: 40px;
     }
   }
+}
+
+.popup-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 @media screen and (min-width: 1000px) {

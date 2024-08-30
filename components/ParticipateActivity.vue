@@ -55,7 +55,10 @@
             :title="video.title"
             :file="video.file"
             :image="video.image"
-            :url="video.videoUrl"
+            :url="video.video_link"
+            :modal="video.open_in_modal"
+            :video="video.video"
+            @open-modal="() => handleOpenModal(video)"
           ></FocusTopicVideo>
         </div>
       </div>
@@ -109,10 +112,14 @@ defineProps({
   },
 });
 
-const emit = defineEmits(['action-clicked']);
+const emit = defineEmits(['action-clicked', 'open-video-modal']);
 
 function handleActionClicked() {
   emit('action-clicked');
+}
+
+function handleOpenModal(video) {
+  emit('open-video-modal', video);
 }
 </script>
 

@@ -5,11 +5,29 @@ export const useAuth = (config) => {
   const ready = ref(false);
   const error = ref(false);
   const userInfo = ref(null);
+  const loginTried = ref(false);
   let keycloak = null;
 
   onMounted(async () => {
+    function checkLoginTrials() {
+      const loginTriedValue = sessionStorage.getItem('loginTried');
+      if (loginTriedValue) {
+        return JSON.parse(loginTriedValue);
+      }
+      return false;
+    }
+
+    function setLoginTrials() {
+      sessionStorage.setItem('loginTried', true);
+    }
+
+    function clearLoginTrials() {
+      sessionStorage.removeItem('loginTried');
+    }
+
     window.onfocus = async function () {
-      if (!keycloak.authenticated) {
+      if (!keycloak.authenticated && !checkLoginTrials()) {
+        setLoginTrials(true);
         keycloak.login({ prompt: 'none' });
       }
     };
@@ -26,6 +44,7 @@ export const useAuth = (config) => {
     };
     keycloak.onAuthError = (e) => {
       loggedIn.value = false;
+      clearLoginTrials();
     };
     keycloak.onAuthLogout = () => {
       userInfo.value = null;
@@ -50,10 +69,12 @@ export const useAuth = (config) => {
     } catch (e) {
       error.value = true;
       ready.value = true;
+      clearLoginTrials();
     }
   });
 
   async function logout(redirect) {
+    clearLoginTrials();
     await keycloak?.logout({
       redirectUri: redirect,
     });
