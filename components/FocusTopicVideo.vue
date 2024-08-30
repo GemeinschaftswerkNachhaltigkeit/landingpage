@@ -69,13 +69,15 @@ const props = defineProps({
 const emits = defineEmits(['openModal']);
 
 function handleOpenModal() {
-  window._paq.push([
-    'trackEvent',
-    'VIDEO POPUP',
-    'Video-Popup geöffnet',
-    props.title,
-    props.url,
-  ]);
+  if (window._paq) {
+    window._paq.push([
+      'trackEvent',
+      'VIDEO POPUP',
+      'Video-Popup geöffnet',
+      props.title,
+      props.url,
+    ]);
+  }
 
   emits('openModal');
 }
