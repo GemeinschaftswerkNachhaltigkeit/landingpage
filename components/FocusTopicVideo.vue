@@ -75,7 +75,6 @@ function handleOpenModal() {
       'VIDEO POPUP',
       'Video-Popup geöffnet',
       props.title,
-      props.url,
     ]);
   }
 
