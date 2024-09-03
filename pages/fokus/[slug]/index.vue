@@ -39,14 +39,6 @@
         <div class="sidebar-menu">
           <nav class="menu-items accent-font">
             <a
-              v-if="data.description_menu"
-              class="menu-item"
-              href="#beschreibung"
-              :class="{ active: isActive('beschreibung') }"
-            >
-              {{ data.description_menu }}
-            </a>
-            <a
               v-for="action in data.actions"
               class="menu-item"
               :href="'#' + action.menu_slug"
@@ -54,7 +46,14 @@
             >
               {{ action.menu }}</a
             >
-
+            <a
+              v-if="data.description_menu"
+              class="menu-item"
+              href="#beschreibung"
+              :class="{ active: isActive('beschreibung') }"
+            >
+              {{ data.description_menu }}
+            </a>
             <a
               v-if="data.knowledge_menu"
               class="menu-item"
@@ -72,56 +71,6 @@
           </nav>
         </div>
         <div class="content">
-          <section class="nav-section" id="beschreibung" data-track-menu>
-            <div class="inner-section">
-              <div class="inner-layout-vertical">
-                <div v-if="data.description_title">
-                  <h2 class="blue">{{ data.description_title }}</h2>
-                </div>
-                <div v-if="data.description_content">
-                  <div v-html="data.description_content"></div>
-                </div>
-                <div
-                  class="description-entry font-2"
-                  v-if="data.description_entries?.length"
-                  v-for="(entry, index) in data.description_entries"
-                >
-                  <div class="number">
-                    {{ index + 1 }}
-                  </div>
-                  <div v-html="entry.content"></div>
-                </div>
-                <div class="description-source">
-                  {{ data.description_source }}
-                </div>
-              </div>
-            </div>
-          </section>
-          <section class="nav-section">
-            <div class="inner-section">
-              <div class="inner-layout-vertical">
-                <div>
-                  <h3 class="no-decoration" v-if="data.sdgs_title">
-                    {{ data.sdgs_title }}
-                  </h3>
-                </div>
-                <div
-                  class="html no-margin"
-                  v-if="data.sdgs_content"
-                  v-html="data.sdgs_content"
-                ></div>
-                <div class="sdgs">
-                  <LinkedLogo
-                    width="120px"
-                    height="120px"
-                    v-for="sdg in data.sdgs_selected_goals"
-                    :logo="sdg"
-                  >
-                  </LinkedLogo>
-                </div>
-              </div>
-            </div>
-          </section>
           <section class="nav-section small-gap">
             <div class="inner-section">
               <div class="inner-layout-vertical">
@@ -175,6 +124,58 @@
                 >
                 </Carousel>
               </ParticipateActivity>
+            </div>
+          </section>
+
+          <section class="nav-section" id="beschreibung" data-track-menu>
+            <div class="inner-section">
+              <div class="inner-layout-vertical">
+                <div v-if="data.description_title">
+                  <h2 class="blue">{{ data.description_title }}</h2>
+                </div>
+                <div v-if="data.description_content">
+                  <div v-html="data.description_content"></div>
+                </div>
+                <div
+                  class="description-entry font-2"
+                  v-if="data.description_entries?.length"
+                  v-for="(entry, index) in data.description_entries"
+                >
+                  <div class="number">
+                    {{ index + 1 }}
+                  </div>
+                  <div v-html="entry.content"></div>
+                </div>
+                <div class="description-source">
+                  {{ data.description_source }}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="nav-section">
+            <div class="inner-section">
+              <div class="inner-layout-vertical">
+                <div>
+                  <h3 class="no-decoration" v-if="data.sdgs_title">
+                    {{ data.sdgs_title }}
+                  </h3>
+                </div>
+                <div
+                  class="html no-margin"
+                  v-if="data.sdgs_content"
+                  v-html="data.sdgs_content"
+                ></div>
+                <div class="sdgs">
+                  <LinkedLogo
+                    width="120px"
+                    height="120px"
+                    v-for="sdg in data.sdgs_selected_goals"
+                    :logo="sdg"
+                  >
+                  </LinkedLogo>
+                </div>
+              </div>
             </div>
           </section>
 
