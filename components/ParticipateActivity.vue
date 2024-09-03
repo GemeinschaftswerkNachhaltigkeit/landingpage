@@ -58,6 +58,7 @@
             :url="video.video_link"
             :modal="video.open_in_modal"
             :video="video.video"
+            :subtitles="video.subtitles"
             @open-modal="() => handleOpenModal(video)"
           ></FocusTopicVideo>
         </div>

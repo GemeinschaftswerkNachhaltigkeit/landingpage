@@ -305,8 +305,22 @@
           close-button-light="true"
           full-screen
         >
-          <video class="popup-video" controls autoplay>
+          <video class="popup-video" controls autoplay crossorigin="anonymous">
             <source :src="$assetURL(videoPopup.video)" />
+            <track
+              v-if="$i18n.locale.value === 'de'"
+              :label="$t('labels.de')"
+              kind="subtitles"
+              srclang="de"
+              :src="$assetURL(videoPopup.video_subtitles)"
+            />
+            <track
+              v-if="$i18n.locale.value === 'en'"
+              :label="$t('labels.en')"
+              kind="subtitles"
+              srclang="en"
+              :src="$assetURL(videoPopup.video_subtitles)"
+            />
           </video>
         </PopUp>
       </div>
@@ -552,7 +566,6 @@ function setPopupOpen(video) {
 }
 
 function setVideoPopupOpen(key) {
-  console.log('setVideoPopupOpen', key);
   videoPopup.value = key;
 }
 function handleCloseVideoPopup() {

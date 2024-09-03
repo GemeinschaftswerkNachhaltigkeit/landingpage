@@ -64,6 +64,10 @@ const props = defineProps({
   url: String,
   modal: Boolean,
   video: String,
+  subtitles: {
+    type: String,
+    default: '',
+  },
 });
 
 const emits = defineEmits(['openModal']);
