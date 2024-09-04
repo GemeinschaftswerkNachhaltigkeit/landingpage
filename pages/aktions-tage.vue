@@ -23,11 +23,6 @@
           <div class="current">{{ data.currentNav?.name }}</div>
         </div>
       </section>
-      <video width="320" height="270" controls autoplay>
-
-        <source src="http://localhost:8055/assets/b54e60b4-1a5a-431d-9a43-c89f2f66420a?download=&access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiMjRjMzQzLTQyOTktNGYxMS1iNTIzLTJkYjljOGJjZmU5MiIsInJvbGUiOiIwYjk4YjhiMS1lNDIxLTQ1YzktOGE3NS1jYjAzNjMzN2I5YzciLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsImlhdCI6MTcyNDk0NDc3MywiZXhwIjoxNzI0OTQ1NjczLCJpc3MiOiJkaXJlY3R1cyJ9.3xTjIntr0dc1lfF8V6nFJil4SH6zfPI3pFc6AEi79wM" type="video/mp4"></source>
-
-      </video>
 
       <section class="content-section page-hero">
         <content-with-video
