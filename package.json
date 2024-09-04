@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "create-snapshot": "npx directus schema snapshot ./snapshots/\"$(date \"+%F\")\"-snapshot-\"$(date \"+%s\")\".yaml",
-    "prepare": "husky"
+    "prepare": "husky",
+    "snapshot": "./scripts/snapshot.sh"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",

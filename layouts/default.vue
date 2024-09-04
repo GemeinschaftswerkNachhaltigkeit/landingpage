@@ -15,7 +15,7 @@
           <MenuAccount
             :id="'header-menu-account'"
             :loggedIn="loggedIn"
-            @logout="() => handleLogout(localePath('index'))"
+            @logout="() => handleLogout()"
             items="menuItems"
           />
           <LangSwitch @langChanged="handleLangChanged" />
@@ -62,7 +62,7 @@
           <MenuAccount
             :id="'sidenav-menu-account'"
             :loggedIn="!!user"
-            @logout="() => handleLogout(localePath('index'))"
+            @logout="() => handleLogout()"
           />
         </div>
       </div>
@@ -125,7 +125,6 @@ const auth = ref(null);
 const interval = ref(null);
 const sidebarOpen = ref(false);
 const isSafari = ref(false);
-const authConfig = ref(null);
 const popupOpen = ref(false);
 const { loggedIn, ready, userInfo, logout } = useAuth(config.public.keycloak);
 
@@ -248,7 +247,7 @@ function closeSidebar() {
   sidebarOpen.value = false;
 }
 
-async function handleLogout(redirect) {
+async function handleLogout() {
   const tokens = [
     'access_token',
     'access_token_stored_at',
@@ -258,12 +257,14 @@ async function handleLogout(redirect) {
     'id_token_expires_at',
     'id_token_claims_obj',
   ];
-  console.log('Logging out');
+  const redirect = window.location.origin;
+  const currentLocale = $i18n.locales.value.find(
+    (i) => i.code === $i18n.locale.value
+  );
   tokens.forEach((key) => {
-    console.log('Remove token', key);
     localStorage.removeItem(key);
   });
-  await logout(redirect);
+  await logout(redirect + '/' + currentLocale.code);
 }
 
 function handlePopupClosed() {
@@ -272,11 +273,6 @@ function handlePopupClosed() {
 }
 
 onMounted(async () => {
-  try {
-    authConfig.value = await $fetch(config.public.authConfigUrl);
-  } catch (error) {
-    console.log('Cannot load config');
-  }
   safari();
   if (!isDisabled()) {
     openAfter(data.value.popup?.open_after_seconds, () => {

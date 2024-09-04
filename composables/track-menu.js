@@ -10,13 +10,13 @@ export const useTrackMenu = (attribute = 'data-track-menu') => {
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.intersectionRatio > 0) {
+          if (entry.isIntersecting) {
             currentSection.value = entry.target.getAttribute('id');
           }
         });
       },
       {
-        rootMargin: '0px 0px -100px 0px',
+        rootMargin: '-100px 0px -100px 0px',
       }
     );
     document

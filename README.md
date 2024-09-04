@@ -171,3 +171,5 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+
+http://localhost:8055/assets/3186c833-c92b-412f-81d3-8dd9057dd3a2

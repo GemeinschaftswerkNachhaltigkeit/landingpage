@@ -2,12 +2,24 @@
   <article>
     <div>
       <div class="image">
-        <a :href="url" target="_blank">
+        <a v-if="!modal" :href="url" target="_blank">
           <img
             :src="$imageURL(image, { width: 300, format: 'webp', quality: 80 })"
             :alt="title || 'Thumbnail'"
           />
         </a>
+        <button
+          class="video-button"
+          v-if="modal"
+          :href="url"
+          target="_blank"
+          @click="handleOpenModal"
+        >
+          <img
+            :src="$imageURL(image, { width: 300, format: 'webp', quality: 80 })"
+            :alt="title || 'Thumbnail'"
+          />
+        </button>
 
         <a class="download" :href="$assetURL(file)" target="_blank" v-if="file">
           <svg
@@ -45,12 +57,33 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   title: String,
   file: String,
   image: String,
   url: String,
+  modal: Boolean,
+  video: String,
+  subtitles: {
+    type: String,
+    default: '',
+  },
 });
+
+const emits = defineEmits(['openModal']);
+
+function handleOpenModal() {
+  if (window._paq) {
+    window._paq.push([
+      'trackEvent',
+      'VIDEO POPUP',
+      'Video-Popup geöffnet',
+      props.title,
+    ]);
+  }
+
+  emits('openModal');
+}
 </script>
 
 <style scoped lang="scss">
@@ -68,6 +101,11 @@ article {
       width: 100%;
       aspect-ratio: 16/9;
       object-fit: cover;
+      display: block;
+    }
+    .video-button {
+      background: none;
+      padding: 0;
       display: block;
     }
     .download {

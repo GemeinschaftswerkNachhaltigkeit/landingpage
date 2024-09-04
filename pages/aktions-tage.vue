@@ -23,6 +23,7 @@
           <div class="current">{{ data.currentNav?.name }}</div>
         </div>
       </section>
+
       <section class="content-section page-hero">
         <content-with-video
           :title="data.title"

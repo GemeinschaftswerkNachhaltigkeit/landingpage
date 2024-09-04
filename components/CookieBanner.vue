@@ -1,23 +1,44 @@
 <template>
-  <div v-if="noticeVisible" id="cookie-banner" role="dialog"
-    :class="noticeVisible ? 'cookie-banner-visible' : 'cookie-banner-hidden'" aria-label="Cookie Notice">
+  <div
+    v-if="noticeVisible"
+    id="cookie-banner"
+    role="dialog"
+    :class="noticeVisible ? 'cookie-banner-visible' : 'cookie-banner-hidden'"
+    aria-label="Cookie Notice"
+  >
     <div class="cookie-banner-container">
       <div id="cookie-banner-text" class="cookie-banner-text-container">
-        <h6>{{ $t("cookieBanner.title") }}</h6>
-        <i18n-t for="agreePrivacyContact" tag="p" keypath="cookieBanner.text" class="title" scope="global">
+        <h6>{{ $t('cookieBanner.title') }}</h6>
+        <i18n-t
+          for="agreePrivacyContact"
+          tag="p"
+          keypath="cookieBanner.text"
+          class="title"
+          scope="global"
+        >
           <template v-slot:privacyLink>
-            <NuxtLink :to="localePath('privacy')" target="_blank">{{ $t('page.privacy') }}</NuxtLink>
+            <NuxtLink :to="localePath('privacy')" target="_blank">{{
+              $t('page.privacy')
+            }}</NuxtLink>
           </template>
         </i18n-t>
       </div>
       <div id="cookie-banner-buttons" class="cookie-banner-buttons-container">
-        <button v-on:click="accept" id="cookie-banner-accept" class="accent-btn"
-          :aria-label="$t('cookieBanner.btn.acceptAll')">
-          {{ $t("cookieBanner.btn.acceptAll") }}
+        <button
+          v-on:click="accept"
+          id="cookie-banner-accept"
+          class="accent-btn"
+          :aria-label="$t('cookieBanner.btn.acceptAll')"
+        >
+          {{ $t('cookieBanner.btn.acceptAll') }}
         </button>
-        <button v-on:click="refuse" id="cookie-banner-refuse" class="link"
-          :aria-label="$t('cookieBanner.btn.acceptNecessary')">
-          {{ $t("cookieBanner.btn.acceptNecessary") }}
+        <button
+          v-on:click="refuse"
+          id="cookie-banner-refuse"
+          class="link"
+          :aria-label="$t('cookieBanner.btn.acceptNecessary')"
+        >
+          {{ $t('cookieBanner.btn.acceptNecessary') }}
         </button>
       </div>
       <!-- <button v-on:click="refuse" id="cookie-banner-close" class="cookie-banner-close" :title="$t('cookieBanner.btn.acceptNecessary')">X</button>-->
@@ -39,7 +60,7 @@
 }
 
 #cookie-banner h6 {
-  font-family: "AzeretMono";
+  font-family: 'AzeretMono';
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -130,10 +151,10 @@
 </style>
 
 <script>
-const CNAME = "wpgwn_cookie_consent_set";
+const CNAME = 'wpgwn_cookie_consent_set';
 const EXDAYS = 90;
 
-const MATOMO_SCRIPT_CLASS = "matomo-script";
+const MATOMO_SCRIPT_CLASS = 'matomo-script';
 
 export default {
   data() {
@@ -156,15 +177,15 @@ export default {
     setCookie(cname, cvalue, exdays) {
       const d = new Date();
       d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-      let expires = "expires=" + d.toUTCString();
-      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      let expires = 'expires=' + d.toUTCString();
+      document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
     },
     getCookie(cname) {
-      let name = cname + "=";
-      let ca = document.cookie.split(";");
+      let name = cname + '=';
+      let ca = document.cookie.split(';');
       for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0) == " ") {
+        while (c.charAt(0) == ' ') {
           c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
@@ -177,7 +198,7 @@ export default {
       let c = this.getCookie(CNAME);
       if (c !== null) {
         this.noticeVisible = false;
-        if (c === "true") {
+        if (c === 'true') {
           this.loadScript();
         } else {
           this.removeScript();
@@ -188,30 +209,30 @@ export default {
     },
     loadScript() {
       if (!this.scriptLoaded && this.getMatomoSiteId()) {
-        const script = document.createElement("script");
-        script.setAttribute("class", MATOMO_SCRIPT_CLASS);
-        script.innerHTML =
-          "var _paq = window._paq = window._paq || [];" +
-          "_paq.push(['trackPageView']);" +
-          "  _paq.push(['enableLinkTracking']);" +
-          "  (function() {" +
-          'var u="https://matomo.nachhaltigkeitsrat.de/";' +
-          "_paq.push(['setTrackerUrl', u+'matomo.php']);" +
-          "_paq.push(['setSiteId', " +
-          this.getMatomoSiteId() +
-          "]);" +
-          "var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];" +
-          "g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s); " +
-          "})();";
+        const script = document.createElement('script');
+        script.setAttribute('class', MATOMO_SCRIPT_CLASS);
+        script.innerHTML = `
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="//localhost/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', ${this.getMatomoSiteId()}]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+        `;
 
-        const noscript = document.createElement("noscript");
-        noscript.setAttribute("class", MATOMO_SCRIPT_CLASS);
+        const noscript = document.createElement('noscript');
+        noscript.setAttribute('class', MATOMO_SCRIPT_CLASS);
         noscript.innerHTML =
           '<p><img src="https://matomo.nachhaltigkeitsrat.de/matomo.php?idsite=' +
           this.getMatomoSiteId() +
           '&amp;rec=1" style="border:0;" alt="" /></p>';
 
-        const position = document.querySelector("body"); // Or any other location , example head
+        const position = document.querySelector('body'); // Or any other location , example head
         position.appendChild(script);
         position.appendChild(noscript);
 
@@ -230,10 +251,10 @@ export default {
     },
   },
   mounted: function () {
-    window.addEventListener("onload", this.checkCookie());
+    window.addEventListener('onload', this.checkCookie());
   },
   destroyed: function () {
-    window.removeEventListener("onload", this.checkCookie());
+    window.removeEventListener('onload', this.checkCookie());
   },
 };
 </script>

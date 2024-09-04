@@ -3,15 +3,19 @@
     <Teleport to="body">
       <div class="dialog-wrapper" :class="{ open: open }">
         <transition name="fade">
-          <dialog open v-if="open">
+          <dialog
+            open
+            v-if="open"
+            :class="{ fullScreen: fullScreen, dark: dark }"
+          >
             <button
               class="close-button"
               :class="{ light: closeButtonLight }"
               @click="handleClose"
             >
               <svg
-                width="14"
-                height="14"
+                width="24"
+                height="24"
                 viewBox="0 0 14 14"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +44,10 @@ const props = defineProps({
     default: false,
   },
   closeButtonLight: {
+    type: Boolean,
+    default: false,
+  },
+  fullScreen: {
     type: Boolean,
     default: false,
   },
@@ -99,6 +107,24 @@ function handleClose() {
       overflow: auto;
       height: 100%;
       max-height: 90vh;
+    }
+
+    &.fullScreen {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.8);
+      inset: 0;
+      max-height: none;
+      max-width: none;
+      min-height: none;
+      height: 100%;
+
+      .content {
+        overflow: hidden;
+        height: 100%;
+        max-height: none;
+        position: absolute;
+        inset: 0;
+      }
     }
 
     .close-button {
