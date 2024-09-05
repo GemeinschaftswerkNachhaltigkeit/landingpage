@@ -30,15 +30,14 @@
     </div>
 
     <div class="video-section" v-if="videoSectionActive">
-      <div class="image">
+      <div class="image" v-if="videoSectionImage">
         <ContentSectionImage
-          v-if="videoSectionImage"
           :alt="videoSection.title + ' Bild'"
           :id="videoSectionImage"
         />
       </div>
-      <div>
-        <h3 v-if="videoSectionTitle">{{ videoSectionTitle }}</h3>
+      <div v-if="videoSectionTitle">
+        <h3>{{ videoSectionTitle }}</h3>
       </div>
       <div
         class="html no-margin"
