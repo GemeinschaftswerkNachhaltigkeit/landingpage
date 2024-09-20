@@ -8,6 +8,10 @@ export const useAuth = (config) => {
   const loginTried = ref(false);
   let keycloak = null;
 
+  function clearLoginTrials() {
+    sessionStorage.removeItem('loginTried');
+  }
+
   onMounted(async () => {
     function checkLoginTrials() {
       const loginTriedValue = sessionStorage.getItem('loginTried');
@@ -19,10 +23,6 @@ export const useAuth = (config) => {
 
     function setLoginTrials() {
       sessionStorage.setItem('loginTried', true);
-    }
-
-    function clearLoginTrials() {
-      sessionStorage.removeItem('loginTried');
     }
 
     window.onfocus = async function () {
@@ -75,6 +75,7 @@ export const useAuth = (config) => {
   });
 
   async function logout(redirect) {
+    console.log('Logout');
     clearLoginTrials();
     await keycloak?.logout({
       redirectUri: redirect,

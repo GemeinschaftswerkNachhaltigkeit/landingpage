@@ -273,6 +273,9 @@ function handlePopupClosed() {
 }
 
 onMounted(async () => {
+  if (import.meta.client && window) {
+    window.history.scrollRestoration = 'auto';
+  }
   safari();
   if (!isDisabled()) {
     openAfter(data.value.popup?.open_after_seconds, () => {
