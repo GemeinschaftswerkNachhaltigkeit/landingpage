@@ -18582,7 +18582,14 @@ fields:
     type: uuid
     meta:
       collection: focus_topic_videos_translations
-      conditions: []
+      conditions:
+        - name: only-in-popup
+          rule:
+            _and:
+              - open_in_modal:
+                  _eq: false
+          hidden: true
+          options: {}
       display: file
       display_options: null
       field: video_subtitles
