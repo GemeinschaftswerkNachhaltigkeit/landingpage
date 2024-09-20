@@ -75,7 +75,6 @@ export const useAuth = (config) => {
   });
 
   async function logout(redirect) {
-    console.log('Logout');
     clearLoginTrials();
     await keycloak?.logout({
       redirectUri: redirect,
