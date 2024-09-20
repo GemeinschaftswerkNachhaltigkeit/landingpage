@@ -65,6 +65,7 @@ export const useAuth = (config) => {
     try {
       const result = await keycloak?.init({
         onLoad: 'check-sso',
+        silentCheckSsoRedirectUri: `${location.origin}/silent-check-sso.html`,
       });
     } catch (e) {
       error.value = true;
