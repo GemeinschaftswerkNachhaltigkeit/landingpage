@@ -16,8 +16,8 @@ $ npm install
 
 ```
 DIRECTUS_URL=http://localhost:8055
-DIRECTUS_EMAIL=***REMOVED***
-DIRECTUS_PASSWORD=***REMOVED***
+DIRECTUS_EMAIL=wpgwn-directus@directus.com
+DIRECTUS_PASSWORD=welcome
 DIRECTUS_STATIC_TOKEN=
 
 MATOMO_SITE_ID=999
