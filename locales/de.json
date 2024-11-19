@@ -10,6 +10,7 @@
     "signUp": "Jetzt anmelden",
     "goToFaq": "Zu den FAQ",
     "goToRoadmap": "Zum Fahrplan",
+    "goToNews": "Zu den Neuigkeiten",
     "goToPartner": "Zu den Partner:innen",
     "login": "Login",
     "logout": "Logout",
@@ -64,7 +65,7 @@
     "searchPlaceholder": "Themen, Orte, Aktivitäten ...",
     "sdgs": "Nachhaltigkeitsziele",
     "biodiversity": "Biodiversität",
-    "initiator": "Initiator"
+    "initiator": "Initiator:innen"
   },
   "footerMenuLabels": {
     "main": "Menü",
