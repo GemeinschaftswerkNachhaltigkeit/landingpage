@@ -187,10 +187,12 @@ const { data, pending, error, refresh } = await useAsyncData(
           },
         });
 
-        popup = {
-          ...popupTranslationData[0],
-          ...popupTranslationData[0].pop_ups_id,
-        };
+        if (popupTranslationData[0]) {
+          popup = {
+            ...popupTranslationData[0],
+            ...popupTranslationData[0].pop_ups_id,
+          };
+        }
       }
 
       const filter = {
