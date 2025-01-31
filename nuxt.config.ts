@@ -109,6 +109,7 @@ export default defineNuxtConfig({
           ? 'http://127.0.0.1:8081/api/v1/ui/ui-config'
           : '/app/api/v1/ui/ui-config',
       matomoSiteId: process.env.MATOMO_SITE_ID,
+      matomoUrl: process.env.MATOMO_URL,
       appUrl:
         process.env.NODE_ENV === 'development' ? process.env.APP_URL : '/app',
     },

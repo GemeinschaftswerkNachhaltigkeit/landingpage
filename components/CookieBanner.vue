@@ -41,7 +41,6 @@
           {{ $t('cookieBanner.btn.acceptNecessary') }}
         </button>
       </div>
-      <!-- <button v-on:click="refuse" id="cookie-banner-close" class="cookie-banner-close" :title="$t('cookieBanner.btn.acceptNecessary')">X</button>-->
     </div>
   </div>
 </template>
@@ -167,18 +166,32 @@ export default {
     accept(path) {
       this.noticeVisible = false;
       this.setCookie(CNAME, true, EXDAYS);
-      this.loadScript();
+      this.enableMatomo();
     },
     refuse() {
       this.noticeVisible = false;
       this.setCookie(CNAME, false, EXDAYS);
-      this.removeScript();
+      this.disableMatomo();
     },
     setCookie(cname, cvalue, exdays) {
       const d = new Date();
       d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
       let expires = 'expires=' + d.toUTCString();
       document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+    },
+    enableMatomo() {
+      console.log('Enable matomo (consent)');
+      if (this.$matomo) {
+        this.$matomo.rememberConsentGiven();
+        this.$matomo.rememberCookieConsentGiven();
+      }
+    },
+    disableMatomo() {
+      console.log('Disable matomo (no consent)');
+      if (this.$matomo) {
+        this.$matomo.forgetConsentGiven();
+        this.$matomo.forgetCookieConsentGiven();
+      }
     },
     getCookie(cname) {
       let name = cname + '=';
@@ -199,55 +212,20 @@ export default {
       if (c !== null) {
         this.noticeVisible = false;
         if (c === 'true') {
-          this.loadScript();
+          this.enableMatomo();
         } else {
-          this.removeScript();
+          this.disableMatomo();
         }
       } else {
         this.noticeVisible = true;
       }
     },
-    loadScript() {
-      if (!this.scriptLoaded && this.getMatomoSiteId()) {
-        const script = document.createElement('script');
-        script.setAttribute('class', MATOMO_SCRIPT_CLASS);
-        script.innerHTML = `
-        var _paq = window._paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-          var u="//localhost/";
-          _paq.push(['setTrackerUrl', u+'matomo.php']);
-          _paq.push(['setSiteId', ${this.getMatomoSiteId()}]);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-        })();
-        `;
 
-        const noscript = document.createElement('noscript');
-        noscript.setAttribute('class', MATOMO_SCRIPT_CLASS);
-        noscript.innerHTML =
-          '<p><img src="https://matomo.nachhaltigkeitsrat.de/matomo.php?idsite=' +
-          this.getMatomoSiteId() +
-          '&amp;rec=1" style="border:0;" alt="" /></p>';
-
-        const position = document.querySelector('body'); // Or any other location , example head
-        position.appendChild(script);
-        position.appendChild(noscript);
-
-        this.scriptLoaded = true;
-      }
-    },
-    removeScript() {
-      if (this.scriptLoaded) {
-        var script = document.getElementsByClassName(MATOMO_SCRIPT_CLASS); //document.getElementById(MATOMO_SCRIPT_ID);
-        script.parentNode.removeChild(script);
-        this.scriptLoaded = false;
-      }
-    },
     getMatomoSiteId() {
       return this.$config.public.matomoSiteId;
+    },
+    getMatomoUrl() {
+      return this.$config.public.matomoUrl;
     },
   },
   mounted: function () {
