@@ -4,7 +4,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [svgLoader()],
   },
+
   modules: ['@nuxtjs/i18n', 'nuxt-directus'],
+
   app: {
     head: {
       htmlAttrs: {
@@ -62,7 +64,9 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   css: ['modern-normalize', '~/style/main.css', '~/style/flicking.css'],
+
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
@@ -72,9 +76,11 @@ export default defineNuxtConfig({
     defaultLocale: 'de',
     baseUrl: 'https://gemeinschaftswerk-nachhaltigkeit.de/',
   },
+
   directus: {
     url: process.env.DIRECTUS_PUBLIC_URL,
   },
+
   runtimeConfig: {
     public: {
       keycloak: {
@@ -103,8 +109,11 @@ export default defineNuxtConfig({
           ? 'http://127.0.0.1:8081/api/v1/ui/ui-config'
           : '/app/api/v1/ui/ui-config',
       matomoSiteId: process.env.MATOMO_SITE_ID,
+      matomoUrl: process.env.MATOMO_URL,
       appUrl:
         process.env.NODE_ENV === 'development' ? process.env.APP_URL : '/app',
     },
   },
+
+  compatibilityDate: '2024-11-01',
 });

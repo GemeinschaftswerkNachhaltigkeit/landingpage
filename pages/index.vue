@@ -125,8 +125,8 @@
               <div>
                 <NuxtLink
                   class="button accent-btn"
-                  :to="localePath('roadmap')"
-                  >{{ $t('btn.goToRoadmap') }}</NuxtLink
+                  :to="$i18n.locale.value === 'en' ? '/en/neues' : '/neues'"
+                  >{{ $t('btn.goToNews') }}</NuxtLink
                 >
               </div>
             </div>
